@@ -18,7 +18,7 @@ interface AnimatedTitleProps {
   scrollSensitivity?: number;
 }
 
-export default function AnimatedTitlePiscarPrecise({ 
+export default function AnimatedTitle({ 
   text, 
   className = '',
   finalColor = '#05213a',
