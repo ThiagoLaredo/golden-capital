@@ -1,8 +1,15 @@
+import HeroSection from '../components/sections/HeroSection/HeroSection';
+import Transactions from '../components/sections/Transactions/Transactions';
+import Experience from '../components/sections/Experience/Experience';
+import Solutions from '../components/sections/Solutions/Solutions';
+
 export default function Home() {
   return (
-    <main>
-      <h1>Golden Capital</h1>
-      <p>Site em construção</p>
-    </main>
+    <>
+      <HeroSection />
+      <Transactions />
+      <Experience />
+      <Solutions />
+    </>
   );
 }
