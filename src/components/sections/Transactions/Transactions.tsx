@@ -4,7 +4,6 @@ import { useLanguage } from '../../../contexts/LanguageContext';
 import { pt, en } from '../../../lib/translations';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AnimatedTitleWhite from '../../ui/AnimatedTitle/AnimatedTitleWhite';
 import styles from './Transactions.module.css';
 
 if (typeof window !== 'undefined') {
@@ -33,12 +32,34 @@ export default function Transactions() {
   const { language } = useLanguage();
   const translations = language === 'pt' ? pt : en;
   const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const numberRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const hasAnimatedRef = useRef<boolean[]>([]); // Para controlar quais já animaram
 
-  // Animação de entrada da seção
+  // Reset do controle de animação quando a linguagem mudar
+  useEffect(() => {
+    hasAnimatedRef.current = [];
+  }, [language]);
+
+  // Animação de entrada da seção e título
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animação de entrada dos cards
+      // Animação do título
+      gsap.fromTo(titleRef.current, 
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          }
+        }
+      );
+
+      // Animação dos cards
       gsap.fromTo(`.${styles.card}`, 
         { opacity: 0, y: 30 },
         { 
@@ -58,7 +79,7 @@ export default function Transactions() {
     return () => ctx.revert();
   }, []);
 
-  // Animação dos números
+  // Animação automática dos números - sempre que entrar no viewport no scroll down
   useEffect(() => {
     const finalValues = translations.Home.transactions.items.map(item => {
       const processedValue = item.value.replace('Mais de', '+').replace('More than', '+');
@@ -66,33 +87,61 @@ export default function Transactions() {
       return { processedValue, parsed };
     });
     
+    // Inicializa o array de controle se necessário
+    if (hasAnimatedRef.current.length === 0) {
+      hasAnimatedRef.current = new Array(finalValues.length).fill(false);
+    }
+    
     numberRefs.current.forEach((element, index) => {
       if (!element) return;
 
       const { processedValue, parsed } = finalValues[index];
       
       if (parsed.number > 0) {
-        gsap.fromTo(element,
-          { innerText: 0 },
-          {
-            innerText: parsed.number,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none none",
-            },
-            onUpdate: function() {
-              const currentValue = Math.floor(this.targets()[0].innerText);
-              element.innerText = parsed.prefix + currentValue.toLocaleString() + parsed.suffix;
-            },
-            onComplete: function() {
-              element.innerText = processedValue;
+        // Configura o valor inicial
+        element.innerText = parsed.prefix + '0' + parsed.suffix;
+
+        ScrollTrigger.create({
+          trigger: element,
+          start: "top 90%",
+          end: "bottom 60%",
+          onEnter: () => {
+            // Só anima se ainda não animou neste ciclo
+            if (!hasAnimatedRef.current[index]) {
+              gsap.fromTo(element,
+                { innerText: 0 },
+                {
+                  innerText: parsed.number,
+                  duration: 2,
+                  ease: "power2.out",
+                  onUpdate: function() {
+                    const currentValue = Math.floor(this.targets()[0].innerText);
+                    element.innerText = parsed.prefix + currentValue.toLocaleString() + parsed.suffix;
+                  },
+                  onComplete: function() {
+                    element.innerText = processedValue;
+                    hasAnimatedRef.current[index] = true;
+                  }
+                }
+              );
             }
+          },
+          onEnterBack: () => {
+            // Não faz nada no scroll up - mantém o valor atual
+          },
+          onLeave: () => {
+            // Quando sai da viewport, reseta o controle para poder animar novamente
+            // Isso permite que anime de novo se o usuário scrollar para baixo novamente
+            hasAnimatedRef.current[index] = false;
+            
+            // Opcional: reseta para o valor inicial quando sai da viewport
+            // element.innerText = parsed.prefix + '0' + parsed.suffix;
+          },
+          onLeaveBack: () => {
+            // Quando sai pelo topo no scroll up, também reseta
+            hasAnimatedRef.current[index] = false;
           }
-        );
+        });
       }
     });
 
@@ -101,12 +150,10 @@ export default function Transactions() {
     };
   }, [language, translations]);
 
-  // Função para adicionar refs aos elementos de número
   const addToRefs = (el: HTMLDivElement | null, index: number) => {
     numberRefs.current[index] = el;
   };
 
-  // Processar os valores para substituir "Mais de" por "+"
   const processedItems = translations.Home.transactions.items.map(item => ({
     ...item,
     value: item.value.replace('Mais de', '+').replace('More than', '+')
@@ -115,7 +162,9 @@ export default function Transactions() {
   return (
     <section ref={sectionRef} className={styles.transactions}>
       <div className={styles.container}>
-        <AnimatedTitleWhite text={translations.Home.transactions.title} />
+        <h2 ref={titleRef} className={styles.title}>
+          {translations.Home.transactions.title}
+        </h2>
         <div className={styles.cards}>
           {processedItems.map((item, index) => (
             <div key={index} className={styles.card}>

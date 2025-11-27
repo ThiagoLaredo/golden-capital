@@ -1,100 +1,206 @@
 .solutions {
-  padding: 6rem 0;
-  background: var(--background-light);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10rem;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 4rem;
-  color: var(--primary-color);
-  font-weight: 600;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards na mesma linha */
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  max-width: 100%;
+  margin: 0;
 }
 
-.card {
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-  background: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(5, 33, 58, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(5, 33, 58, 0.1);
-  opacity: 0;
-  transform: translateY(30px);
+/* Coluna de Conteúdo - ESQUERDA */
+.contentColumn {
+  padding: 6rem 2rem;
+  margin-top: 15rem;
+}
+
+.content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.solutionsList {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 15rem;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(5, 33, 58, 0.15);
+.solutionItem {
+  padding: 2rem 0;
 }
 
-.icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  background: var(--secondary-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-size: 2rem;
+.solutionItem:last-child {
+  border-bottom: none;
+}
+
+.solutionHeader {
+  margin-bottom: .5rem;
 }
 
 .cardTitle {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
   color: var(--primary-color);
   font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .cardDescription {
   color: var(--paragraph-color);
-  line-height: 1.6;
-  flex-grow: 1; /* Para que todas as descrições tenham a mesma altura */
+  line-height: 1.7;
+  font-size: 1.2rem;
+  margin: 0;
 }
 
-/* Responsividade - ajustar para tablets */
+/* Coluna do Vídeo - DIREITA (FIXA) */
+.videoColumn {
+  position: relative;
+  padding: 2rem;
+}
+
+.videoContainer {
+  position: sticky;
+  top: 6rem;
+  width: 100%;
+  height: 450px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards por linha em tablets */
-  }
-}
-
-/* Responsividade - ajustar para mobile */
-@media (max-width: 768px) {
-  .title {
-    font-size: 2rem;
+  .container {
+    grid-template-columns: 1fr;
   }
   
-  .cards {
-    grid-template-columns: 1fr; /* 1 card por linha em mobile */
+  .videoColumn {
+    order: -1;
+    height: 50vh;
+    padding: 1rem;
   }
   
-  .icon {
-    width: 60px;
-    height: 60px;
+  .videoContainer {
+    position: relative;
+    top: auto;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .contentColumn {
+    padding: 3rem 1rem;
+    margin-top: 0;
+  }
+  
+  .cardTitle {
     font-size: 1.5rem;
   }
   
+  .solutionsList {
+    gap: 10rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
   .solutions {
-    padding: 4rem 0;
+    margin-bottom: 5rem;
+    min-height: auto;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .videoColumn {
+    order: -1;
+    padding: 1rem;
+    height: auto;
+  }
+  
+  .videoContainer {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: 300px;
+    max-width: none;
+    margin: 0;
+  }
+  
+  .contentColumn {
+    padding: 2rem 1rem;
+    margin-top: 0;
+  }
+  
+  .content {
+    max-width: 100%;
+  }
+  
+  .solutionsList {
+    gap: 6rem;
+  }
+  
+  .solutionItem {
+    padding: 1.5rem 0;
+  }
+  
+  .cardTitle {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+  
+  .cardDescription {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Mobile Pequeno */
+@media (max-width: 480px) {
+  .solutions {
+    margin-bottom: 3rem;
+  }
+  
+  .videoColumn {
+    padding: 1rem;
+  }
+  
+  .videoContainer {
+    height: 250px;
+    border-radius: 8px;
+  }
+  
+  .contentColumn {
+    padding: 1.5rem 1rem;
+  }
+  
+  .solutionsList {
+    gap: 4rem;
+  }
+  
+  .solutionItem {
+    padding: 1rem 0;
+  }
+  
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+  
+  .cardDescription {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 }

@@ -1,52 +1,78 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  padding: 1.5rem 0;
+  max-width: 900px;
+  padding: .5rem 0;
   background: transparent;
   transition: all 0.3s ease;
   z-index: 1000;
+  border-radius: 10px;
 }
 
 .scrolled {
-  background: rgba(5, 33, 58, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 1rem 0;
+  background: rgba(5, 33, 58, 0.50);
+  backdrop-filter: blur(25px);
+  padding: .5rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%; /* Garante que o container ocupe toda a altura */
 }
 
+/* CORREÇÃO: Remove margin/padding extra da logo */
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--white);
+  display: flex;
+  align-items: center;
+  height: 100%; /* Ocupa toda a altura disponível */
+  line-height: 0; /* Remove espaçamento extra */
 }
 
-/* Adicione este estilo se for usar a logo SVG */
+/* CORREÇÃO: Ajusta o link da logo */
+.logo a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  line-height: 0; /* Remove espaçamento extra */
+  text-decoration: none;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* CORREÇÃO: Ajusta a imagem da logo */
 .logo img {
   height: 40px;
   width: auto;
+  display: block; /* Remove espaçamento inline */
 }
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
+  align-items: center;
+  height: 100%; /* Garante alinhamento vertical */
 }
 
 .navLink {
   color: var(--white);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   position: relative;
+  padding: 0.5rem 0;
+  white-space: nowrap;
 }
 
 .navLink:hover {
@@ -56,12 +82,13 @@
 .navLink::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
   background: var(--secondary-color);
   transition: width 0.3s ease;
+  border-radius: 2px;
 }
 
 .navLink:hover::after {
@@ -72,13 +99,17 @@
   color: var(--secondary-color);
 }
 
+.navLink.active::after {
+  width: 100%;
+}
+
 .languageSelector {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 1rem;
-  padding-left: 1rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  /* margin-left: 1.5rem; */
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .langBtn {
@@ -89,25 +120,76 @@
   font-size: 0.9rem;
   opacity: 0.7;
   transition: all 0.3s ease;
-  padding: 0.25rem 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
 }
 
 .langBtn:hover {
   opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .langBtn.active {
   opacity: 1;
   color: var(--secondary-color);
   font-weight: bold;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.header, .scrolled {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @media (max-width: 768px) {
+  .header {
+    top: 1rem;
+    width: 95%;
+    border-radius: 30px;
+    padding: 1rem 0;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+  
   .nav {
     gap: 1rem;
   }
   
   .navLink {
     font-size: 0.9rem;
+  }
+  
+  .logo img {
+    height: 35px;
+  }
+  
+  .languageSelector {
+    margin-left: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    top: 0.5rem;
+    width: 98%;
+    border-radius: 25px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .nav {
+    gap: 0.8rem;
+  }
+  
+  .navLink {
+    font-size: 0.85rem;
+  }
+  
+  .logo img {
+    height: 30px;
   }
 }

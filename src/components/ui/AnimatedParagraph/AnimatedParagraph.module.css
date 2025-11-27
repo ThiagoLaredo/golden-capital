@@ -1,0 +1,10 @@
+/* AnimatedParagraph.module.css */
+.paragraph {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+}

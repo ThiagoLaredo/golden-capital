@@ -15,37 +15,64 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 50);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Função para verificar se o path atual corresponde ao link
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
+
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <Link href="/"><img src="/logo-golden-capital-partners-dark.svg" alt="Golden Capital" /></Link>
-        </div>
+        {/* Link da logo */}
+        <Link href="/" className={styles.logo}>
+          <img 
+            src="/logo-golden-capital-partners-dark.svg" 
+            alt="Golden Capital" 
+          />
+        </Link>
         
         <nav className={styles.nav}>
-          <Link href="/solucoes" className={`${styles.navLink} ${pathname === '/solucoes' ? styles.active : ''}`}>
+          <Link 
+            href="/solucoes" 
+            className={`${styles.navLink} ${isActive('/solucoes') ? styles.active : ''}`}
+          >
             {translations.Navigation.solutions}
           </Link>
-          <Link href="/equipe" className={`${styles.navLink} ${pathname === '/equipe' ? styles.active : ''}`}>
+          <Link 
+            href="/equipe" 
+            className={`${styles.navLink} ${isActive('/equipe') ? styles.active : ''}`}
+          >
             {translations.Navigation.team}
           </Link>
-          <Link href="/diferenciais" className={`${styles.navLink} ${pathname === '/diferenciais' ? styles.active : ''}`}>
+          <Link 
+            href="/diferenciais" 
+            className={`${styles.navLink} ${isActive('/diferenciais') ? styles.active : ''}`}
+          >
             {translations.Navigation.differentials}
           </Link>
-          <Link href="/cases" className={`${styles.navLink} ${pathname === '/cases' ? styles.active : ''}`}>
+          <Link 
+            href="/cases" 
+            className={`${styles.navLink} ${isActive('/cases') ? styles.active : ''}`}
+          >
             {translations.Navigation.cases}
           </Link>
-          <Link href="/contato" className={`${styles.navLink} ${pathname === '/contato' ? styles.active : ''}`}>
+          <Link 
+            href="/contato" 
+            className={`${styles.navLink} ${isActive('/contato') ? styles.active : ''}`}
+          >
             {translations.Navigation.contact}
           </Link>
           
-          {/* Seletor de Idioma - simples */}
           <div className={styles.languageSelector}>
             <button 
               className={`${styles.langBtn} ${language === 'pt' ? styles.active : ''}`}
@@ -53,7 +80,7 @@ const Header = () => {
             >
               PT
             </button>
-            <span>|</span>
+            <span style={{ opacity: 0.5 }}>|</span>
             <button 
               className={`${styles.langBtn} ${language === 'en' ? styles.active : ''}`}
               onClick={() => setLanguage('en')}

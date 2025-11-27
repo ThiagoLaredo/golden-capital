@@ -1,0 +1,12 @@
+.textContainer {
+  display: inline;
+}
+
+.text {
+  margin: 0;
+}
+
+.letter {
+  display: inline-block;
+  white-space: pre-wrap;
+}

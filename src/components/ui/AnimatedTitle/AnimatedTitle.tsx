@@ -48,8 +48,8 @@ export default function AnimatedTitle({
     const masterTl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 90%', // Mais próximo do topo para maior sensibilidade
-        end: 'top 10%',   // Maior range para scroll mais suave
+        start: 'top 60%', // Ajustado para melhor sincronização com parágrafo
+        end: 'top 20%',   // Ajustado para melhor sincronização com parágrafo
         scrub: scrollSensitivity, // Quanto menor, mais sensível
         toggleActions: "play none reverse none",
       }
