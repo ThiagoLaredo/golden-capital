@@ -18,7 +18,7 @@ export default function Solutions() {
   const videoRef = useRef<HTMLVideoElement>(null);
   
   // CONTROLE DE DISTÂNCIA - Ajuste estes valores conforme necessário
-  const DESKTOP_SCROLL_DISTANCE = 1000; 
+  const DESKTOP_SCROLL_DISTANCE = 950; 
   const MOBILE_SCROLL_DISTANCE = 800; // Novo: scroll para mobile
 
   useEffect(() => {
