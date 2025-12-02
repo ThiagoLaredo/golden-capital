@@ -14,12 +14,14 @@ interface AnimatedTextProps {
   finalColor?: string;
   baseColor?: string;
   accentColor?: string;
-  letterDuration?: number;
   scrollSensitivity?: number;
   startDelay?: number;
-  groupSize?: number;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
-  onAnimationComplete?: () => void; // Nova prop para callback
+  letterDelay?: number;
+  // Novas props para controle mobile
+  mobileStart?: string;
+  mobileEnd?: string;
+  mobileSensitivity?: number;
 }
 
 export default function AnimatedText({ 
@@ -28,111 +30,184 @@ export default function AnimatedText({
   finalColor = '#05213a',
   baseColor = '#dddddd',
   accentColor = '#d0ab76',
-  letterDuration = 0.3,
-  scrollSensitivity = 0.5,
+  scrollSensitivity = 1.5,
   startDelay = 0,
-  groupSize = 4,
   as = 'span',
-  onAnimationComplete
+  letterDelay = 0.03,
+  // Valores padrão otimizados para mobile
+  mobileStart = 'top 80%', // No mobile começa mais cedo (80% vs 90%)
+  mobileEnd = 'bottom 60%', // No mobile termina mais tarde
+  mobileSensitivity = 1.8 // No mobile mais sensível
 }: AnimatedTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
   const [isReady, setIsReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+  const letterSpansRef = useRef<HTMLSpanElement[]>([]);
 
   useEffect(() => {
     setIsReady(true);
+    
+    // Detectar se é mobile
+    const checkIsMobile = () => window.innerWidth <= 768;
+    setIsMobile(checkIsMobile());
+    
+    const handleResize = () => setIsMobile(checkIsMobile());
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
     if (!isReady || !containerRef.current) return;
 
-    const letters = lettersRef.current.filter(Boolean);
-    if (letters.length === 0) return;
+    // Limpar animação anterior
+    if (scrollTriggerRef.current) {
+      scrollTriggerRef.current.kill();
+    }
 
-    // Configurar estado inicial
-    gsap.set(letters, { color: baseColor });
+    // Limpar conteúdo anterior
+    containerRef.current.innerHTML = '';
+    letterSpansRef.current = [];
 
-    // Criar timeline mestre com scrub
-    const masterTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 70%',
-        end: 'top 30%',
-        scrub: scrollSensitivity,
-        toggleActions: "play none reverse none",
-      },
-      onComplete: onAnimationComplete // Chamar callback quando terminar
+    // Dividir o texto em palavras e espaços
+    const segments = text.split(/(\s+)/);
+    
+    segments.forEach((segment, segmentIndex) => {
+      if (segment === '') return;
+      
+      if (segment.match(/\s+/)) {
+        // Se for espaço, usar um span normal
+        const spaceSpan = document.createElement('span');
+        spaceSpan.textContent = segment;
+        spaceSpan.className = styles.space;
+        containerRef.current?.appendChild(spaceSpan);
+      } else {
+        // Se for palavra, criar um wrapper especial que não quebra
+        const wordWrapper = document.createElement('span');
+        wordWrapper.className = styles.wordWrapper;
+        
+        // Adicionar cada letra dentro do wrapper
+        for (let i = 0; i < segment.length; i++) {
+          const letterSpan = document.createElement('span');
+          letterSpan.textContent = segment[i];
+          letterSpan.className = styles.letter;
+          letterSpan.style.color = baseColor;
+          letterSpan.style.transition = 'color 0.1s linear';
+          
+          wordWrapper.appendChild(letterSpan);
+          letterSpansRef.current.push(letterSpan);
+        }
+        
+        // Adicionar um espaço invisível após cada palavra para ajudar na quebra
+        if (segmentIndex < segments.length - 1) {
+          const breakHelper = document.createElement('wbr');
+          wordWrapper.appendChild(breakHelper);
+        }
+        
+        containerRef.current?.appendChild(wordWrapper);
+      }
     });
 
-    // Adicionar delay inicial se especificado
-    if (startDelay > 0) {
-      masterTl.add(gsap.delayedCall(startDelay, () => {}));
-    }
+    // Funções para manipulação de cores
+    const hexToRgb = (hex: string) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 0, g: 0, b: 0 };
+    };
 
-    // Calcular número total de grupos
-    const totalGroups = Math.ceil(letters.length / groupSize);
-
-    // Animação em grupos de letras
-    for (let groupIndex = 0; groupIndex < totalGroups; groupIndex++) {
-      const start = groupIndex * groupSize;
-      const end = Math.min(start + groupSize, letters.length);
-      const group = letters.slice(start, end);
+    const mixColors = (color1: string, color2: string, weight: number): string => {
+      const c1 = hexToRgb(color1);
+      const c2 = hexToRgb(color2);
       
-      const groupTl = gsap.timeline();
+      const w = Math.max(0, Math.min(1, weight));
+      
+      const r = Math.round(c1.r * (1 - w) + c2.r * w);
+      const g = Math.round(c1.g * (1 - w) + c2.g * w);
+      const b = Math.round(c1.b * (1 - w) + c2.b * w);
+      
+      return `rgb(${r}, ${g}, ${b})`;
+    };
 
-      // Para cada letra no grupo, criar animação individual
-      group.forEach((letter, indexInGroup) => {
-        const letterTl = gsap.timeline();
+    const getColorForProgress = (progress: number) => {
+      if (progress <= 0) return baseColor;
+      if (progress >= 1) return finalColor;
+      
+      if (progress <= 0.3) {
+        const mix = progress / 0.3;
+        return mixColors(baseColor, accentColor, mix);
+      } else {
+        const mix = (progress - 0.3) / 0.7;
+        return mixColors(accentColor, finalColor, mix);
+      }
+    };
+
+    // Configurações diferentes para mobile vs desktop
+    const startPoint = isMobile ? mobileStart : 'top 90%';
+    const endPoint = isMobile ? mobileEnd : 'bottom 40%';
+    const sensitivity = isMobile ? mobileSensitivity : scrollSensitivity;
+    
+    console.log(`📱 AnimatedText config: ${isMobile ? 'Mobile' : 'Desktop'}`);
+    console.log(`   Start: ${startPoint}, End: ${endPoint}, Sensitivity: ${sensitivity}`);
+
+    // Criar ScrollTrigger
+    scrollTriggerRef.current = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: startPoint,
+      end: endPoint,
+      scrub: sensitivity,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const totalLetters = letterSpansRef.current.length;
         
-        letterTl
-          .to(letter, {
-            color: accentColor,
-            duration: letterDuration * 0.2,
-            ease: "power1.inOut"
-          })
-          .to(letter, {
-            color: finalColor,
-            duration: letterDuration * 0.8,
-            ease: "power1.out"
-          });
-
-        // Delay dentro do grupo (bem rápido)
-        groupTl.add(letterTl, indexInGroup * (letterDuration * 0.3));
-      });
-
-      // Delay entre grupos - mais espaçado
-      const groupDelay = groupIndex * (letterDuration * 2);
-      masterTl.add(groupTl, startDelay + groupDelay);
-    }
+        // Ajuste crítico: garantir que todas as letras sejam animadas
+        const totalAnimationDuration = 1 + (totalLetters - 1) * letterDelay;
+        
+        letterSpansRef.current.forEach((span, index) => {
+          // Calcular progresso individual baseado no índice
+          const letterStart = (index * letterDelay) / totalAnimationDuration;
+          
+          // Progresso da letra individual (0 a 1) baseado no scroll progress
+          let letterProgress = 0;
+          if (progress >= letterStart) {
+            // A letra começa a animar
+            letterProgress = (progress - letterStart) / (1 / totalAnimationDuration);
+            letterProgress = Math.min(1, letterProgress);
+          }
+          
+          span.style.color = getColorForProgress(letterProgress);
+        });
+      },
+      onRefresh: () => {
+        // Resetar cores
+        letterSpansRef.current.forEach(span => {
+          span.style.color = baseColor;
+        });
+      },
+      onScrubComplete: () => {
+        // Garantir que todas as letras terminem na cor final
+        letterSpansRef.current.forEach(span => {
+          span.style.color = finalColor;
+        });
+      }
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
     };
-  }, [text, isReady, finalColor, baseColor, accentColor, letterDuration, scrollSensitivity, startDelay, groupSize, onAnimationComplete]);
-
-  const addLetterRef = (el: HTMLSpanElement | null, index: number) => {
-    lettersRef.current[index] = el;
-  };
+  }, [text, isReady, finalColor, baseColor, accentColor, scrollSensitivity, startDelay, letterDelay, isMobile, mobileStart, mobileEnd, mobileSensitivity]);
 
   const TextElement = as;
 
   return (
-    <div 
+    <TextElement 
       ref={containerRef} 
-      className={`${styles.textContainer} ${className}`}
-    >
-      <TextElement className={styles.text}>
-        {text.split('').map((letter, index) => (
-          <span
-            key={index}
-            ref={el => addLetterRef(el, index)}
-            className={styles.letter}
-            style={{ color: baseColor }}
-          > 
-            {letter === ' ' ? '\u00A0' : letter}
-          </span>
-        ))}
-      </TextElement>
-    </div>
+      className={`${styles.animatedText} ${className}`}
+    />
   );
 }

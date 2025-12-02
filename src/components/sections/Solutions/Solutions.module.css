@@ -2,7 +2,6 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  margin-bottom: 10rem;
 }
 
 .container {
@@ -27,7 +26,7 @@
 .solutionsList {
   display: flex;
   flex-direction: column;
-  gap: 15rem;
+  gap: 10rem;
 }
 
 .solutionItem {
@@ -65,7 +64,7 @@
 
 .videoContainer {
   position: sticky;
-  top: 6rem;
+  top: 0; /* Garante fixação no topo */
   width: 100%;
   height: 450px;
   border-radius: 10px;
@@ -91,8 +90,8 @@
   }
   
   .videoContainer {
-    position: relative;
-    top: auto;
+    position: sticky; /* Mantém sticky no mobile também */
+    top: 0;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -132,8 +131,8 @@
   }
   
   .videoContainer {
-    position: relative;
-    top: auto;
+    position: sticky;
+    top: 0;
     width: 100%;
     height: 300px;
     max-width: none;
@@ -150,7 +149,7 @@
   }
   
   .solutionsList {
-    gap: 6rem;
+    gap: 1rem;
   }
   
   .solutionItem {
@@ -179,7 +178,9 @@
   }
   
   .videoContainer {
-    height: 250px;
+    position: sticky;
+    top: 0;
+    height: 180px;
     border-radius: 8px;
   }
   
@@ -188,7 +189,7 @@
   }
   
   .solutionsList {
-    gap: 4rem;
+    gap: 1rem;
   }
   
   .solutionItem {

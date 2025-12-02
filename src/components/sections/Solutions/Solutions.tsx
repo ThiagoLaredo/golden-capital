@@ -1,6 +1,5 @@
-// Solutions.tsx - Versão simplificada
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { pt, en } from '../../../lib/translations';
 import { gsap } from 'gsap';
@@ -17,48 +16,57 @@ export default function Solutions() {
   const translations = language === 'pt' ? pt : en;
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [activeItem, setActiveItem] = useState(0);
+  
+  // CONTROLE DE DISTÂNCIA - Ajuste estes valores conforme necessário
+  const DESKTOP_SCROLL_DISTANCE = 1000; 
+  const MOBILE_SCROLL_DISTANCE = 800; // Novo: scroll para mobile
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    // Usar GSAP Context
     const ctx = gsap.context(() => {
-      const solutions = translations.Home.solutions.items;
+      const isDesktop = window.innerWidth > 768;
+      const scrollDistance = isDesktop ? DESKTOP_SCROLL_DISTANCE : MOBILE_SCROLL_DISTANCE;
 
-      // Fixar o vídeo durante o scroll da section
+      // Fixar o vídeo durante o scroll (funciona em desktop E mobile)
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: "bottom bottom",
+        end: `+=${scrollDistance}`,
         pin: `.${styles.videoColumn}`,
-        pinSpacing: false
+        pinSpacing: false,
+        markers: false, // Mude para false depois de ajustar
+        id: 'video-pin',
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onEnter: () => console.log(`🎬 Vídeo começou a fixar (${isDesktop ? 'Desktop' : 'Mobile'})`),
+        onLeave: () => console.log('🎬 Vídeo parou de fixar'),
+        onUpdate: (self) => {
+          if (self.progress > 0.95 && self.progress < 1) {
+            console.log(`📊 Últimos 5% do scroll (${(self.progress * 100).toFixed(1)}%)`);
+          }
+        }
       });
-
-      // Atualizar o item ativo
-      solutions.forEach((_, index) => {
-        ScrollTrigger.create({
-          trigger: `.${styles.solutionItem}[data-index="${index}"]`,
-          start: "top 50%",
-          end: "bottom 50%",
-          onEnter: () => setActiveItem(index),
-          onEnterBack: () => setActiveItem(index),
-        });
-      });
-
+      
+      console.log(`📏 Vídeo fixo por ${scrollDistance}px de scroll (${isDesktop ? 'Desktop' : 'Mobile'})`);
+      
+      // Observar redimensionamento para atualizar distâncias
+      const handleResize = () => {
+        ScrollTrigger.refresh();
+        console.log('🔄 Window resized - ScrollTriggers refreshed');
+      };
+      
+      window.addEventListener('resize', handleResize);
+      
+      // Cleanup do event listener
+      return () => window.removeEventListener('resize', handleResize);
     }, sectionRef);
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ctx.revert();
     };
   }, [translations]);
-
-  // Calcular delay base baseado no comprimento do título
-  const calculateTitleDelay = (title: string) => {
-    const groupSize = 3;
-    const letterDuration = 0.35;
-    const totalGroups = Math.ceil(title.length / groupSize);
-    return totalGroups * (letterDuration * 2); // Delay entre grupos * número de grupos
-  };
 
   return (
     <section ref={sectionRef} className={styles.solutions}>
@@ -66,40 +74,33 @@ export default function Solutions() {
         <div className={styles.contentColumn}>
           <div className={styles.content}>
             <div className={styles.solutionsList}>
-              {translations.Home.solutions.items.map((solution, index) => {
-                const titleDelay = calculateTitleDelay(solution.title);
-                
-                return (
-                  <div key={index} className={styles.solutionItem} data-index={index}>
-                    <div className={styles.solutionHeader}>
-                      <AnimatedText 
-                        text={solution.title}
-                        className={styles.cardTitle}
-                        as="h3"
-                        baseColor="#dddddd"
-                        accentColor="var(--secondary-color)"
-                        finalColor="var(--paragraph-color)"
-                        letterDuration={0.35}
-                        scrollSensitivity={0.6}
-                        groupSize={3}
-                      />
-                    </div>
-                    
+              {translations.Home.solutions.items.map((solution, index) => (
+                <div key={index} className={styles.solutionItem}>
+                  <div className={styles.solutionHeader}>
                     <AnimatedText 
-                      text={solution.description}
-                      className={styles.cardDescription}
-                      as="p"
+                      text={solution.title}
+                      className={styles.cardTitle}
+                      as="h3"
                       baseColor="#dddddd"
-                      accentColor="var(--secondary-color)" 
-                      finalColor="var(--paragraph-color)"
-                      letterDuration={0.3}
-                      scrollSensitivity={0.6}
-                      groupSize={3}
-                      startDelay={titleDelay} // Delay calculado baseado no título
+                      accentColor="#d0ab76"
+                      finalColor="#05213a"
+                      scrollSensitivity={2}
+                      letterDelay={0.02}
                     />
                   </div>
-                );
-              })}
+                  
+                  <AnimatedText 
+                    text={solution.description}
+                    className={styles.cardDescription}
+                    as="p"
+                    baseColor="#dddddd"
+                    accentColor="#d0ab76"
+                    finalColor="#333333"
+                    scrollSensitivity={2}
+                    letterDelay={0.01}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>

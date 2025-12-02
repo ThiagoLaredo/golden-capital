@@ -4,7 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 900px;
+  max-width: 830px;
   padding: .5rem 0;
   background: transparent;
   transition: all 0.3s ease;
@@ -60,7 +60,7 @@
 
 .nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.5rem;
   align-items: center;
   height: 100%; /* Garante alinhamento vertical */
 }
@@ -191,5 +191,276 @@
   
   .logo img {
     height: 30px;
+  }
+}    :root {
+  --primary-color: #05213a;
+  --secondary-color: #d0ab76;
+  --paragraph-color: #647887;
+  --background-light: #f8f9fa;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+/* Header.module.css - APENAS ADIÇÕES PARA MOBILE */
+
+/* Botão Hamburguer (escondido no desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--white);
+  transition: all 0.3s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Overlay do Menu Mobile */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 33, 58, 0.95);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  z-index: 999;
+}
+
+.mobileOverlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu Mobile */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 350px;
+  height: 100vh;
+  background: var(--primary-color);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  z-index: 1000;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileMenu.active {
+  right: 0;
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileLogo img {
+  height: 35px;
+  width: auto;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.closeButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.mobileNavLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+  text-decoration: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.mobileNavLink:hover {
+  color: var(--secondary-color);
+  padding-left: 0.5rem;
+}
+
+.mobileNavLink.active {
+  color: var(--secondary-color);
+}
+
+.mobileNavLink svg {
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+  color: var(--secondary-color);
+}
+
+.mobileNavLink:hover svg {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobileFooter {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileLanguageSelector {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.mobileLangBtn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.mobileLangBtn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mobileLangBtn.active {
+  opacity: 1;
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  background: rgba(208, 171, 118, 0.1);
+}
+
+/* Responsividade - Menu Mobile aparece abaixo de 768px */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Esconde menu desktop no mobile */
+  }
+  
+  .hamburger {
+    display: flex; /* Mostra hamburger no mobile */
+  }
+  
+  /* Mantém o layout do header original no mobile */
+  .header {
+    top: .5rem;
+    width: 90%;
+    border-radius: 30px;
+    padding: .5rem 0;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .logo img {
+    height: 35px;
+  }
+  
+  /* Animação de entrada dos links do menu mobile */
+  .mobileNavLink {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.4s forwards;
+  }
+  
+  .mobileNavLink:nth-child(1) { animation-delay: 0.1s; }
+  .mobileNavLink:nth-child(2) { animation-delay: 0.15s; }
+  .mobileNavLink:nth-child(3) { animation-delay: 0.2s; }
+  .mobileNavLink:nth-child(4) { animation-delay: 0.25s; }
+  .mobileNavLink:nth-child(5) { animation-delay: 0.3s; }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    width: 95%;
+    border-radius: 25px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .logo img {
+    height: 30px;
+  }
+  
+  .mobileMenu {
+    width: 100%;
+    max-width: none;
+    padding: 1.5rem;
   }
 }
