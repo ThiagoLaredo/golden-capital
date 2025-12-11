@@ -1,0 +1,264 @@
+.diferenciaisPage {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.diferenciaisHero { 
+  padding: calc(var(--header-height) + 40px) 0px 40px;
+  background: var(--primary-color);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.diferenciaisHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 30%, rgba(208, 171, 118, 0.1) 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 30% 0);
+}
+
+.heroContent {
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+.mainTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.heroDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  font-weight: 400;
+}
+
+/* Differentials Grid */
+.diferenciaisGrid {
+  padding: 80px 0;
+  background: var(--background-light);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.differentialCard {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(5, 33, 58, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.differentialCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--secondary-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.differentialCard:hover::before {
+  transform: scaleX(1);
+}
+
+.differentialCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(5, 33, 58, 0.15);
+}
+
+.cardIcon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.differentialCard:hover .cardIcon {
+  transform: scale(1.1);
+}
+
+.cardTitle {
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    margin-bottom: 1.4rem;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.cardSubtitle {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--paragraph-color);
+  margin: 0;
+  flex: 1;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.differentialCard {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.differentialCard:nth-child(1) { animation-delay: 0.1s; }
+.differentialCard:nth-child(2) { animation-delay: 0.2s; }
+.differentialCard:nth-child(3) { animation-delay: 0.3s; }
+.differentialCard:nth-child(4) { animation-delay: 0.4s; }
+.differentialCard:nth-child(5) { animation-delay: 0.5s; }
+
+/* Layout específico para diferentes números de cards */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Para 5 cards, fazemos o último ocupar 2 colunas no desktop */
+  .grid:has(.differentialCard:nth-child(5)) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid:has(.differentialCard:nth-child(5)) .differentialCard:last-child {
+    grid-column: 2 / span 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid:has(.differentialCard:nth-child(5)) .differentialCard:last-child {
+    grid-column: span 2;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+  
+  .diferenciaisHero {
+    padding: 100px 0 60px;
+  }
+  
+  .diferenciaisGrid {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .grid:has(.differentialCard:nth-child(5)) .differentialCard:last-child {
+    grid-column: 1;
+    max-width: 100%;
+  }
+  
+  .diferenciaisHero {
+    padding: 80px 0 40px;
+  }
+  
+  .mainTitle {
+    font-size: 2.2rem;
+  }
+  
+  .heroDescription {
+    font-size: 1rem;
+  }
+  
+  .differentialCard {
+    padding: 30px 20px;
+  }
+  
+  .cardIcon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+  
+  .cardSubtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .mainTitle {
+    font-size: 2rem;
+  }
+  
+  .diferenciaisHero {
+    padding: 60px 0 30px;
+  }
+  
+  .diferenciaisGrid {
+    padding: 40px 0;
+  }
+  
+  .cardIcon {
+    font-size: 2.2rem;
+  }
+}

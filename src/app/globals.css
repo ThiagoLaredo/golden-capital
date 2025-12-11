@@ -5,6 +5,7 @@
   --background-light: #f8f9fa;
   --white: #ffffff;
   --black: #000000;
+  --header-height: 80px;
 }
 
 * {
