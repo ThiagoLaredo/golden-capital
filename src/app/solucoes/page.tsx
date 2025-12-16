@@ -5,13 +5,19 @@ import { pt, en } from '@/lib/translations';
 import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
 import SolutionList from '@/components/sections/SolutionList/SolutionList';
 import DetailedSolution from '@/components/sections/DetailedSolution/DetailedSolution';
-import { formatText } from '@/utils/FormattedText/formatText'; // Importe a função utilitária
+import { formatText } from '@/utils/FormattedText/formatText';
+import { useFadeIn } from '@/hooks/useFadeIn'; // Adicione esta importação
 import styles from './SolucoesPage.module.css';
 
 export default function SolucoesPage() {
   const { language } = useLanguage();
   const translations = language === 'pt' ? pt : en;
   const dict = translations.SolutionsPage;
+
+  // Referências para animação - ADICIONE ESTAS LINHAS
+  const titleRef = useFadeIn({ delay: 0.1, y: 20 });
+  const introRef = useFadeIn({ delay: 0.3, y: 30 });
+  const solutionsListRef = useFadeIn({ delay: 0.5, y: 30 });
 
   // Dados das soluções
   const solutionsData = [
@@ -56,7 +62,8 @@ export default function SolucoesPage() {
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <div className={styles.heroLeft}>
-              <h1 className={styles.pageTitle}>{dict.hero.title}</h1>
+              {/* Aplique a ref titleRef aqui */}
+              <h1 ref={titleRef} className={styles.pageTitle}>{dict.hero.title}</h1>
             </div>
             <div className={styles.heroRight}>
               <Breadcrumb 
@@ -70,27 +77,29 @@ export default function SolucoesPage() {
         </div>
       </section>
 
-      {/* Seção de Introdução - AGORA COM TRADUÇÃO */}
+      {/* Seção de Introdução - COM ANIMAÇÃO */}
       <section className={styles.introduction}>
         <div className={styles.container}>
-          <div className={styles.introContent}>
+          {/* Aplique a ref introRef aqui */}
+          <div ref={introRef} className={styles.introContent}>
             <h2 className={styles.introTitle}>{dict.intro.title}</h2>
             <h3 className={styles.introSubtitle}>
-              {/* Use a função formatText aqui */}
               {formatText(dict.intro.subtitle)}
             </h3>
             <p className={styles.introDescription}>
-              {/* Use a função formatText aqui também */}
               {formatText(dict.intro.description)}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Lista de Soluções */}
+      {/* Lista de Soluções - COM ANIMAÇÃO */}
       <section className={styles.solutionsListSection}>
         <div className={styles.container}>
-          <SolutionList solutions={solutionsData} />
+          {/* Aplique a ref solutionsListRef aqui */}
+          <div ref={solutionsListRef}>
+            <SolutionList solutions={solutionsData} />
+          </div>
         </div>
       </section>
 
