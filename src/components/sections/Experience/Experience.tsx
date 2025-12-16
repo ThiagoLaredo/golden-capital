@@ -33,6 +33,12 @@ export default function Experience() {
     ]
   };
 
+  // Texto adicional abaixo do h3
+  const additionalText = {
+    pt: "Oferecemos experiência, dedicação e pragmatismo, com abordagens adequadas às mais diversas situações, empresas e setores, para que você se dedique ao crescimento do seu negócio.",
+    en: "We offer experience, dedication and pragmatism, with approaches suitable for the most diverse situations, companies and sectors, so you can focus on growing your business."
+  };
+
   useEffect(() => {
     setAnimationKey(prev => prev + 1);
   }, [language]);
@@ -94,7 +100,7 @@ export default function Experience() {
                 ease: "power1.inOut"
               })
               .to(letter, {
-                color: '#05213a', // Azul
+                color: '#1a335f', // Azul
                 duration: 0.35,
                 ease: "power1.out"
               });
@@ -164,7 +170,7 @@ export default function Experience() {
     <section ref={sectionRef} className={styles.experience} key={animationKey}>
       <div className={styles.container}>
         <div className={styles.content}>
-          {/* Título principal como H2 */}
+          {/* Título principal como H2 - alinhado à esquerda */}
           <h2 className={styles.title}>{translations.Home.experience.title}</h2>
           
           <div className={styles.text}>
@@ -172,6 +178,11 @@ export default function Experience() {
             <h3 className={styles.mainStatement}>
               {renderTextWithHighlights(translations.Home.experience.paragraphs[0], 0)}
             </h3>
+            
+            {/* Texto adicional abaixo do h3 */}
+            <p className={styles.additionalText}>
+              {additionalText[language as keyof typeof additionalText]}
+            </p>
           </div>
         </div>
       </div>

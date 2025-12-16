@@ -82,105 +82,118 @@ export const en = {
       ]
     }
   },
-  // NEW: Add translations for Solutions Page
-  SolutionsPage: {
-    hero: {
-      badge: "Our Specialties",
-      title: "Our Solutions",
-      subtitle: "We develop customized solutions for all cases and according to the needs of each client.",
-      description: "We offer experience, dedication and pragmatism, with approaches suitable for the most diverse situations, companies and sectors so that you can focus on growing your business."
-    },
-    solutions: {
-      estruturação: {
-        title: "Structuring",
-        description: "Complete solutions for financial structuring and investment attraction",
-        items: [
-          "Economic and Financial Modeling",
-          "Collateral Structuring",
-          "Investor Attraction",
-          "Resource Raising",
-          "Equity & Quasi-Equity"
-        ]
-      },
-      reestruturação: {
-        title: "Restructuring",
-        description: "Strategic reorganization for crisis overcoming and business recovery",
-        items: [
-          "Debt Restructuring",
-          "Turnaround Management",
-          "Corporate Governance",
-          "Credit and Asset Restructuring",
-          "Corporate and Shareholder Conflict Negotiation",
-          "Interim Management and Crisis Management"
-        ]
-      },
-      fusaoAquisicao: {
-        title: "Mergers & Acquisitions",
-        description: "Specialized advisory in M&A processes and corporate restructuring",
-        items: [
-          "Valuation",
-          "Strategic Planning",
-          "Buy-Side & Sell-Side Advisory",
-          "Technical and Legal Due Diligence",
-          "Shareholders' Agreement",
-          "Corporate Restructuring"
-        ]
-      },
-      realEstate: {
-        title: "Real Estate",
-        description: "Complete solutions for the real estate market and project development",
-        items: [
-          "Transaction Intermediation",
-          "Prospecting and Business Generation",
-          "Financing Structuring",
-          "Process Coordination",
-          "Strategic Assessments"
-        ]
-      }
-    },
-    details: {
-      howWeWork: "How we work",
-      methodologyDescription: "Our approach combines deep analysis with agile execution, always aligned with the specific objectives of your business.",
-      methodologyItems: [
-        "Diagnosis",
-        "Planning",
-        "Execution",
-        "Monitoring"
-      ],
-      benefits: {
-        expertise: {
-          title: "Sector Specialists",
-          description: "Team with specific expertise in your segment"
-        },
-        reliability: {
-          title: "Reliability",
-          description: "Secure processes and proven results"
-        }
-      },
-      ctaButton: "Request Consultation"
-    },
-    stats: {
-      projects: "+150",
-      projectsLabel: "Projects Completed",
-      funding: "+R$2B",
-      fundingLabel: "In Fundraising",
-      satisfaction: "98%",
-      satisfactionLabel: "Client Satisfaction",
-      sectors: "15+",
-      sectorsLabel: "Operating Sectors"
-    }
-  },
   Footer: {
     rights: "GCP | Golden Capital Partners. © All rights reserved.",
     address: "Address",
     contact: "Contact",
     creci: "CRECI 038126-J"
   },
+  solutions: {
+    title: "Our solutions", 
+    items: [
+      {
+        title: "Capital Structuring",
+        description: "We offer customized solutions in product structuring for raising resources in the financial and capital markets.",
+        items: [
+          'Economic and Financial Modeling',
+          'Collateral Structuring',
+          'Investor Attraction'
+        ]
+      },
+      {
+        title: "Financial Restructuring",
+        description: "With wide access to the financial market, we seek the best conditions for a consensual negotiation of liabilities, aiming at the rebalancing of the capital structure and the perpetuity of companies.",
+        items: [
+          'Debt Restructuring',
+          'Turnaround Management',
+          'Corporate Governance'
+        ]
+      },
+      {
+        title: "Mergers & Acquisitions", 
+        description: "We identify opportunities and carry out merger, acquisition and divestiture operations in various businesses and sectors of the economy.",
+        items: [
+          'Valuation',
+          'Strategic Planning',
+          'Buy-Side & Sell-Side Advisory'
+        ]
+      },
+      {
+        title: "Real Estate",
+        description: "We provide personalized and innovative solutions in generating business in the real estate sector.",
+        items: [
+          'Transaction Intermediation',
+          'Prospecting and Business Generation',
+          'Financing Structuring'
+        ]
+      }
+    ]
+  },
+  SolutionsPage: {
+    hero: {
+      title: 'Solutions'
+    },
+    intro: {
+      title: 'Our solutions',
+      subtitle: 'We develop **customized solutions** for all cases and according to each client\'s needs.',
+      description: 'We offer **experience, dedication and pragmatism**, with approaches suitable for the most diverse situations, companies and sectors, so that you can focus on growing your business.'
+    },
+    solutions: {
+      estruturação: {
+        title: 'Capital Structuring',
+        description: 'We offer customized solutions in product structuring for raising resources in the financial and capital markets.',
+        items: [
+          'Economic and Financial Modeling',
+          'Collateral Structuring',
+          'Investor Attraction',
+          'Resource Raising',
+          'Equity & Quasi-Equity'
+        ]
+      },
+      reestruturação: {
+        title: 'Financial Restructuring',
+        description: 'With wide access to the financial market, we seek the best conditions for a consensual negotiation of liabilities, aiming at the rebalancing of the capital structure and the perpetuity of companies.',
+        items: [
+          'Debt Restructuring',
+          'Turnaround Management',
+          'Corporate Governance',
+          'Credit and Asset Restructuring',
+          'Business and Corporate Conflict Negotiation',
+          'Interim Management and Crisis Management'
+        ]
+      },
+      fusaoAquisicao: {
+        title: 'Mergers & Acquisitions',
+        description: 'We identify opportunities and carry out merger, acquisition and divestiture operations in various businesses and sectors of the economy.',
+        items: [
+          'Valuation',
+          'Strategic Planning',
+          'Buy-Side & Sell-Side Advisory',
+          'Technical and Legal Due Diligence',
+          'Shareholders Agreement',
+          'Corporate Restructuring'
+        ]
+      },
+      realEstate: {
+        title: 'Real Estate',
+        description: 'Specialized solutions for the corporate real estate market and investments.',
+        items: [
+          'Transaction Intermediation',
+          'Prospecting and Business Generation',
+          'Financing Structuring',
+          'Process Coordination',
+          'Strategic Assessments',
+        ]
+      }
+    }
+  },
   TeamPage: {
     hero: {
       title: "Meet the team",
-      subtitle: "A team with over 27 years of expertise",
-      description: "A team with over 27 years of expertise in Capital Structuring, Financial Restructuring, Real Estate and Mergers & Acquisitions across various sectors and markets."
+    },
+    intro: {
+      title: "A team with over 27 years of expertise",
+      subtitle: "A team with over 27 years of expertise in **Capital Structuring, Financial Restructuring, Real Estate and Mergers & Acquisitions** across various sectors and markets."
     },
     teamCard: {
       knowMore: "Know more",

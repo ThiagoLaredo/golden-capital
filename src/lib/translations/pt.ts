@@ -82,105 +82,119 @@ export const pt = {
       ]
     }
   },
-  // NOVO: Adicionar traduções para a página de Soluções
-  SolutionsPage: {
-    hero: {
-      badge: "Nossas Especialidades",
-      title: "Nossas Soluções",
-      subtitle: "Desenvolvemos soluções personalizadas para todos os casos e de acordo com as necessidades de cada cliente.",
-      description: "Oferecemos experiência, dedicação e pragmatismo, com abordagens adequadas às mais diversas situações, empresas e setores para que você se dedique ao crescimento do seu negócio."
-    },
-    solutions: {
-      estruturação: {
-        title: "Estruturação",
-        description: "Soluções completas para estruturação financeira e atração de investimentos",
-        items: [
-          "Modelagem Econômica e Financeira",
-          "Estruturação de Garantias",
-          "Atração de Investidores",
-          "Captação de Recursos",
-          "Equity & Quasi-Equity"
-        ]
-      },
-      reestruturação: {
-        title: "Reestruturação",
-        description: "Reorganização estratégica para superação de crises e recuperação empresarial",
-        items: [
-          "Reestruturação de Dívidas",
-          "Turnaround Management",
-          "Governança Corporativa",
-          "Reestruturação de Créditos e Ativos",
-          "Negociação de Conflitos Empresariais e Societários",
-          "Gestão Interina e Gestão de Crise"
-        ]
-      },
-      fusaoAquisicao: {
-        title: "Fusões & Aquisições",
-        description: "Assessoria especializada em processos de M&A e reestruturação societária",
-        items: [
-          "Valuation",
-          "Planejamento Estratégico",
-          "Assessoria Buy-Side & Sell-Side",
-          "Diligência Técnica e Legal",
-          "Acordo de Acionistas",
-          "Reestruturação Societária"
-        ]
-      },
-      realEstate: {
-        title: "Real Estate",
-        description: "Soluções completas para o mercado imobiliário e desenvolvimento de projetos",
-        items: [
-          "Intermediação de operações",
-          "Prospecção e geração de negócios",
-          "Estruturação para financiamento",
-          "Coordenação de processos",
-          "Avaliações estratégicas"
-        ]
-      }
-    },
-    details: {
-      howWeWork: "Como trabalhamos",
-      methodologyDescription: "Nossa abordagem combina análise profunda com execução ágil, sempre alinhada aos objetivos específicos do seu negócio.",
-      methodologyItems: [
-        "Diagnóstico",
-        "Planejamento",
-        "Execução",
-        "Monitoramento"
-      ],
-      benefits: {
-        expertise: {
-          title: "Especialistas Setoriais",
-          description: "Equipe com expertise específica no seu segmento"
-        },
-        reliability: {
-          title: "Confiabilidade",
-          description: "Processos seguros e resultados comprovados"
-        }
-      },
-      ctaButton: "Solicitar Consultoria"
-    },
-    stats: {
-      projects: "+150",
-      projectsLabel: "Projetos Concluídos",
-      funding: "+R$2B",
-      fundingLabel: "Em Captações",
-      satisfaction: "98%",
-      satisfactionLabel: "Satisfação do Cliente",
-      sectors: "15+",
-      sectorsLabel: "Setores de Atuação"
-    }
-  },
   Footer: {
     rights: "GCP | Golden Capital Partners. © Todos os direitos reservados.",
     address: "Endereço",
     contact: "Contato", 
     creci: "CRECI 038126-J"
   },
+  solutions: {
+    title: "Nossas soluções",
+    items: [
+      {
+        title: "Estruturação de Capitais",
+        description: "Oferecemos soluções customizadas em estruturação de produtos para captação de recursos no mercado financeiro e de capitais.",
+        // Mantenha os itens que forem usados na home
+        items: [
+          'Modelagem Econômica e Financeira',
+          'Estruturação de Garantias',
+          'Atração de Investidores'
+        ]
+      },
+      {
+        title: "Reestruturação Financeira",
+        description: "Com largo acesso ao mercado financeiro, buscamos as melhores condições para uma negociação consensual dos passivos, visando o reequilíbrio da estrutura de capital e a perenidade das companhias.",
+        items: [
+          'Reestruturação de dívidas',
+          'Turnaround Management',
+          'Governança Corporativa'
+        ]
+      },
+      {
+        title: "Fusões & Aquisições", 
+        description: "Identificamos oportunidades e realizamos operações de fusão, aquisição e alienação de empresas em diversos negócios e setores da economia.",
+        items: [
+          'Valuation',
+          'Planejamento Estratégico',
+          'Assessoria Buy-Side & Sell-Side'
+        ]
+      },
+      {
+        title: "Real Estate",
+        description: "Provemos soluções personalizadas e inovadoras na geração de negócios no setor imobiliário.",
+        items: [
+          'Intermediação de operações',
+          'Prospecção e geração de negócios',
+          'Estruturação para financiamento'
+        ]
+      }
+    ]
+  },
+  SolutionsPage: {
+    hero: {
+      title: 'Soluções'
+    },
+    intro: {
+      title: 'Nossas soluções',
+      subtitle: 'Desenvolvemos **soluções personalizadas** para todos os casos e de acordo com as necessidades de cada cliente.',
+      description: 'Oferecemos **experiência, dedicação e pragmatismo**, com abordagens adequadas às mais diversas situações, empresas e setores, para que você se dedique aocrescimento do seu negócio.'
+    },
+    solutions: {
+      estruturação: {
+        title: 'Estruturação de Capitais',
+        description: 'Oferecemos soluções customizadas em estruturação de produtos para captação de recursos no mercado financeiro e de capitais.',
+        items: [
+          'Modelagem Econômica e Financeira',
+          'Estruturação de Garantias',
+          'Atração de Investidores',
+          'Captação de Recursos',
+          'Equity & Quasi-Equity'
+        ]
+      },
+      reestruturação: {
+        title: 'Reestruturação Financeira',
+        description: 'Com largo acesso ao mercado financeiro, buscamos as melhores condições para uma negociação consensual dos passivos, visando o reequilíbrio da estrutura de capital e a perenidade das companhias.',
+        items: [
+          'Reestruturação de dívidas',
+          'Turnaround Management',
+          'Governança Corporativa',
+          'Reestruturação de Créditos e Ativos',
+          'Negociação de Conflitos Empresariais e Societários',
+          'Gestão Interina e Gestão de Crise'
+        ]
+      },
+      fusaoAquisicao: {
+        title: 'Fusões & Aquisições',
+        description: 'Identificamos oportunidades e realizamos operações de fusão, aquisição e alienação de empresas em diversos negócios e setores da economia.',
+        items: [
+          'Valuation',
+          'Planejamento Estratégico',
+          'Assessoria Buy-Side & Sell-Side',
+          'Diligência Técnica e Legal',
+          'Acordo de Acionistas',
+          'Reestruturação Societária'
+        ]
+      },
+      realEstate: {
+        title: 'Real Estate',
+        description: 'Soluções especializadas para o mercado imobiliário corporativo e investimentos.',
+        items: [
+          'Intermediação de operações',
+          'Prospecção e geração de negócios',
+          'Estruturação para financiamento',
+          'Coordenação de processos',
+          'Avaliações estratégicas',
+        ]
+      }
+    }
+  },
   TeamPage: {
     hero: {
+      title: "Equipe",
+    },
+    intro: {
       title: "Conheça a equipe",
-      subtitle: "Uma equipe com mais de 27 anos de expertise",
-      description: "Uma equipe com mais de 27 anos de expertise em Estruturação de Capitais, Reestruturação Financeira, Real Estate e Fusões & Aquisições em diversos setores e mercados."
+      subtitle: "Uma equipe com mais de 27 anos de expertise em **Estruturação de Capitais, Reestruturação Financeira, Real Estate e Fusões & Aquisições** em diversos setores e mercados."
     },
     teamCard: {
       knowMore: "Saiba mais",

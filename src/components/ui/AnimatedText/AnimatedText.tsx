@@ -27,7 +27,7 @@ interface AnimatedTextProps {
 export default function AnimatedText({ 
   text, 
   className = '',
-  finalColor = '#05213a',
+  finalColor = '#1a335f',
   baseColor = '#dddddd',
   accentColor = '#d0ab76',
   scrollSensitivity = 1.5,

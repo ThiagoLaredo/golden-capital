@@ -1,124 +1,63 @@
 'use client';
-import { useRef, useEffect } from 'react';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { pt, en } from '../../../lib/translations';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AnimatedText from '../../ui/AnimatedText/AnimatedText';
+import { useFadeInStagger } from '../../../hooks/useFadeInStagger';
 import styles from './Solutions.module.css';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// Importando ícones semelhantes do FontAwesome
+import { 
+  FaPuzzlePiece,      // Para fa-puzzle
+  FaChartPie,         // Para fa-piechart  
+  FaChessBoard,       // Para fa-strategy (aproximação)
+  FaChartLine         // Para fa-linegraph
+} from 'react-icons/fa';
 
 export default function Solutions() {
   const { language } = useLanguage();
   const translations = language === 'pt' ? pt : en;
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   
-  // CONTROLE DE DISTÂNCIA - Ajuste estes valores conforme necessário
-  const DESKTOP_SCROLL_DISTANCE = 950; 
-  const MOBILE_SCROLL_DISTANCE = 800; // Novo: scroll para mobile
+  // Ícones do FontAwesome
+  const solutionIcons = [
+    <FaPuzzlePiece key="puzzle" size="3em" />,
+    <FaChartPie key="piechart" size="3em" />,
+    <FaChessBoard key="strategy" size="3em" />,
+    <FaChartLine key="linegraph" size="3em" />
+  ];
 
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    // Usar GSAP Context
-    const ctx = gsap.context(() => {
-      const isDesktop = window.innerWidth > 768;
-      const scrollDistance = isDesktop ? DESKTOP_SCROLL_DISTANCE : MOBILE_SCROLL_DISTANCE;
-
-      // Fixar o vídeo durante o scroll (funciona em desktop E mobile)
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${scrollDistance}`,
-        pin: `.${styles.videoColumn}`,
-        pinSpacing: false,
-        markers: false, // Mude para false depois de ajustar
-        id: 'video-pin',
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onEnter: () => console.log(`🎬 Vídeo começou a fixar (${isDesktop ? 'Desktop' : 'Mobile'})`),
-        onLeave: () => console.log('🎬 Vídeo parou de fixar'),
-        onUpdate: (self) => {
-          if (self.progress > 0.95 && self.progress < 1) {
-            console.log(`📊 Últimos 5% do scroll (${(self.progress * 100).toFixed(1)}%)`);
-          }
-        }
-      });
-      
-      console.log(`📏 Vídeo fixo por ${scrollDistance}px de scroll (${isDesktop ? 'Desktop' : 'Mobile'})`);
-      
-      // Observar redimensionamento para atualizar distâncias
-      const handleResize = () => {
-        ScrollTrigger.refresh();
-        console.log('🔄 Window resized - ScrollTriggers refreshed');
-      };
-      
-      window.addEventListener('resize', handleResize);
-      
-      // Cleanup do event listener
-      return () => window.removeEventListener('resize', handleResize);
-    }, sectionRef);
-
-    return () => {
-      ctx.revert();
-    };
-  }, [translations]);
+  // Animação para o grid
+  const gridRef = useFadeInStagger({
+    delay: 0.2,
+    stagger: 0.15,
+    y: 30
+  });
 
   return (
-    <section ref={sectionRef} className={styles.solutions}>
+    <section className={styles.solutions}>
       <div className={styles.container}>
-        <div className={styles.contentColumn}>
-          <div className={styles.content}>
-            <div className={styles.solutionsList}>
-              {translations.Home.solutions.items.map((solution, index) => (
-                <div key={index} className={styles.solutionItem}>
-                  <div className={styles.solutionHeader}>
-                    <AnimatedText 
-                      text={solution.title}
-                      className={styles.cardTitle}
-                      as="h3"
-                      baseColor="#dddddd"
-                      accentColor="#d0ab76"
-                      finalColor="#05213a"
-                      scrollSensitivity={2}
-                      letterDelay={0.02}
-                    />
-                  </div>
-                  
-                  <AnimatedText 
-                    text={solution.description}
-                    className={styles.cardDescription}
-                    as="p"
-                    baseColor="#dddddd"
-                    accentColor="#d0ab76"
-                    finalColor="#333333"
-                    scrollSensitivity={2}
-                    letterDelay={0.01}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className={styles.header}>
+          <h2 className={styles.sectionTitle}>
+            {translations.Home.solutions.title}
+          </h2>
         </div>
 
-        <div className={styles.videoColumn}>
-          <div className={styles.videoContainer}>
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className={styles.video}
-            >
-              <source src="/video-background-goldencapitalpartners.mp4" type="video/mp4" />
-              Seu navegador não suporta o elemento de vídeo.
-            </video>
-          </div>
+        <div ref={gridRef} className={styles.solutionsGrid}>
+          {translations.Home.solutions.items.map((solution, index) => (
+            <div key={index} className={styles.solutionItem}>
+              {/* Ícone do FontAwesome */}
+              <div className={styles.solutionIcon}>
+                {solutionIcons[index]}
+              </div>
+              
+              <div className={styles.solutionContent}>
+                <h3 className={styles.cardTitle}>
+                  {solution.title}
+                </h3>
+                <p className={styles.cardDescription}>
+                  {solution.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

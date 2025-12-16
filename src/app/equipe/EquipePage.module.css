@@ -1,75 +1,89 @@
 .equipePage {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: inherit;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2rem;
 }
 
 /* Hero Section */
-.equipeHero { 
-  padding: calc(var(--header-height) + 40px) 0px 40px;
+.hero {
   background: var(--primary-color);
+  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
   color: var(--white);
-  position: relative;
-  overflow: hidden;
-}
-
-.equipeHero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent 30%, rgba(208, 171, 118, 0.1) 100%);
-  clip-path: polygon(100% 0, 100% 100%, 0 100%, 30% 0);
 }
 
 .heroContent {
-  max-width: 800px;
-  position: relative;
-  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
 
-.mainTitle {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 24px;
+.heroLeft {
+  flex: 1;
+}
+
+.pageTitle {
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 1.2;
+  margin: 0;
   color: var(--white);
-  letter-spacing: -0.02em;
 }
 
-.mainStatement {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.6;
-  margin-bottom: 28px;
+.heroRight {
+  display: flex;
+  align-items: center;
+}
+
+/* Introduction Section */
+.introduction {
+  padding: 5rem 0 0 0;
+  background: var(--white);
+  text-align: center;
+}
+
+.introContent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.introTitle {
   color: var(--secondary-color);
-  letter-spacing: -0.01em;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
-.heroDescription {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 700px;
-  font-weight: 400;
+.introSubtitle {
+  font-size: 1.8rem;
+  color: var(--title-color);
+  line-height: 1.4;
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 860px;
+}
+
+.introSubtitle strong {
+  font-weight: 700;
 }
 
 /* Team Grid */
 .equipeGrid {
-  padding: 80px 0;
-  background: var(--background-light);
+  padding: 5rem 0;
+  background: var(--white);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  opacity: 1; /* Para animação */
 }
 
 /* Responsividade */
@@ -79,72 +93,79 @@
     gap: 25px;
   }
   
-  .mainTitle {
-    font-size: 2.5rem;
-  }
-  
-  .equipeHero {
-    padding: 100px 0 60px;
+  .introSubtitle {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 3rem 0;
+  }
+  
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .pageTitle {
+    font-size: 1rem;
+  }
+  
+  .introduction {
+    padding: 3rem 0 0 0;
+  }
+  
+  .introContent {
+    padding-bottom: 3rem;
+  }
+  
+  .introSubtitle {
+    font-size: 1.8rem;
+  }
+  
+  .introDescription {
+    font-size: 1rem;
+  }
+  
+  .equipeGrid {
+    padding: 3rem 0;
+  }
+  
   .grid {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-  
-  .equipeHero {
-    padding: 80px 0 40px;
-  }
-  
-  .mainTitle {
-    font-size: 2.2rem;
-  }
-  
-  .mainStatement {
-    font-size: 1.2rem;
-  }
-  
-  .heroDescription {
-    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 15px;
+    padding: 0 1rem;
   }
   
-  .mainTitle {
-    font-size: 2rem;
+  .pageTitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
   }
   
-  .mainStatement {
-    font-size: 1.1rem;
+  .introSubtitle {
+    font-size: 1.5rem;
   }
   
-  .equipeHero {
-    padding: 60px 0 30px;
+  .hero {
+    padding: 2rem 0;
+  }
+  
+  .introduction {
+    padding: 2rem 0 0 0;
+  }
+  
+  .introContent {
+    padding-bottom: 2rem;
   }
   
   .equipeGrid {
-    padding: 40px 0;
+    padding: 2rem 0;
   }
-}
-
-/* Animações */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.grid {
-  animation: fadeInUp 0.6s ease-out;
 }

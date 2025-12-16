@@ -1,0 +1,71 @@
+.solutionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.solutionCard {
+  padding: 0;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.iconContainer {
+  margin-bottom: 1.5rem;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo para os ícones do React Icons */
+.iconContainer svg {
+  color: var(--secondary-color);
+  width: 3em; /* Equivalente a fa-3x */
+  height: 3em;
+  transition: all 0.3s ease;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  color: var(--title-color);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  color: var(--paragraph-color);
+  line-height: 1.6;
+  font-size: 1.125rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .solutionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .solutionsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .solutionCard {
+    padding: 1.5rem;
+  }
+  
+  .iconContainer {
+    min-height: 70px;
+  }
+  
+  .iconContainer i {
+    font-size: 2.5em;
+  }
+}

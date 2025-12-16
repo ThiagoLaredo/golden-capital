@@ -12,12 +12,12 @@
 
 .title {
   text-align: center;
-  font-size: 1rem;
+  font-size: .9rem;
   letter-spacing: .2em;
-  font-weight: 400;
+  font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 4rem;
-  color: #ddd; /* Título em branco */
+  color: var(--secondary-color); /* Título em dourado */
   opacity: 0;
   transform: translateY(30px);
 }
@@ -30,32 +30,22 @@
 
 .card {
   text-align: center;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.05); /* Card com fundo sutilmente mais claro */
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(30px);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
 .value {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  color: var(--secondary-color); /* Números em dourado */
+  color: var(--white); /* Números em dourado */
   margin-bottom: 1rem;
   font-variant-numeric: tabular-nums;
 }
 
 .label {
   font-size: 1.1rem;
-  color: var(--paragraph-color); /* Labels em cinza */
+  color: var(--white); /* Labels em cinza */
   line-height: 1.5;
 }
 

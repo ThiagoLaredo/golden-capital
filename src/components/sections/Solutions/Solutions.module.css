@@ -1,207 +1,154 @@
 .solutions {
-  min-height: 100vh;
-  position: relative;
+  padding: 0rem 0 6rem 0;
+  background: var(--white);
   overflow: hidden;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-  max-width: 100%;
-  margin: 0;
-}
-
-/* Coluna de Conteúdo - ESQUERDA */
-.contentColumn {
-  padding: 6rem 2rem;
-  margin-top: 15rem;
-}
-
-.content {
-  max-width: 500px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.solutionsList {
+/* Cabeçalho da seção */
+.header {
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: var(--secondary-color);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  opacity: 1; /* Garante que fique visível após animação */
+}
+
+/* Grid de soluções */
+.solutionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: left;
+}
+
+/* Item de solução individual */
+.solutionItem {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  opacity: 1; /* Garante que fique visível após animação */
 }
 
-.solutionItem {
-  padding: 2rem 0;
+
+/* Ícone da solução */
+.solutionIcon {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 60px;
+  transform: scale(1); /* Estado final da animação */
 }
 
-.solutionItem:last-child {
-  border-bottom: none;
-}
-
+/* Cabeçalho da solução */
 .solutionHeader {
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
 }
 
 .cardTitle {
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  font-weight: 600;
-  margin: 0;
+  font-size: 1.6rem;
+  color: var(--title-color);
+  font-weight: 400;
+  margin-bottom: 1rem;
   line-height: 1.3;
 }
 
+/* Descrição da solução */
 .cardDescription {
   color: var(--paragraph-color);
   line-height: 1.7;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   margin: 0;
+  font-weight: 300;
 }
 
-/* Coluna do Vídeo - DIREITA (FIXA) */
-.videoColumn {
-  position: relative;
-  padding: 2rem;
-}
-
-.videoContainer {
-  position: sticky;
-  top: 0; /* Garante fixação no topo */
-  width: 100%;
-  height: 450px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-  
-  .videoColumn {
-    order: -1;
-    height: 50vh;
-    padding: 1rem;
-  }
-  
-  .videoContainer {
-    position: sticky; /* Mantém sticky no mobile também */
-    top: 0;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .contentColumn {
-    padding: 3rem 1rem;
-    margin-top: 0;
-  }
-  
-  .cardTitle {
-    font-size: 1.5rem;
-  }
-  
-  .solutionsList {
-    gap: 10rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .solutions {
-    margin-bottom: 5rem;
-    min-height: auto;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    min-height: auto;
-  }
-  
-  .videoColumn {
-    order: -1;
-    padding: 1rem;
-    height: auto;
-  }
-  
-  .videoContainer {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 300px;
-    max-width: none;
-    margin: 0;
-  }
-  
-  .contentColumn {
-    padding: 2rem 1rem;
-    margin-top: 0;
-  }
-  
-  .content {
-    max-width: 100%;
-  }
-  
-  .solutionsList {
-    gap: 1rem;
+/* Responsividade */
+@media (max-width: 1200px) {
+  .solutionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
   
   .solutionItem {
-    padding: 1.5rem 0;
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .solutions {
+    padding: 4rem 0;
+  }
+  
+  .header {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .solutionsGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .solutionItem {
+    padding: 1.5rem;
+  }
+  
+  .solutionIcon {
+    font-size: 2rem;
+    min-height: 50px;
   }
   
   .cardTitle {
     font-size: 1.3rem;
-    line-height: 1.4;
   }
   
   .cardDescription {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
   }
 }
 
-/* Mobile Pequeno */
 @media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
   .solutions {
-    margin-bottom: 3rem;
+    padding: 3rem 0;
   }
   
-  .videoColumn {
-    padding: 1rem;
-  }
-  
-  .videoContainer {
-    position: sticky;
-    top: 0;
-    height: 180px;
-    border-radius: 8px;
-  }
-  
-  .contentColumn {
-    padding: 1.5rem 1rem;
-  }
-  
-  .solutionsList {
-    gap: 1rem;
+  .sectionTitle {
+    font-size: 1.8rem;
   }
   
   .solutionItem {
-    padding: 1rem 0;
+    padding: 1.2rem 0;
   }
   
-  .cardTitle {
-    font-size: 1.2rem;
+  .solutionIcon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
   
   .cardDescription {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
