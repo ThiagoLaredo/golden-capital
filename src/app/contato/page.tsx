@@ -144,7 +144,7 @@ export default function ContatoPage() {
 
                   {/* Assunto - linha completa */}
                   <div className={styles.formGroup}>
-                    <select id="subject" name="subject" className={styles.formSelect} required>
+                    {/* <select id="subject" name="subject" className={styles.formSelect} required>
                       <option value="" disabled selected>
                         {dict.form?.subjectPlaceholder || 'Assunto'}
                       </option>
@@ -153,7 +153,7 @@ export default function ContatoPage() {
                       <option value="fusao">{dict.solutions?.fusaoAquisicao?.title || 'Fusões & Aquisições'}</option>
                       <option value="realestate">{dict.solutions?.realEstate?.title || 'Real Estate'}</option>
                       <option value="outro">{dict.form?.other || 'Outro'}</option>
-                    </select>
+                    </select> */}
                   </div>
 
                   {/* Mensagem - linha completa */}
