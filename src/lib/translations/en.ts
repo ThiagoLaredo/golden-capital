@@ -202,8 +202,12 @@ export const en = {
   },
   DifferentialsPage: {
   hero: {
-    title: "The differentials your company looks for in a partnership",
-    description: "With appropriate approaches and deep economic-financial knowledge developed over decades of experience and operations carried out, the Golden Capital Partners team works with technical commitment and ethics in all businesses in which it operates."
+    title: "Added Values",
+  },
+  intro: {
+    title: "Added Values",
+    subtitle: "The added values your company seeks in a partnership",
+    description: "With an **adequate approach** and **a deep economic and financial knowledge** acquired over decades of experience in successful executed transactions, our team is extremely technical and ethically committed in all projects it participates."
   },
   differentials: {
     acesso: {
@@ -260,6 +264,37 @@ export const en = {
     year: "Year",
     description: "Service description"
   }
- }
+ },
+
+// Em en.ts - ContactPage
+ContactPage: {
+  hero: {
+    title: "Contact"
+  },
+  intro: {
+    title: "Get in touch",
+    address: "**Av. Brigadeiro Faria Lima, 4300**",
+    addressDetails: "Office Building | 3rd floor - 316\nSão Paulo/SP - CEP 04538-132",
+    phone: "+55 (11) 3842-8522"
+  },
+  form: {
+    title: "Get in touch with Golden Capital Partners",
+    description: "Fill out the form below with your information. We will get back to you soon.",
+    namePlaceholder: "Name",
+    emailPlaceholder: "Email",
+    phonePlaceholder: "Phone",
+    companyPlaceholder: "Company",
+    subjectPlaceholder: "Subject",
+    messagePlaceholder: "Message",
+    submit: "Send message",
+    other: "Other"
+  },
+  contact: {
+    emailTitle: "Email",
+    phoneTitle: "Phone",
+    hoursTitle: "Business hours",
+    hours: "Monday to Friday, 9am to 6pm"
+  }
+}
 };
 

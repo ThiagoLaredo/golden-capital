@@ -203,8 +203,12 @@ export const pt = {
   },
   DifferentialsPage: {
   hero: {
-    title: "Os diferenciais que sua empresa procura em uma parceria",
-    description: "Com abordagens adequadas e profundo conhecimento econômico-financeiro desenvolvido ao longo de décadas de experiência e operações realizadas, a equipe da Golden Capital Partners trabalha com comprometimento técnico e ética em todos os negócios em que atua."
+    title: "Diferenciais",
+    },
+  intro: {
+    title: "Nossos diferenciais",
+    subtitle: "Os diferenciais que sua empresa procura em uma parceria",
+    description: "Com **abordagens adequadas** e **profundo conhecimento econômico-financeiro** desenvolvido ao longo de décadas de experiência e operações realizadas, a equipe da Golden Capital Partners trabalha com comprometimento técnico e ética em todos os negócios em que atua."
   },
   differentials: {
     acesso: {
@@ -261,6 +265,36 @@ export const pt = {
     year: "Ano",
     description: "Descrição do serviço"
   }
- }
+ },
+// Em pt.ts - ContactPage
+ContactPage: {
+  hero: {
+    title: "Contato"
+  },
+  intro: {
+    title: "Entre em contato",
+    address: "**Av. Brigadeiro Faria Lima, 4300**",
+    addressDetails: "Edifício Offices | 3º andar - 316\nSão Paulo/SP - CEP 04538-132",
+    phone: "+55 (11) 3842-8522"
+  },
+  form: {
+    title: "Entre em contato com a Golden Capital Partners",
+    description: "Preencha o formulário a seguir com as suas informações. Em breve retornaremos seu contato.",
+    namePlaceholder: "Nome",
+    emailPlaceholder: "E-mail",
+    phonePlaceholder: "Telefone",
+    companyPlaceholder: "Empresa",
+    subjectPlaceholder: "Assunto",
+    messagePlaceholder: "Mensagem",
+    submit: "Enviar mensagem",
+    other: "Outro"
+  },
+  contact: {
+    emailTitle: "E-mail",
+    phoneTitle: "Telefone",
+    hoursTitle: "Horário de atendimento",
+    hours: "Segunda a sexta, das 9h às 18h"
+  }
+}
 };
 
