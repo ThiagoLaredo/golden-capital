@@ -1,0 +1,69 @@
+/* src/components/sections/PageHeaderSection/PageHeaderSection.module.css */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.pageHeader {
+  background: var(--primary-color);
+  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
+  color: var(--white);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.headerLeft {
+  flex: 1;
+}
+
+.pageTitle {
+  font-size: 1.4rem; /* Ajustado para melhor legibilidade */
+  font-weight: 200;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--white);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    padding: calc(var(--header-height) + 1rem) 0px 1.5rem;
+  }
+  
+  .headerContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .pageTitle {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.8rem;
+  }
+}

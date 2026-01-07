@@ -1,3 +1,5 @@
+/* src/app/equipe/EquipePage.module.css */
+
 .equipePage {
   font-family: inherit;
 }
@@ -8,40 +10,11 @@
   padding: 0 2rem;
 }
 
-/* Hero Section */
-.hero {
-  background: var(--primary-color);
-  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
-  color: var(--white);
-}
-
-.heroContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.heroLeft {
-  flex: 1;
-}
-
-.pageTitle {
-  font-size: 1.2rem;
-  font-weight: 200;
-  line-height: 1.2;
-  margin: 0;
-  color: var(--white);
-}
-
-.heroRight {
-  display: flex;
-  align-items: center;
-}
+/* NOTA: Removemos todos os estilos do hero, pois agora estão no componente PageHeaderSection */
 
 /* Introduction Section */
 .introduction {
-  padding: 5rem 0 0 0;
+  padding: 6rem 0 0 0;
   background: var(--white);
   text-align: center;
 }
@@ -75,7 +48,7 @@
 
 /* Team Grid */
 .equipeGrid {
-  padding: 5rem 0;
+  padding: 6rem 0;
   background: var(--white);
 }
 
@@ -99,20 +72,6 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 3rem 0;
-  }
-  
-  .heroContent {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
-  
-  .pageTitle {
-    font-size: 1rem;
-  }
-  
   .introduction {
     padding: 3rem 0 0 0;
   }
@@ -123,10 +82,6 @@
   
   .introSubtitle {
     font-size: 1.8rem;
-  }
-  
-  .introDescription {
-    font-size: 1rem;
   }
   
   .equipeGrid {
@@ -144,17 +99,8 @@
     padding: 0 1rem;
   }
   
-  .pageTitle {
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-  }
-  
   .introSubtitle {
     font-size: 1.5rem;
-  }
-  
-  .hero {
-    padding: 2rem 0;
   }
   
   .introduction {

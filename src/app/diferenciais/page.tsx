@@ -1,10 +1,11 @@
+// src/app/diferenciais/page.tsx
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { pt, en } from '@/lib/translations';
-import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
+import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { formatText } from '@/utils/FormattedText/formatText'; // Importe a função
+import { formatText } from '@/utils/FormattedText/formatText';
 import { 
   FaUserTie, 
   FaBullseye, 
@@ -19,8 +20,7 @@ export default function DiferenciaisPage() {
   const translations = language === 'pt' ? pt : en;
   const dict = translations.DifferentialsPage;
 
-  // Referências para animação
-  const titleRef = useFadeIn({ delay: 0.1, y: 20 });
+  // Referências para animação (remover titleRef)
   const introRef = useFadeIn({ delay: 0.3, y: 30 });
   const gridRef = useFadeIn({ delay: 0.5, y: 30 });
 
@@ -69,24 +69,14 @@ export default function DiferenciaisPage() {
 
   return (
     <div className={styles.diferenciaisPage}>
-      {/* Hero Section - Mesmo padrão das outras páginas */}
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <div className={styles.heroContent}>
-            <div className={styles.heroLeft}>
-              <h1 ref={titleRef} className={styles.pageTitle}>{dict.hero.title}</h1>
-            </div>
-            <div className={styles.heroRight}>
-              <Breadcrumb 
-                items={[
-                  { label: translations.Navigation.home, href: '/' },
-                  { label: translations.Navigation.differentials, href: '/diferenciais', active: true }
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Page Header Section - Substituir a Hero Section */}
+      <PageHeaderSection 
+        title={dict.hero.title}
+        breadcrumbItems={[
+          { label: translations.Navigation.home, href: '/' },
+          { label: translations.Navigation.differentials, href: '/diferenciais', active: true }
+        ]}
+      />
 
       {/* Introdução Section - Adicionada para seguir o padrão */}
       <section className={styles.introduction}>
@@ -106,14 +96,12 @@ export default function DiferenciaisPage() {
         <div className={styles.container}>
           <div ref={gridRef} className={styles.grid}>
             {differentialsData.map((differential) => (
-              <div 
-                key={differential.id} 
-                className={styles.differentialCard}
-              >
-                <div className={styles.cardIcon} style={{ color: differential.color }}>
-                  {differential.icon}
-                </div>
-                
+            <div key={differential.id} className={styles.differentialCard}>
+              <div className={styles.cardIcon} style={{ color: differential.color }}>
+                {differential.icon}
+              </div>
+              
+              <div className={styles.textContent}>
                 <h3 className={styles.cardTitle}>{differential.title}</h3>
                 
                 {differential.subtitle && (
@@ -122,6 +110,7 @@ export default function DiferenciaisPage() {
                 
                 <p className={styles.cardDescription}>{differential.description}</p>
               </div>
+            </div>
             ))}
           </div>
         </div>

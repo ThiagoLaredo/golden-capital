@@ -24,8 +24,8 @@
 /* Estilo para os ícones do React Icons */
 .iconContainer svg {
   color: var(--secondary-color);
-  width: 3em; /* Equivalente a fa-3x */
-  height: 3em;
+  width: 5em; /* Equivalente a fa-3x */
+  height: 5em;
   transition: all 0.3s ease;
 }
 

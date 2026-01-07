@@ -1,25 +1,16 @@
 'use client';
 import { useLanguage } from '../../../contexts/LanguageContext';
 import { pt, en } from '../../../lib/translations';
-import { useFadeInStagger } from '../../../hooks/useFadeInStagger';
 import { FaLinkedin } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 const Footer = () => {
   const { language } = useLanguage();
   const translations = language === 'pt' ? pt : en;
-  
-  // Animação para todos os elementos em sequência
-  const containerRef = useFadeInStagger({ 
-    delay: 0.1, 
-    stagger: 0.1, 
-    y: 20,
-    childSelector: `.${styles.footerItem}` 
-  });
 
   return (
     <footer className={styles.footer}>
-      <div ref={containerRef} className={styles.container}>
+      <div className={styles.container}>
         {/* Logo */}
         <div className={`${styles.footerItem} ${styles.logoContainer}`}>
           <img 

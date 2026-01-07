@@ -1,3 +1,5 @@
+/* src/app/contato/ContatoPage.module.css */
+
 .contatoPage {
   font-family: inherit;
 }
@@ -8,40 +10,11 @@
   padding: 0 2rem;
 }
 
-/* Hero Section */
-.hero {
-  background: var(--primary-color);
-  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
-  color: var(--white);
-}
-
-.heroContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.heroLeft {
-  flex: 1;
-}
-
-.pageTitle {
-  font-size: 1.2rem;
-  font-weight: 200;
-  line-height: 1.2;
-  margin: 0;
-  color: var(--white);
-}
-
-.heroRight {
-  display: flex;
-  align-items: center;
-}
+/* NOTA: Removemos todos os estilos do hero, pois agora estão no componente PageHeaderSection */
 
 /* Contact Section - Mapa + Form */
 .contactSection {
-  padding: 4rem 0;
+  padding: 6rem 0;
   background: var(--white);
 }
 
@@ -185,14 +158,14 @@
   transition: all 0.3s ease;
   background: var(--white);
   width: 100%;
-  color: var(--text-color, #333); /* Cor do texto mais escura */
+  color: var(--text-color, #333);
 }
 
 /* Placeholders visíveis */
 .formInput::placeholder,
 .formTextarea::placeholder {
   color: var(--placeholder-color, #888);
-  opacity: 1; /* Garante que não fique translúcido */
+  opacity: 1;
 }
 
 /* Estado de foco */
@@ -255,7 +228,7 @@
   transform: translateY(-2px);
 }
 
-/* Contact Info Section */
+/* Contact Info Section (se ainda existir na sua página) */
 .contactInfo {
   padding: 3rem 0 5rem;
   background: var(--background-light, #f8f9fa);
@@ -328,20 +301,6 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 3rem 0;
-  }
-  
-  .heroContent {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
-  
-  .pageTitle {
-    font-size: 1rem;
-  }
-  
   .contactSection {
     padding: 3rem 0;
   }
@@ -382,19 +341,6 @@
 @media (max-width: 480px) {
   .container {
     padding: 0 1rem;
-  }
-  
-  .pageTitle {
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-  }
-  
-  .introSubtitle {
-    font-size: 1.6rem;
-  }
-  
-  .hero {
-    padding: 2rem 0;
   }
   
   .contactSection {

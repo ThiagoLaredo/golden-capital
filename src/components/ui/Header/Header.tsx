@@ -62,6 +62,7 @@ const Header = () => {
   };
 
   const navItems = [
+    { href: '/', label: translations.Navigation.home },
     { href: '/solucoes', label: translations.Navigation.solutions },
     { href: '/equipe', label: translations.Navigation.team },
     { href: '/diferenciais', label: translations.Navigation.differentials },

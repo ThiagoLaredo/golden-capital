@@ -1,3 +1,5 @@
+/* src/app/cases/CasesPage.module.css */
+
 .casesPage {
   font-family: inherit;
 }
@@ -8,152 +10,47 @@
   padding: 0 2rem;
 }
 
-/* Hero Section - Mesmo padrão das outras páginas */
-.hero {
-  background: var(--primary-color);
-  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
-  color: var(--white);
-}
+/* NOTA: Removemos todos os estilos do hero, pois agora estão no componente PageHeaderSection */
 
-.heroContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.heroLeft {
-  flex: 1;
-}
-
-.pageTitle {
-  font-size: 1.2rem;
-  font-weight: 200;
-  line-height: 1.2;
-  margin: 0;
-  color: var(--white);
-}
-
-.heroRight {
-  display: flex;
-  align-items: center;
-}
-
-/* Introduction Section - Mesmo padrão das outras páginas */
-.introduction {
-  padding: 5rem 0 0 0;
+/* Seções comuns */
+.selectedSection,
+.portfolioSection {
+  padding: 6rem 0;
   background: var(--white);
+}
+
+.portfolioSection {
+  padding-top: 1rem;
+}
+
+.sectionHeader {
   text-align: center;
+  margin-bottom: 3rem;
 }
 
-.introContent {
-  max-width: 840px;
-  margin: 0 auto;
-}
-
-.introTitle {
+.sectionTitle {
   color: var(--secondary-color);
   font-size: .8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.introSubtitle {
-  font-size: 1.8rem;
-  color: var(--title-color);
-  line-height: 1.3;
-  font-weight: 300;
-  margin: 0 auto;
-  max-width: 700px;
-}
-
-.introSubtitle strong {
-  font-weight: 600;
-}
-
-.introDescription {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--paragraph-color);
-  margin: 1.5rem auto 0;
-  max-width: 700px;
-}
-
-.introDescription strong {
-  font-weight: 600;
-}
-
-/* Filter Section - Ajustado */
-.casesFilter {
-  padding: 3rem 0;
-  background: var(--white);
-  text-align: center;
-}
-
-.filterButtons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.filterButton {
-  padding: 0.8rem 1.8rem;
-  background: transparent;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 140px;
-}
-
-.filterButton:hover {
-  background: rgba(5, 33, 58, 0.05);
-  transform: translateY(-2px);
-}
-
-.filterButton.active {
-  background: var(--primary-color);
-  color: white;
-}
-
-.filterButton.active:hover {
-  background: var(--primary-color);
-  transform: translateY(-2px);
-}
-
-.categoryDescription {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.categoryTitle {
-  font-size: .8rem;
-  color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-bottom: 0.8rem;
   font-weight: 600;
 }
 
-.categoryText {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--paragraph-color);
+.sectionSubtitle {
+  font-size: 1.8rem;
+  color: var(--title-color);
+  line-height: 1.3;
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.sectionSubtitle strong {
+  font-weight: 600;
 }
 
 /* Cases Grid */
-.casesGrid {
-  padding: 0rem 0 5rem;
-  background: var(--white);
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -168,55 +65,27 @@
     gap: 25px;
   }
   
-  .introSubtitle {
+  .sectionSubtitle {
     font-size: 1.8rem;
-  }
-  
-  .categoryText {
-    font-size: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 3rem 0;
-  }
-  
-  .heroContent {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
-  
-  .pageTitle {
-    font-size: 1rem;
-  }
-  
-  .introduction {
-    padding: 2rem 0 0 0;
-  }
-  
-  .introSubtitle {
-    font-size: 1.6rem;
-  }
-  
-  .casesFilter {
+  .selectedSection,
+  .portfolioSection {
     padding: 2.5rem 0;
   }
   
-  .filterButtons {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
+  .selectedSection {
+    padding-top: 2rem;
   }
   
-  .filterButton {
-    width: 100%;
-    max-width: 300px;
+  .sectionHeader {
+    margin-bottom: 2rem;
   }
   
-  .casesGrid {
-    padding: 2rem 0 3rem;
+  .sectionSubtitle {
+    font-size: 1.6rem;
   }
   
   .grid {
@@ -230,28 +99,12 @@
     padding: 0 1rem;
   }
   
-  .pageTitle {
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-  }
-  
-  .introSubtitle {
+  .sectionSubtitle {
     font-size: 1.4rem;
   }
   
-  .hero {
+  .selectedSection,
+  .portfolioSection {
     padding: 2rem 0;
-  }
-  
-  .introduction {
-    padding: 1.5rem 0 0 0;
-  }
-  
-  .casesFilter {
-    padding: 2rem 0;
-  }
-  
-  .casesGrid {
-    padding: 1.5rem 0 2.5rem;
   }
 }

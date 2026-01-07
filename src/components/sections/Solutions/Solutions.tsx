@@ -8,7 +8,7 @@ import styles from './Solutions.module.css';
 import { 
   FaPuzzlePiece,      // Para fa-puzzle
   FaChartPie,         // Para fa-piechart  
-  FaChessBoard,       // Para fa-strategy (aproximação)
+  FaChessKnight,       // Para fa-strategy (aproximação)
   FaChartLine         // Para fa-linegraph
 } from 'react-icons/fa';
 
@@ -20,7 +20,7 @@ export default function Solutions() {
   const solutionIcons = [
     <FaPuzzlePiece key="puzzle" size="3em" />,
     <FaChartPie key="piechart" size="3em" />,
-    <FaChessBoard key="strategy" size="3em" />,
+    <FaChessKnight key="strategy" size="3em" />,
     <FaChartLine key="linegraph" size="3em" />
   ];
 

@@ -1,12 +1,13 @@
+// src/app/solucoes/page.tsx
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { pt, en } from '@/lib/translations';
-import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
+import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
 import SolutionList from '@/components/sections/SolutionList/SolutionList';
 import DetailedSolution from '@/components/sections/DetailedSolution/DetailedSolution';
 import { formatText } from '@/utils/FormattedText/formatText';
-import { useFadeIn } from '@/hooks/useFadeIn'; // Adicione esta importação
+import { useFadeIn } from '@/hooks/useFadeIn';
 import styles from './SolucoesPage.module.css';
 
 export default function SolucoesPage() {
@@ -14,8 +15,7 @@ export default function SolucoesPage() {
   const translations = language === 'pt' ? pt : en;
   const dict = translations.SolutionsPage;
 
-  // Referências para animação - ADICIONE ESTAS LINHAS
-  const titleRef = useFadeIn({ delay: 0.1, y: 20 });
+  // Referências para animação (remover titleRef)
   const introRef = useFadeIn({ delay: 0.3, y: 30 });
   const solutionsListRef = useFadeIn({ delay: 0.5, y: 30 });
 
@@ -57,30 +57,18 @@ export default function SolucoesPage() {
 
   return (
     <div className={styles.solucoesPage}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <div className={styles.heroContent}>
-            <div className={styles.heroLeft}>
-              {/* Aplique a ref titleRef aqui */}
-              <h1 ref={titleRef} className={styles.pageTitle}>{dict.hero.title}</h1>
-            </div>
-            <div className={styles.heroRight}>
-              <Breadcrumb 
-                items={[
-                  { label: translations.Navigation.home, href: '/' },
-                  { label: translations.Navigation.solutions, href: '/solucoes', active: true }
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Page Header Section - Substituir a Hero Section */}
+      <PageHeaderSection 
+        title={dict.hero.title}
+        breadcrumbItems={[
+          { label: translations.Navigation.home, href: '/' },
+          { label: translations.Navigation.solutions, href: '/solucoes', active: true }
+        ]}
+      />
 
       {/* Seção de Introdução - COM ANIMAÇÃO */}
       <section className={styles.introduction}>
         <div className={styles.container}>
-          {/* Aplique a ref introRef aqui */}
           <div ref={introRef} className={styles.introContent}>
             <h2 className={styles.introTitle}>{dict.intro.title}</h2>
             <h3 className={styles.introSubtitle}>
@@ -96,7 +84,6 @@ export default function SolucoesPage() {
       {/* Lista de Soluções - COM ANIMAÇÃO */}
       <section className={styles.solutionsListSection}>
         <div className={styles.container}>
-          {/* Aplique a ref solutionsListRef aqui */}
           <div ref={solutionsListRef}>
             <SolutionList solutions={solutionsData} />
           </div>

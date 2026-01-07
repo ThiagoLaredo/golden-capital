@@ -25,6 +25,7 @@ interface TeamCardProps {
 
 export default function TeamCard({ member, translations }: TeamCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imgError, setImgError] = useState(false); // Adicionado para fallback
 
   const toggleBio = () => {
     setIsExpanded(!isExpanded);
@@ -32,26 +33,27 @@ export default function TeamCard({ member, translations }: TeamCardProps) {
 
   return (
     <div className={styles.teamCard}>
-      {/* Foto */}
+      {/* Container da imagem */}
       <div className={styles.cardImage}>
         <Image
-          src={member.photo}
+          src={imgError ? '/images/team-placeholder.jpg' : member.photo}
           alt={member.name}
-          width={300}
-          height={300}
+          width={960}
+          height={960}
           className={styles.photo}
-          priority={member.id === 'murilo'} // Prioriza a primeira imagem
+          priority={member.id === 'murilo'} // Mantenha isso
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+          quality={85}
+          loading={member.id === 'murilo' ? 'eager' : 'lazy'}
+          onError={() => setImgError(true)} // Fallback se imagem falhar
         />
       </div>
 
+      {/* Resto do seu código EXATAMENTE como estava */}
       <div className={styles.cardContent}>
-        {/* Nome */}
         <h3 className={styles.memberName}>{member.name}</h3>
-        
-        {/* Cargo */}
         <p className={styles.memberRole}>{member.role}</p>
         
-        {/* Logos das empresas */}
         {member.companies && member.companies.length > 0 && (
           <div className={styles.companies}>
             {member.companies.slice(0, 3).map((company, index) => (
@@ -69,7 +71,6 @@ export default function TeamCard({ member, translations }: TeamCardProps) {
           </div>
         )}
 
-        {/* Bio */}
         <div className={styles.bio}>
           <p className={styles.shortBio}>{member.shortBio}</p>
           {isExpanded && (
@@ -83,7 +84,6 @@ export default function TeamCard({ member, translations }: TeamCardProps) {
           )}
         </div>
 
-        {/* Ícones de contato */}
         {(member.linkedin || member.email) && (
           <div className={styles.contactIcons}>
             {member.linkedin && (
@@ -109,12 +109,10 @@ export default function TeamCard({ member, translations }: TeamCardProps) {
           </div>
         )}
 
-        {/* Botão para expandir/recolher */}
         <button 
           className={styles.expandButton} 
           onClick={toggleBio}
           aria-expanded={isExpanded}
-          aria-controls={`bio-${member.id}`}
         >
           {isExpanded ? translations.showLess : translations.knowMore}
           {isExpanded ? (

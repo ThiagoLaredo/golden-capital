@@ -1,12 +1,13 @@
+// src/app/equipe/page.tsx
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { pt, en } from '@/lib/translations';
 import { teamMembers } from '@/lib/team-data';
+import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
 import TeamCard from '@/components/sections/TeamCard/TeamCard';
-import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { formatText } from '@/utils/FormattedText/formatText'; // Importe a função
+import { formatText } from '@/utils/FormattedText/formatText';
 import styles from './EquipePage.module.css';
 
 export default function EquipePage() {
@@ -14,8 +15,7 @@ export default function EquipePage() {
   const translations = language === 'pt' ? pt : en;
   const dict = translations.TeamPage;
 
-  // Referências para animação
-  const titleRef = useFadeIn({ delay: 0.1, y: 20 });
+  // Referências para animação (remover titleRef)
   const introRef = useFadeIn({ delay: 0.3, y: 30 });
   const gridRef = useFadeIn({ delay: 0.5, y: 30 });
 
@@ -36,24 +36,14 @@ export default function EquipePage() {
 
   return (
     <div className={styles.equipePage}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <div className={styles.heroContent}>
-            <div className={styles.heroLeft}>
-              <h1 ref={titleRef} className={styles.pageTitle}>{dict.hero.title}</h1>
-            </div>
-            <div className={styles.heroRight}>
-              <Breadcrumb 
-                items={[
-                  { label: translations.Navigation.home, href: '/' },
-                  { label: translations.Navigation.team, href: '/equipe', active: true }
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Page Header Section - Substituir a Hero Section */}
+      <PageHeaderSection 
+        title={dict.hero.title}
+        breadcrumbItems={[
+          { label: translations.Navigation.home, href: '/' },
+          { label: translations.Navigation.team, href: '/equipe', active: true }
+        ]}
+      />
 
       {/* Introdução Section */}
       <section className={styles.introduction}>
@@ -61,7 +51,6 @@ export default function EquipePage() {
           <div ref={introRef} className={styles.introContent}>
             <h2 className={styles.introTitle}>{dict.intro.title}</h2>
             <h3 className={styles.introSubtitle}>
-              {/* Use a função formatText aqui */}
               {formatText(dict.intro.subtitle)}
             </h3>
           </div>

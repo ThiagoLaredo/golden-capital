@@ -1,43 +1,15 @@
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* Hero Section */
-.hero {
-  background: var(--primary-color);
-  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
-  color: var(--white);
-}
-
-.heroContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.heroLeft {
-  flex: 1;
-}
-
-.pageTitle {
-  font-size: 1.2rem;
-  font-weight: 200;
-  line-height: 1.2;
-  margin: 0;
-  color: var(--white);
-}
-
-.heroRight {
-  display: flex;
-  align-items: center;
-}
+/* NOTA: Removemos todos os estilos do hero, pois agora estão no componente PageHeaderSection */
 
 /* Introduction Section */
 .introduction {
-  padding: 5rem 0 0 0;
+  padding: 6rem 0 0 0;
   background: var(--white);
   text-align: center;
 }
@@ -84,47 +56,29 @@
 
 /* Solutions List Section */
 .solutionsListSection {
-  padding-top: 4rem;
+  padding-top: 6rem;
   background: var(--white);
 }
 
 /* Detailed Solutions Section */
 .detailedSolutions {
-  padding: 5rem 0;
+  padding: 6rem 0;
   background: var(--white);
 }
 
 .detailedSolutions .container {
   border-top: 1px solid #0000001a;
-  padding-top: 5rem; /* Ajuste o padding-top para compensar a borda, se necessário */
+  padding-top: 6rem;
 }
 
 /* Responsividade */
 @media (max-width: 1024px) {
-  .pageTitle {
-    font-size: 2.5rem;
-  }
-  
   .introSubtitle {
     font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 3rem 0;
-  }
-  
-  .heroContent {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
-  
-  .pageTitle {
-    font-size: 2.2rem;
-  }
-  
   .introduction {
     padding: 3rem 0;
   }
@@ -146,10 +100,6 @@
 @media (max-width: 480px) {
   .container {
     padding: 0 1rem;
-  }
-  
-  .pageTitle {
-    font-size: 1.8rem;
   }
   
   .introSubtitle {

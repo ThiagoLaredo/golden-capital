@@ -5,7 +5,7 @@ import { useFadeInStagger } from '@/hooks/useFadeInStagger';
 import { 
   FaPuzzlePiece,      // Para fa-puzzle
   FaChartPie,         // Para fa-piechart  
-  FaChessBoard,       // Para fa-strategy (aproximação)
+  FaChessKnight,       // Para fa-strategy (aproximação)
   FaChartLine         // Para fa-linegraph
 } from 'react-icons/fa';
 import styles from './SolutionList.module.css';
@@ -36,7 +36,7 @@ export default function SolutionList({ solutions }: SolutionListProps) {
       case 'piechart':
         return <FaChartPie />;
       case 'strategy':
-        return <FaChessBoard />;
+        return <FaChessKnight />;
       case 'linegraph':
         return <FaChartLine />;
       default:

@@ -1,3 +1,4 @@
+
 .diferenciaisPage {
   font-family: inherit;
 }
@@ -8,40 +9,9 @@
   padding: 0 2rem;
 }
 
-/* Hero Section - Mesmo padrão das outras páginas */
-.hero {
-  background: var(--primary-color);
-  padding: calc(var(--header-height) + 4rem) 0px 1.5rem;
-  color: var(--white);
-}
-
-.heroContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.heroLeft {
-  flex: 1;
-}
-
-.pageTitle {
-  font-size: 1.2rem;
-  font-weight: 200;
-  line-height: 1.2;
-  margin: 0;
-  color: var(--white);
-}
-
-.heroRight {
-  display: flex;
-  align-items: center;
-}
-
 /* Introduction Section */
 .introduction {
-  padding: 5rem 0 0 0;
+  padding: 6rem 0 0 0;
   background: var(--white);
   text-align: center;
 }
@@ -105,20 +75,24 @@
 
 .differentialCard {
   background: var(--white);
-  /* border-radius: 8px; */
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid rgba(0, 0, 0, 0.05); */
   width: 100%;
-  max-width: 320px;
-  /* Não precisa de height: 100% porque o align-items: stretch já estica o card */
+  max-width: 340px;
+}
+
+/* Adicionar um container para o conteúdo textual */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
 }
 
 /* Ajustes para 5 cards */
@@ -148,9 +122,10 @@
   color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 0.8rem;
   font-weight: 400;
+  flex-shrink: 0;
 }
 
 .cardSubtitle {
@@ -159,6 +134,8 @@
   margin-bottom: 1.5rem;
   font-weight: 400;
   line-height: 1.4;
+  flex: 1;
+  min-height: 0; /* Importante para flex funcionar corretamente */
 }
 
 .cardDescription {
@@ -166,7 +143,7 @@
   line-height: 1.6;
   color: var(--paragraph-color);
   margin: 0;
-  flex: 1;
+  flex: 2;
 }
 
 /* Responsividade */
@@ -188,20 +165,6 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 3rem 0;
-  }
-  
-  .heroContent {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
-  
-  .pageTitle {
-    font-size: 1rem;
-  }
-  
   .introduction {
     padding: 2rem 0 0 0;
   }
@@ -244,17 +207,8 @@
     padding: 0 1rem;
   }
   
-  .pageTitle {
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-  }
-  
   .introDescription {
     font-size: 1.1rem;
-  }
-  
-  .hero {
-    padding: 2rem 0;
   }
   
   .introduction {

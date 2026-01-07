@@ -49,15 +49,16 @@ export default function CaseCard({ caseItem, language }: CaseCardProps) {
 
       {/* Conteúdo */}
       <div className={styles.cardContent}>
+
+        {/* Nome */}
+        <h3 className={styles.cardName}>{caseItem.name}</h3>
+
         {/* Valor em destaque */}
         {caseItem.value && (
           <div className={styles.cardValue}>
             <span className={styles.valueAmount}>{caseItem.value}</span>
           </div>
         )}
-
-        {/* Nome */}
-        <h3 className={styles.cardName}>{caseItem.name}</h3>
 
         {/* Tipo de serviço */}
         <div className={styles.cardServiceType}>
@@ -79,10 +80,6 @@ export default function CaseCard({ caseItem, language }: CaseCardProps) {
         )}
       </div>
 
-      {/* Indicador */}
-      <div className={styles.categoryIndicator}>
-        {isSelected ? '★' : '○'}
-      </div>
     </div>
   );
 }
