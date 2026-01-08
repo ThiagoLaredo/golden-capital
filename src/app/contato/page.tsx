@@ -130,19 +130,7 @@ export default function ContatoPage() {
                     </div>
                   </div>
 
-                  {/* Assunto - linha completa */}
-                  <div className={styles.formGroup}>
-                    {/* <select id="subject" name="subject" className={styles.formSelect} required>
-                      <option value="" disabled selected>
-                        {dict.form?.subjectPlaceholder || 'Assunto'}
-                      </option>
-                      <option value="estruturacao">{dict.solutions?.estruturação?.title || 'Estruturação de Capitais'}</option>
-                      <option value="reestruturacao">{dict.solutions?.reestruturação?.title || 'Reestruturação Financeira'}</option>
-                      <option value="fusao">{dict.solutions?.fusaoAquisicao?.title || 'Fusões & Aquisições'}</option>
-                      <option value="realestate">{dict.solutions?.realEstate?.title || 'Real Estate'}</option>
-                      <option value="outro">{dict.form?.other || 'Outro'}</option>
-                    </select> */}
-                  </div>
+
 
                   {/* Mensagem - linha completa */}
                   <div className={styles.formGroup}>

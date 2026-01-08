@@ -25,21 +25,20 @@
 }
 
 .introTitle {
-  color: var(--secondary-color);
   font-size: .8rem;
+  line-height: 1.2;
+  color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  margin-bottom: 2rem;
+  margin-bottom: .8rem;
   font-weight: 600;
 }
 
 .introSubtitle {
   font-size: 1.8rem;
   color: var(--title-color);
-  line-height: 1.4;
   font-weight: 300;
-  margin: 0 auto;
-  max-width: 860px;
+  line-height: 1.2;
 }
 
 .introSubtitle strong {
@@ -75,13 +74,24 @@
   .introduction {
     padding: 3rem 0 0 0;
   }
+
+  .container {
+    padding: 0 1rem;
+  } 
   
   .introContent {
-    padding-bottom: 3rem;
+    padding-bottom: 0;
+  }
+
+  .introTitle {
+    font-size: .7rem;
+    margin-bottom: .6rem;
+    line-height: 1.3;
   }
   
   .introSubtitle {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
+    line-height: 1.2;;
   }
   
   .equipeGrid {
@@ -90,28 +100,6 @@
   
   .grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .introSubtitle {
-    font-size: 1.5rem;
-  }
-  
-  .introduction {
-    padding: 2rem 0 0 0;
-  }
-  
-  .introContent {
-    padding-bottom: 2rem;
-  }
-  
-  .equipeGrid {
-    padding: 2rem 0;
+    gap: 1.5rem;
   }
 }

@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
 }
 
 .solutionSection:last-child {
@@ -145,6 +145,10 @@
   
   .solutionNumber {
     font-size: 1.1rem;
+  }
+
+  .solutionNumber, .solutionTitle {
+    margin-bottom: 1rem;
   }
 }
 

@@ -42,7 +42,7 @@
   font-size: .8rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-weight: 600;
 }
 
@@ -179,18 +179,6 @@
   z-index: 1;
 }
 
-/* .expandButton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
-  z-index: -1;
-} */
-
 .expandButton:hover {
   color: var(--primary-color);
 }
@@ -228,7 +216,7 @@
 
   
   .cardContent {
-    padding: 20px;
+    padding: 20px 0;
   }
   
   .memberName {
@@ -236,7 +224,7 @@
   }
   
   .memberRole {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
   }
   
   .shortBio {
@@ -249,13 +237,6 @@
 }
 
 @media (max-width: 480px) {
-  /* .cardImage {
-    height: 280px;
-  } */
-  
-  .cardContent {
-    padding: 20px;
-  }
   
   .companies {
     gap: 8px;

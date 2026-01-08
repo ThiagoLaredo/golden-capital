@@ -14,7 +14,7 @@
 .breadcrumbItem {
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .separator {
@@ -48,10 +48,18 @@
 
 @media (max-width: 768px) {
   .breadcrumbItem {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .separator {
     margin: 0 0.35rem;
   }
+} 
+
+@media (max-width: 480px) {
+  
+  .breadcrumbItem {
+    font-size: 0.7rem; /* Equivalente ao introTitle mobile */
+  }
 }
+

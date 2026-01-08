@@ -61,11 +61,20 @@
 
 @media (max-width: 768px) {
   .experience {
-    padding: 4rem 0;
+    padding: 3rem 0 0 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .content {
+  max-width: none;
   }
 
   .title {
     font-size: 0.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .mainStatement {

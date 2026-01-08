@@ -5,11 +5,9 @@
   padding: 0 2rem;
 }
 
-/* NOTA: Removemos todos os estilos do hero, pois agora estão no componente PageHeaderSection */
-
 /* Introduction Section */
 .introduction {
-  padding: 6rem 0 0 0;
+  padding: 6rem 0 4rem 0;
   background: var(--white);
   text-align: center;
 }
@@ -21,19 +19,20 @@
 
 .introTitle {
   font-size: .8rem;
+  line-height: 1.2;
   color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  margin-bottom: 1.5rem;
+  margin-bottom: .8rem;
   font-weight: 600;
 }
 
 .introSubtitle {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--title-color);
   font-weight: 300;
-  line-height: 1.3;
-  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
 }
 
 .introDescription {
@@ -56,7 +55,7 @@
 
 /* Solutions List Section */
 .solutionsListSection {
-  padding-top: 6rem;
+  padding: 2rem 0 0 0; /* top 2rem, bottom 0? (ou ajustar conforme necessário) */
   background: var(--white);
 }
 
@@ -79,35 +78,39 @@
 }
 
 @media (max-width: 768px) {
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .detailedSolutions .container {
+  padding-top: 3.6rem;
+}
+
   .introduction {
     padding: 3rem 0;
   }
-  
-  .introSubtitle {
-    font-size: 1.8rem;
+
+  .introTitle {
+    font-size: .7rem;
+    margin-bottom: .6rem;
+    line-height: 1.3;
   }
   
+  .introSubtitle {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;;
+  }
+
   .introDescription {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    line-height: 1.7; 
   }
   
   .solutionsListSection,
   .detailedSolutions {
-    padding: 3rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .introSubtitle {
-    font-size: 1.5rem;
-  }
-  
-  .introTitle {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    padding: 0 0 3rem 0;
   }
 }

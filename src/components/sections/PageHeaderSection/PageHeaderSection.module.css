@@ -23,9 +23,9 @@
 }
 
 .pageTitle {
-  font-size: 1.4rem; /* Ajustado para melhor legibilidade */
-  font-weight: 200;
-  line-height: 1.2;
+  font-size: 2.5rem; /* Ajustado para melhor legibilidade */
+  font-weight: 300;
+  line-height: 1.4;
   margin: 0;
   color: var(--white);
 }
@@ -50,11 +50,12 @@
   .headerContent {
     flex-direction: column;
     text-align: center;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   .pageTitle {
     font-size: 2.2rem;
+    line-height: 1.15;
   }
 }
 
@@ -64,6 +65,7 @@
   }
   
   .pageTitle {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.25;
   }
 }
