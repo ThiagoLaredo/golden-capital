@@ -60,6 +60,7 @@
   
   .iconContainer {
     min-height: 70px;
+    margin-bottom: 1rem;
   }
   
   .iconContainer svg {
