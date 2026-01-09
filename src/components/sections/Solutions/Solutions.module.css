@@ -22,7 +22,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: .2em;
-  opacity: 1; /* Garante que fique visível após animação */
+  opacity: 1;
 }
 
 /* Grid de soluções */
@@ -38,20 +38,25 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  opacity: 1; /* Garante que fique visível após animação */
+  opacity: 1;
 }
 
+/* Estilo dos ícones - AUMENTADO */
+.icon {
+  font-size: 4em; /* Aumentado de 3em para 4em */
+  width: 1em;
+  height: 1em;
+}
 
 /* Ícone da solução */
 .solutionIcon {
-  font-size: 1.5rem;
   color: var(--secondary-color);
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 60px;
-  transform: scale(1); /* Estado final da animação */
+  min-height: 80px; /* Aumentado de 60px para 80px */
+  transform: scale(1);
 }
 
 /* Cabeçalho da solução */
@@ -108,8 +113,11 @@
   }
   
   .solutionIcon {
-    font-size: 2rem;
-    min-height: 50px;
+    min-height: 70px; /* Aumentado de 50px para 70px */
+  }
+  
+  .icon {
+    font-size: 3.5em; /* Aumentado de 2em para 3.5em */
   }
   
   .cardTitle {
@@ -139,8 +147,12 @@
   }
   
   .solutionIcon {
-    font-size: 1.8rem;
     margin-bottom: 1rem;
+    min-height: 60px; /* Aumentado de 40px para 60px */
+  }
+  
+  .icon {
+    font-size: 3em; /* Aumentado de 1.8em para 3em */
   }
   
   .cardDescription {
