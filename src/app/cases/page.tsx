@@ -69,7 +69,7 @@ export default function CasesPage() {
             </p>
           </div>
           
-          <div ref={portfolioGridRef} className={styles.grid}>
+          <div ref={portfolioGridRef} className={`${styles.grid} ${styles.portfolioGrid}`}>
             {portfolioCases.map((caseItem) => (
               <CaseCard
                 key={caseItem.id}

@@ -14,6 +14,19 @@ export interface CaseItem {
 
 export const casesData: CaseItem[] = [
   // Operações Selecionadas
+    {
+    id: 'fazendacajueira',
+    category: 'selected',
+    logo: '/images/cases/fazendacajueira.webp',
+    name: 'Fazenda Cajueira Agropecuária Ltda', // String direta
+    value: 'R$ 237.000.000,00', // String direta
+    serviceType: 'Liability Management | M&A', // String direta
+    description: {
+      pt: 'Assessoria na Reestruturação de Passivos do Grupo e Alienação da totalidade do seu Capital Social',
+      en: 'Advisory in Group Liabilities Restructuring and Sale of the entire Share Capital'
+    },
+    year: '2025'
+  },
   {
     id: 'sistac',
     category: 'selected',
