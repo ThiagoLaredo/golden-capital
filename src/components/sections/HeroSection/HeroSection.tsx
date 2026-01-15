@@ -65,6 +65,14 @@ export default function HeroSection() {
     }
   }, [videoSrc]);
 
+  // Função para obter o texto do indicador
+  const getIndicatorLabel = (index: number, total: number, language: string) => {
+    if (language === 'pt') {
+      return `Ir para slide ${index + 1} de ${total}${index === currentSlide ? ' (atual)' : ''}`;
+    }
+    return `Go to slide ${index + 1} of ${total}${index === currentSlide ? ' (current)' : ''}`;
+  };
+
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.videoContainer}>
@@ -81,6 +89,7 @@ export default function HeroSection() {
             onError={handleVideoError}
             className={styles.video}
             preload="auto"
+            aria-label="Vídeo de fundo da seção principal"
           >
             <source 
               src={videoSrc} 
@@ -92,7 +101,11 @@ export default function HeroSection() {
 
         {/* Placeholder */}
         {(!videoSrc || !isVideoLoaded) && (
-          <div className={styles.videoPlaceholder}>
+          <div 
+            className={styles.videoPlaceholder}
+            role="status"
+            aria-label="Carregando vídeo..."
+          >
             <div className={styles.loadingSpinner}></div>
           </div>
         )}
@@ -102,13 +115,24 @@ export default function HeroSection() {
 
       <div className={`${styles.contentContainer} ${showContent ? styles.show : ''}`}>
         <div className={styles.slidesContainer}>
-          <div className={styles.slidesWrapper}>
+          <div 
+            className={styles.slidesWrapper}
+            role="region"
+            aria-roledescription="carrossel"
+            aria-label="Slides da seção principal"
+            aria-live="polite"
+          >
             {slides.map((slide, index) => (
               <div
                 key={index}
                 className={`${styles.slide} ${
                   index === currentSlide ? styles.active : ''
                 }`}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`Slide ${index + 1} de ${slides.length}`}
+                aria-hidden={index !== currentSlide}
+                id={`slide-${index}`}
               >
                 <h1 className={styles.title}>{slide.title}</h1>
                 <p className={styles.paragraph}>{slide.paragraph}</p>
@@ -116,7 +140,11 @@ export default function HeroSection() {
             ))}
           </div>
 
-          <div className={styles.indicators}>
+          <div 
+            className={styles.indicators}
+            role="tablist"
+            aria-label="Navegação de slides"
+          >
             {slides.map((_, index) => (
               <button
                 key={index}
@@ -124,13 +152,27 @@ export default function HeroSection() {
                   index === currentSlide ? styles.active : ''
                 }`}
                 onClick={() => setCurrentSlide(index)}
+                // ATRIBUTOS DE ACESSIBILIDADE ADICIONADOS:
+                aria-label={getIndicatorLabel(index, slides.length, language)}
+                aria-selected={index === currentSlide}
+                aria-controls={`slide-${index}`}
+                role="tab"
+                tabIndex={index === currentSlide ? 0 : -1}
+                title={language === 'pt' 
+                  ? `Ir para slide ${index + 1}` 
+                  : `Go to slide ${index + 1}`
+                }
               />
             ))}
           </div>
         </div>
       </div>
 
-      <div className={`${styles.scrollIndicator} ${showContent ? styles.show : ''}`}>
+      <div 
+        className={`${styles.scrollIndicator} ${showContent ? styles.show : ''}`}
+        role="presentation"
+        aria-hidden="true"
+      >
         <div className={styles.mouse}>
           <div className={styles.wheel}></div>
         </div>

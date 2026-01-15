@@ -14,7 +14,7 @@
 .headerContent {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   gap: 2rem;
 }
 
@@ -25,7 +25,7 @@
 .pageTitle {
   font-size: 2.5rem; /* Ajustado para melhor legibilidade */
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 1.2;
   margin: 0;
   color: var(--white);
 }
@@ -49,6 +49,7 @@
   
   .headerContent {
     flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 1rem;
   }

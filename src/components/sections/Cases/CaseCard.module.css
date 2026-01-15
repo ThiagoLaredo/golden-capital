@@ -143,11 +143,13 @@
   color: var(--primary-color);
   margin-bottom: 12px;
   line-height: 1.3;
+  min-height: 3rem;
 }
 
 .portfolio .cardName {
   margin-bottom: 10px;
   font-size: .9rem;
+  min-height: auto;
 }
 
 /* Tipo de serviço */
@@ -164,30 +166,16 @@
 .portfolio .cardServiceType {
   margin-bottom: 0px!important;
   font-size: .85rem;
-
 }
 
-/* Descrição com limite de linhas */
 .cardDescription {
   font-size: 0.95rem;
   color: var(--paragraph-color);
   line-height: 1.5;
   margin-bottom: 20px;
   flex: 1;
-  
-  /* Limita a 3 linhas com ellipsis */
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  
-  /* Fallback para navegadores sem webkit */
-  max-height: 4.5em; /* 3 linhas * 1.5 line-height */
-  overflow: hidden;
 }
 
-/* Ano com badge */
 .cardYear {
   margin-top: auto;
 }
@@ -262,6 +250,7 @@
   
   .cardName {
     font-size: 1.1rem;
+    min-height: auto;
   }
   
   .cardServiceType {
@@ -294,6 +283,7 @@
   
   .cardName {
     font-size: 1rem;
+    min-height: auto;
   }
   
   .cardServiceType {
@@ -302,8 +292,6 @@
   
   .cardDescription {
     font-size: 0.85rem;
-    -webkit-line-clamp: 2;
-    max-height: 3em;
   }
   
   .logoImage {
@@ -417,19 +405,6 @@
 .valueAmount {
   word-break: keep-all;
   overflow-wrap: normal;
-}
-
-/* Garantir que os cards fiquem na mesma altura no grid */
-@media (min-width: 769px) {
-  .caseCard {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
-  
-  .cardContent {
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
-  }
 }
 
 /* Print styles */
