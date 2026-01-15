@@ -1,5 +1,7 @@
 .hero {
-  height: 100vh;
+  height: 100svh; /* Usa small viewport - mais estável em mobile */
+  min-height: 600px; /* Altura mínima para evitar vídeo muito pequeno */
+  max-height: 900px; /* Altura máxima para não exagerar */
   position: relative;
   display: flex;
   align-items: center;
@@ -7,50 +9,94 @@
   background: var(--primary-color);
 }
 
+/* Container do vídeo com otimizações */
 .videoContainer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  contain: paint layout; /* Otimização de performance */
+  will-change: transform; /* Otimização para mobile */
+  -webkit-backface-visibility: hidden; /* Evita flickering em iOS */
 }
 
-/* REMOVA a classe .videoPlaceholder ou altere para: */
-.videoContainer video {
+/* Vídeo com transição suave */
+.video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Isso faz o vídeo cobrir toda a área */
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0); /* Aceleração GPU */
+  -webkit-transform: translateZ(0); /* Para Safari */
 }
 
-/* Se quiser manter o placeholder apenas como fallback */
+.video.loaded {
+  opacity: 1;
+}
+
+/* Placeholder otimizado */
 .videoPlaceholder {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, var(--primary-color), #0a2a4a);
+  background: linear-gradient(135deg, var(--primary-color), #0a2a4a);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.5rem;
+  z-index: 1;
 }
 
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--secondary-color);
+  animation: spin 0.8s linear infinite;
+}
+
+/* Overlay para melhor legibilidade - otimizado para mobile */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(5, 33, 58, 0.7);
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 33, 58, 0.85) 0%,
+    rgba(5, 33, 58, 0.7) 50%,
+    rgba(5, 33, 58, 0.85) 100%
+  );
+  z-index: 1;
 }
 
-/* Resto do CSS permanece igual */
-.slidesContainer {
+/* Conteúdo com animação suave */
+.contentContainer {
   position: relative;
   z-index: 2;
-  color: white;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform; /* Otimização */
+}
+
+.contentContainer.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Container dos slides */
+.slidesContainer {
   max-width: 1200px;
   width: 100%;
   padding: 0 2rem;
@@ -59,24 +105,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
+/* Slides individuais */
 .slide {
   position: absolute;
   top: 50%;
   left: 2rem;
   transform: translateY(-50%);
   opacity: 0;
-  transition: all 0.8s ease;
+  transition: opacity 0.6s ease;
   width: calc(100% - 4rem);
   text-align: left;
 }
 
 .slide.active {
   opacity: 1;
-  transform: translateY(-50%);
 }
 
+/* Títulos */
 .title {
   font-size: 3.5rem;
   font-weight: 700;
@@ -84,16 +132,32 @@
   line-height: 1.1;
   color: var(--white);
   max-width: 600px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Melhor contraste */
 }
 
+/* Parágrafos */
 .paragraph {
   font-size: 1.5rem;
   opacity: 0.9;
   margin: 0;
   color: var(--secondary-color);
   max-width: 500px;
+  line-height: 1.5;
 }
 
+.loadingText {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Indicadores */
 .indicators {
   position: absolute;
   bottom: 3rem;
@@ -101,16 +165,20 @@
   display: flex;
   gap: 0.5rem;
   z-index: 3;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.3s forwards;
 }
 
 .indicator {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   border: 2px solid var(--white);
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0;
+  min-width: 10px; /* Melhor para touch */
 }
 
 .indicator.active {
@@ -119,38 +187,222 @@
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
-  .title {
-    font-size: 2.5rem;
-    max-width: 100%;
-  }
-  
-  .paragraph {
-    font-size: 1.2rem;
-    max-width: 100%;
-  }
+.indicator:hover {
+  transform: scale(1.1);
+}
 
-  .slidesContainer {
-    padding: 0 1rem;
-  }
+/* Scroll indicator (opcional) */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.5s forwards;
+}
 
-  .slide {
-    left: 1rem;
-    width: calc(100% - 2rem);
-  }
+.mouse {
+  width: 24px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
 
-  .indicators {
-    left: 1rem;
-    bottom: 2rem;
+.wheel {
+  width: 3px;
+  height: 6px;
+  background: var(--secondary-color);
+  border-radius: 2px;
+  animation: scrollAnimation 2s infinite;
+}
+
+/* Animações */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scrollAnimation {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
   }
 }
 
-@media (max-width: 480px) {
+/* Responsividade para Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
   .title {
-    font-size: 2rem;
+    font-size: 3rem;
+  }
+  
+  .paragraph {
+    font-size: 1.3rem;
+  }
+  
+  .hero {
+    min-height: 700px;
+    max-height: 800px;
+  }
+}
+
+/* Responsividade para Mobile (768px e abaixo) */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 500px;
+    max-height: 700px;
+    height: 90vh; /* Fallback para browsers sem suporte a svh */
+    height: 90svh; /* Prioriza small viewport */
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    max-width: 100%;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* Contraste aumentado */
   }
   
   .paragraph {
     font-size: 1.1rem;
+    max-width: 100%;
+    line-height: 1.6; /* Melhor leitura em mobile */
+  }
+  
+  .slidesContainer {
+    padding: 0 1.5rem;
+    padding-top: env(safe-area-inset-top, 1rem); /* Safe area para notches */
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+  
+  .slide {
+    left: 1.5rem;
+    width: calc(100% - 3rem);
+    top: 45%; /* Sobe um pouco o conteúdo */
+    padding-bottom: 120px; /* Espaço para indicadores */
+  }
+  
+  .indicators {
+    left: 1.5rem;
+    bottom: 2.5rem;
+  }
+  
+  .indicator {
+    width: 12px;
+    height: 12px;
+    min-width: 12px; /* Área de toque maior */
+  }
+  
+  .scrollIndicator {
+    bottom: 1.5rem;
+  }
+  
+  /* Overlay otimizado para mobile */
+  .overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 33, 58, 0.95) 0%,
+      rgba(5, 33, 58, 0.85) 30%,
+      rgba(5, 33, 58, 0.75) 70%,
+      rgba(5, 33, 58, 0.9) 100%
+    );
+  }
+  
+  .loadingSpinner {
+    width: 32px;
+    height: 32px;
+    animation-duration: 1s; /* Animação mais lenta para economizar bateria */
+  }
+}
+
+/* Mobile muito pequeno (480px e abaixo) */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 450px;
+    max-height: 650px;
+    height: 85vh;
+    height: 85svh;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .paragraph {
+    font-size: 1rem;
+  }
+  
+  .slidesContainer {
+    padding: 0 1rem;
+    padding-top: env(safe-area-inset-top, 0.75rem);
+    padding-bottom: env(safe-area-inset-bottom, 0.75rem);
+  }
+  
+  .slide {
+    left: 1rem;
+    width: calc(100% - 2rem);
+    padding-bottom: 100px;
+  }
+  
+  .indicators {
+    left: 1rem;
+    bottom: 2rem;
+    gap: 0.4rem;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+  }
+  
+  .loadingSpinner {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Otimização para conexões lentas em mobile */
+@media (max-width: 768px) and (prefers-reduced-data: reduce) {
+  .video {
+    display: none; /* Esconde vídeo para economizar dados */
+  }
+  
+  .videoPlaceholder {
+    display: flex;
+    background: var(--primary-color);
+  }
+  
+  .overlay {
+    background: rgba(5, 33, 58, 0.9); /* Overlay sólido */
+  }
+}
+
+/* Suporte a modo escuro/claro do sistema */
+@media (prefers-color-scheme: dark) {
+  .overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+}
+
+/* Melhor suporte para dispositivos com tela muito alta */
+@media (min-height: 1000px) {
+  .hero {
+    max-height: 1000px;
   }
 }
