@@ -19,8 +19,8 @@ export const casesData: CaseItem[] = [
     category: 'selected',
     logo: '/images/cases/fazendacajueira.webp',
     name: 'Fazenda Cajueira Agropecuária Ltda', // String direta
-    value: 'R$ 237.000.000,00', // String direta
-    serviceType: 'Liability Management | M&A', // String direta
+    value: 'R$ 237.000.000', // String direta
+    serviceType: 'Liability Management & M&A', // String direta
     description: {
       pt: 'Assessoria na Reestruturação de Passivos do Grupo e Alienação da totalidade do seu Capital Social',
       en: 'Advisory in Group Liabilities Restructuring and Sale of the entire Share Capital'
@@ -32,7 +32,7 @@ export const casesData: CaseItem[] = [
     category: 'selected',
     logo: '/images/cases/sistac.webp',
     name: 'Sistac – Sistemas de Acesso S.A.', // String direta
-    value: 'R$ 113.518.527,41', // String direta
+    value: 'R$ 113.518.527', // String direta
     serviceType: 'Liability Management', // String direta
     description: {
       pt: 'Assessoria na Reestruturação de Debêntures - SIAC11',
