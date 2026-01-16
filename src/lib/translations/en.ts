@@ -251,7 +251,7 @@ export const en = {
   categories: {
     selectedOperations: {
       title: "Selected operations",
-      description: "Over 70 strategic transactions carried out. Experiences that generate results."
+      description: "Over **70 strategic** transactions carried out. Experiences that generate results."
     },
     portfolio: {
       title: "Portfolio",

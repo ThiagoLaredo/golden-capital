@@ -137,7 +137,7 @@ export const pt = {
     intro: {
       title: 'Nossas soluções',
       subtitle: 'Desenvolvemos **soluções personalizadas** para todos os casos e de acordo com as necessidades de cada cliente.',
-      description: 'Oferecemos **experiência, dedicação e pragmatismo**, com abordagens adequadas às mais diversas situações, empresas e setores, para que você se dedique aocrescimento do seu negócio.'
+      description: 'Oferecemos **experiência, dedicação e pragmatismo**, com abordagens adequadas às mais diversas situações, empresas e setores, para que você se dedique ao crescimento do seu negócio.'
     },
     solutions: {
       estruturação: {
@@ -252,7 +252,7 @@ export const pt = {
   categories: {
     selectedOperations: {
       title: "Operações selecionadas",
-      description: "Mais de 70 transações estratégicas realizadas. Experiências que geram resultados."
+      description: "Mais de **70 transações estratégicas** realizadas. Experiências que geram resultados."
     },
     portfolio: {
       title: "Portfólio",
