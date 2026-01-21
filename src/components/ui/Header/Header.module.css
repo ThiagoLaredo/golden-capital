@@ -221,12 +221,14 @@
   max-width: 350px;
   height: 100vh;
   background: var(--white);
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1.5rem 5rem; /* Aumentei o padding bottom */
   display: flex;
   flex-direction: column;
   transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
   z-index: 1000;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  /* Garante que o conteúdo fique acima da barra do mobile */
+  box-sizing: border-box;
 }
 
 .mobileMenu.active {
@@ -287,8 +289,18 @@
   transition: all 0.3s ease;
   font-size: 1.1rem;
   font-weight: 300;
-  opacity: 0.8;
+  opacity: 0;
+  animation: slideInRight 0.4s ease-out forwards;
 }
+
+/* Delay diferente para cada item do menu */
+.mobileNavLink:nth-child(1) { animation-delay: 0.1s; }
+.mobileNavLink:nth-child(2) { animation-delay: 0.15s; }
+.mobileNavLink:nth-child(3) { animation-delay: 0.2s; }
+.mobileNavLink:nth-child(4) { animation-delay: 0.25s; }
+.mobileNavLink:nth-child(5) { animation-delay: 0.3s; }
+.mobileNavLink:nth-child(6) { animation-delay: 0.35s; }
+.mobileNavLink:nth-child(7) { animation-delay: 0.4s; }
 
 .mobileNavLink:hover {
   color: var(--secondary-color);
@@ -303,32 +315,43 @@
 
 .mobileFooter {
   margin-top: auto;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid rgba(5, 33, 58, 0.1);
+  /* Adiciona espaço extra considerando a barra do mobile */
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
 }
 
+/* Container dos botões de idioma */
 .mobileLanguageSelector {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.5s ease-out 0.3s both; /* Animação de entrada */
 }
 
+/* Botões de idioma com tamanho melhor */
 .mobileLangBtn {
   background: none;
   border: 1px solid rgba(5, 33, 58, 0.2);
   color: var(--primary-color);
   cursor: pointer;
-  font-size: 0.9rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
   transition: all 0.3s ease;
   opacity: 0.7;
-  font-weight: 300;
+  font-weight: 400;
+  min-width: 60px;
+  text-align: center;
+  flex: 1;
+  max-width: 80px;
 }
 
 .mobileLangBtn:hover {
   opacity: 1;
   background: rgba(5, 33, 58, 0.05);
+  transform: translateY(-2px);
 }
 
 .mobileLangBtn.active {
@@ -336,6 +359,30 @@
   color: var(--secondary-color);
   border-color: var(--secondary-color);
   background: rgba(208, 171, 118, 0.1);
+  box-shadow: 0 4px 12px rgba(208, 171, 118, 0.15);
+}
+
+/* Animações para os botões */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ===== RESPONSIVIDADE ===== */
@@ -373,6 +420,36 @@
   .container {
     padding: 0 1.5rem;
   }
+  
+  /* Melhora a visibilidade no mobile */
+  .mobileMenu {
+    padding-bottom: 6rem; /* Mais espaço para os botões */
+  }
+  
+  /* Ajuste para telas pequenas */
+  @media (max-height: 700px) {
+    .mobileMenu {
+      padding: 1rem 1rem 4rem;
+      overflow-y: auto;
+    }
+    
+    .mobileNavLink {
+      padding: 0.75rem 0;
+      font-size: 1rem;
+    }
+    
+    .mobileLangBtn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Para iPhones com notch/safe areas */
+  @supports (padding: max(0px)) {
+    .mobileMenu {
+      padding-bottom: max(5rem, env(safe-area-inset-bottom, 5rem));
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -395,6 +472,16 @@
   .mobileMenu {
     width: 100%;
     max-width: none;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 7rem; /* Ainda mais espaço no mobile pequeno */
+  }
+  
+  .mobileLanguageSelector {
+    gap: 0.5rem;
+  }
+  
+  .mobileLangBtn {
+    padding: 0.6rem;
+    min-width: 55px;
+    font-size: 0.9rem;
   }
 }

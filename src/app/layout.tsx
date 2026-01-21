@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "../components/ui/Header/Header";
 import Footer from "../components/ui/Footer/Footer";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import FloatingNotice from '@/components/notifications/FloatingNotice';
+
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -30,6 +32,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </LanguageProvider>
+        <FloatingNotice /> {/* Aparece em TODAS as páginas */}
       </body>
     </html>
   );

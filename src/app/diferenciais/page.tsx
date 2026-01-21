@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { pt, en } from '@/lib/translations';
 import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { formatText } from '@/utils/FormattedText/formatText';
+import { formatMarkdownText } from '@/utils/FormattedText/formatText';
 import { 
   FaUserTie, 
   FaBullseye, 
@@ -83,10 +83,14 @@ export default function DiferenciaisPage() {
         <div className={styles.container}>
           <div ref={introRef} className={styles.introContent}>
             <h2 className={styles.introTitle}>{dict.intro.title}</h2>
-            <h3 className={styles.introSubtitle}>{dict.intro.subtitle}</h3>
-            <p className={styles.introDescription}>
-              {formatText(dict.intro.description)}
-            </p>
+            <h3 
+              className={styles.introSubtitle}
+              dangerouslySetInnerHTML={{ __html: formatMarkdownText(dict.intro.subtitle) }}
+            />            
+            <p 
+              className={styles.introDescription}
+              dangerouslySetInnerHTML={{ __html: formatMarkdownText(dict.intro.description) }}
+            />
           </div>
         </div>
       </section>

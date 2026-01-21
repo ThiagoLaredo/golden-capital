@@ -36,8 +36,9 @@ export const teamMembers: TeamMember[] = [
     photo: '/images/equipe/murilo-ungar-glausiusz.webp',
     companies: ['/images/logos/citi.svg', '/images/logos/ing.svg', '/images/logos/santander.svg'],
     shortBio: {
-      pt: 'Sócio-Diretor da Golden Capital desde Novembro de 2018. Possui mais de 25 anos de experiência em operações de Corporate Banking, Debt Capital Markets e Equity Capital Markets.',
-      en: 'Managing Partner at Golden Capital since November 2018. Has over 25 years\' work experience in Corporate Banking, Debt Capital Markets and Equity Capital Markets.'
+      pt: 'Com passagens pelos Bancos Citibank e ING Bank, antes de integrar a sociedade da Golden Capital, foi Managing Director de Corporate Banking do Banco Santander, onde trabalhou por 17 anos.\n\nAo longo de sua carreira profissional, possui mais de 25 anos de experiência em operações de Corporate Banking, Debt Capital Markets e Equity Capital Markets, trabalhando diretamente na originação e execução de importantes Operações de DCM e Corporate Finance.',
+      
+      en: 'Murilo began his career in Citibank and later moved to ING Bank. Before joining Golden Capital in 2018, he was a Managing Director of Corporate Banking at Banco Santander, where he worked for 17 years.\n\nThroughout his professional career, he has over 25 years of experience in Corporate Banking, Debt Capital Markets and Equity Capital Markets operations, working directly on the origination and execution of important DCM and Corporate Finance transactions across various sectors of the economy, such as Retail, Industry, Infrastructure and Consumer Goods.'
     },
     fullBio: {
       pt: `Murilo Ungar Glausiusz, Sócio-Diretor da Golden Capital desde Novembro de 2018.
@@ -67,8 +68,9 @@ Throughout his professional career, he worked directly on the origination and ex
     photo: '/images/equipe/newton-borbolla-filho.webp',
     companies: ['/images/logos/santander.svg', '/images/logos/real.svg', '/images/logos/werte.svg'],
     shortBio: {
-      pt: 'Sócio-Diretor e Co-Fundador da Golden Capital em 2017. Possui mais de 20 anos de experiência em operações de Corporate Banking e mercado de capitais.',
-      en: 'Managing Partner and Co-founder of Golden Capital since 2017. With over 20 years work experience in Corporate Banking and Capital Market transactions.'
+      pt: 'Com mais de 20 anos de experiência em operações de Corporate Banking e mercado de capitais. Foi superintendente no segmento de Corporate & Investment Banking do Banco Santander Brasil onde trabalhou por 15 anos.\n\nAo longo de sua carreira profissional, trabalhou diretamente na originação e execução de importantes operações de M&A e mercado de capitais em diversos setores da economia, tais como Varejo, Infraestrutura, Consumo e Indústria.',
+      
+      en: `Newton has 20+ years' work experience in Corporate Banking and Capital Market transactions before co-founding Golden Capital. Previously, he held a position of superintendent in the Corporate & Investment Banking division at Banco Santander Brasil where he worked for 15 years.\n\nThroughout his professional career, he participated directly on the origination and execution of important M&A and capital market operations in various sectors of the economy, such as Retail, Infrastructure, Consumer Goods and Industry.`
     },
     fullBio: {
       pt: `Newton Aguilar Borbolla Filho, Sócio-Diretor e Co-Fundador da Golden Capital em 2017.
@@ -98,9 +100,8 @@ Throughout his professional career, he participated directly on the origination 
     photo: '/images/equipe/pedro-paulo-pereira.webp',
     companies: ['/images/logos/citi.svg', '/images/logos/real.svg', '/images/logos/santander.svg'],
     shortBio: {
-      pt: 'Sócio-Diretor e Co-Fundador da Golden Capital em 2017. Possui mais de 28 anos de experiência no mercado financeiro.',
-      en: 'Managing Partner and Co-Founder of Golden Capital since 2017. Has over 28 years work experience in the financial market.'
-    },
+      pt: 'Antes de co-fundar a Golden Capital, ocupou por 11 anos a posição de CFO e COO da Santander Asset Management onde trabalhou por 18 anos.\n\nAo longo de sua experiência, trabalhou diretamente na execução de importantes projetos estratégicos da Empresa. Liderou o redesenho estratégico de atuação da Companhia no mercado de fundos de investimento, além de executar a reestruturação societária da Empresa para atuar de forma independente.', 
+      en: 'Before co-founding Golden Capital, he worked for 18 years for Santander Asset Management where he acted as the CFO and COO for 11 years.\n\nThroughout his career at Santander Asset Management, he worked directly on the execution of important strategic projects for the company. Among them, he structured and redesigned the company\'s operations in the investment fund market, in addition to carrying out the company\'s corporate restructuring to operate independently.'    },
     fullBio: {
       pt: `Pedro Paulo Nogueira Pereira, Sócio-Diretor e Co-Fundador da Golden Capital em 2017.
 
@@ -129,8 +130,9 @@ Throughout his professional career at Santander Asset Management, he worked dire
     photo: '/images/equipe/diego-alvarez.webp',
     companies: ['/images/logos/citi.svg', '/images/logos/santander.svg'],
     shortBio: {
-      pt: 'Com mais de 25 anos de experiência em Corporate and Investment Banking, Debt Capital Markets e Structured Finance.',
-      en: 'With over 25 years of experience in Corporate and Investment Banking, Debt Capital Markets and Structured Finance.'
+      pt: 'Possui mais de 25 anos de experiência no mercado financeiro, com sólida atuação em Corporate and Investment Banking, Debt Capital Markets e Structured Finance. Atuou no Citibank e construiu longa carreira no Banco Santander, onde chegou a Executive Director no Corporate & Investment Banking.\n\nLiderou a cobertura comercial de grandes companhias nacionais e multinacionais, conduzindo operações estratégicas de dívida, mercado de capitais e soluções estruturadas de financiamento e derivativos.',
+      
+      en: 'Has over 25 years of experience in the financial market, with a solid background in Corporate and Investment Banking, Debt Capital Markets and Structured Finance. Worked at Citibank and built a long career at Banco Santander, where he reached the position of Executive Director in Corporate & Investment Banking.\n\nLed the commercial coverage of large national and multinational companies, conducting strategic debt operations, capital markets and structured financing and derivatives solutions.'
     },
     fullBio: {
       pt: `Com mais de 25 anos de experiência em Corporate and Investment Banking, Debt Capital Markets e Structured Finance. Teve passagens pelo Citibank e trajetória consolidada no Banco Santander, atuou em posições de liderança por mais de duas décadas, sendo Executive Director do Corporate & Investment Banking, com responsabilidade sobre clientes estratégicos dos setores de Varejo, TMT e empresas multinacionais.
@@ -158,14 +160,15 @@ Graduated in Business Administration from Fundação Armando Álvares Penteado (
       en: 'Daniel Juniti Takeushi'
     },
     role: {
-      pt: 'Partner - Head de Crédito',
-      en: 'Partner - Head of Credit'
+      pt: 'Partner - Header of Credit',
+      en: 'Partner - Header of Credit'
     },
     photo: '/images/equipe/daniel-juniti-takeushi.webp',
     companies: ['/images/logos/santander.svg', '/images/logos/mizuho.svg', '/images/logos/fitch.svg'],
     shortBio: {
-      pt: 'Head de crédito da Golden Capital desde Novembro de 2024. Possui mais de 15 anos de experiência em análise de crédito, empréstimos sindicalizados e análise de projetos.',
-      en: 'Head of Credit at Golden Capital since November 2024. Has over 15 years of experience in credit analysis, syndicated loans and project analysis.'
+      pt: 'Conta com experiência de mais de 15 anos no mercado financeiro, com passagem em bancos e em agência de rating. Ocupou a posição de especialista de crédito em sua última passagem por bancos e o cargo de associate director na Fitch Ratings.\n\nTrabalhou por mais de 10 anos no Santander, com experiência nas áreas de risco de crédito, empréstimos sindicalizados, financiamento de aquisições e análise de projetos de infraestrutura. Na Fitch Ratings, atuou na atribuição e monitoramento de ratings de diversos projetos de infraestrutura, como concessões de portos, rodovias e aeroportos, além de projetos de energia, como parques eólicos, usinas termoelétricas e solares e linhas de transmissão.',
+      
+      en: 'Has over 15 years of experience in the financial market, with stints in banks and a rating agency. Held the position of credit specialist in his last banking role and the position of associate director at Fitch Ratings.\n\nWorked for more than 10 years at Santander, with experience in credit risk areas, syndicated loans, acquisition financing and infrastructure project analysis. At Fitch Ratings, worked on the assignment and monitoring of ratings for various infrastructure projects, such as port, highway and airport concessions, as well as energy projects, including wind farms, thermoelectric and solar power plants and transmission lines.'
     },
     fullBio: {
       pt: `Daniel Juniti Takeushi, head de crédito da Golden Capital desde Novembro de 2024.
@@ -193,14 +196,15 @@ During his career in banks, he worked in the credit risk area, focusing on the s
       en: 'Gabriel Sales de Oliveira'
     },
     role: {
-      pt: 'Partner - Senior',
-      en: 'Partner - Senior'
+      pt: 'Partner - Senior Associate',
+      en: 'Partner - Senior Associate'
     },
     photo: '/images/equipe/gabriel-sales-de-oliveira.webp',
     companies: ['/images/logos/igc.svg'],
     shortBio: {
-      pt: 'Mais de 5 anos de experiência em transações de equity e dívida. Economista pela Faculdade de Economia, Administração, Contabilidade e Atuárias da Universidade de São Paulo.',
-      en: 'Over 5 years of experience in equity and debt transactions. Economist from the Faculty of Economics, Administration, Accounting and Actuarial Sciences of the University of São Paulo.'
+      pt: 'Mais de 5 anos de experiência em transações de equity e dívida. Antes de integrar o time da Golden Capital, foi advisor na igc Partners, onde assessorou companhias em operações de M&A e crédito estruturado.\n\nAo longo de sua trajetória, liderou projetos do início ao fim, participando de mais de 30 transações, com volume total transacionado de mais de R$ 300 milhões em setores como energia, tecnologia, bens de consumo, agronegócio, entre outros.',
+      
+      en: 'Over 5 years of experience in equity and debt transactions. Before joining the Golden Capital team, was an advisor at igc Partners, where he advised companies on M&A and structured credit operations.\n\nThroughout his career, has led projects from start to finish, participating in more than 30 transactions, with a total traded volume of over R$ 300 million in sectors such as energy, technology, consumer goods, agribusiness, among others.'
     },
     fullBio: {
       pt: `Mais de 5 anos de experiência em transações de equity e dívida. Antes de integrar o time da Golden Capital, ocupou a liderou a área de novos negócios na Mottu e trabalhou como advisor no sell side na igc Partners, onde assessorou companhias em operações de M&A e crédito estruturado. Durante sua carreira, esteve à frente projetos de M&A e captação do início ao fim, participando de mais de 30 transações. É economista pela Faculdade de Economia, Administração, Contabilidade e Atuárias da Universidade de São Paulo.

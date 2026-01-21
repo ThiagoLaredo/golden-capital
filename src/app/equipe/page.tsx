@@ -7,7 +7,7 @@ import { teamMembers } from '@/lib/team-data';
 import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
 import TeamCard from '@/components/sections/TeamCard/TeamCard';
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { formatText } from '@/utils/FormattedText/formatText';
+import { formatMarkdownText } from '@/utils/FormattedText/formatText';
 import styles from './EquipePage.module.css';
 
 export default function EquipePage() {
@@ -50,9 +50,10 @@ export default function EquipePage() {
         <div className={styles.container}>
           <div ref={introRef} className={styles.introContent}>
             <h2 className={styles.introTitle}>{dict.intro.title}</h2>
-            <h3 className={styles.introSubtitle}>
-              {formatText(dict.intro.subtitle)}
-            </h3>
+           <h3 
+  className={styles.introSubtitle}
+  dangerouslySetInnerHTML={{ __html: formatMarkdownText(dict.intro.subtitle) }}
+/>
           </div>
         </div>
       </section>

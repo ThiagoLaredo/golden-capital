@@ -7,7 +7,7 @@ import { casesData } from '@/lib/cases-data';
 import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
 import CaseCard from '@/components/sections/Cases/CaseCard';
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { formatText } from '@/utils/FormattedText/formatText';
+import { formatInlineContent } from '@/utils/FormattedText/formatText';
 import styles from './CasesPage.module.css';
 
 export default function CasesPage() {
@@ -42,9 +42,12 @@ export default function CasesPage() {
         <div className={styles.container}>
           <div ref={selectedTitleRef} className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{dict.categories.selectedOperations.title}</h2>
-            <p className={styles.sectionSubtitle}>
-              {formatText(dict.categories.selectedOperations.description)}
-            </p>
+            <p 
+              className={styles.sectionSubtitle}
+              dangerouslySetInnerHTML={{ 
+                __html: formatInlineContent(dict.categories.selectedOperations.description) 
+              }}
+            />    
           </div>
           
           <div ref={selectedGridRef} className={styles.grid}>
@@ -64,9 +67,12 @@ export default function CasesPage() {
         <div className={styles.container}>
           <div ref={portfolioTitleRef} className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{dict.categories.portfolio.title}</h2>
-            <p className={styles.sectionSubtitle}>
-              {formatText(dict.categories.portfolio.description)}
-            </p>
+            <p 
+              className={styles.sectionSubtitle}
+              dangerouslySetInnerHTML={{ 
+                __html: formatInlineContent(dict.categories.portfolio.description) 
+              }}
+            />
           </div>
           
           <div ref={portfolioGridRef} className={`${styles.grid} ${styles.portfolioGrid}`}>

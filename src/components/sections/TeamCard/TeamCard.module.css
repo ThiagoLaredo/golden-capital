@@ -94,10 +94,7 @@
   line-height: 1.6;
   color: var(--paragraph-color);
   margin-bottom: 10px;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  white-space: pre-line;
 }
 
 .fullBio {
@@ -219,6 +216,7 @@
   
   .cardContent {
     padding: 20px 0;
+    align-items: center;
   }
   
   .memberName {
@@ -235,6 +233,11 @@
   
   .bioParagraph {
     font-size: 0.85rem;
+  }
+
+  .expandButton {
+   width: 100%;
+   justify-content: center;
   }
 }
 

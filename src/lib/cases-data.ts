@@ -40,6 +40,58 @@ export const casesData: CaseItem[] = [
     },
     year: '2025'
   },
+         {
+    id: 'projeto-solar-2',
+    category: 'selected',
+    logo: '/images/cases/confidencial.webp',
+    name: 'Projeto Solar - Confidencial',
+    value: 'R$ 108.000.000',
+    serviceType: 'Liability Management & Fund Raising',
+    description: {
+      pt: 'Assessoria na Reestruturação de Passivos e Captação de novos Recursos',
+      en: 'Advisory in Liabilities Restructuring and Fund Raising'
+    },
+    year: '2025'
+  },
+           {
+    id: 'grupo-cene',
+    category: 'selected',
+    logo: '/images/cases/grupo-cene.webp',
+    name: 'CENE Home Care & Materiais Médicos',
+    value: 'R$ 82.000.000',
+    serviceType: 'Liability Management',
+    description: {
+      pt: 'Assessoria na Reestruturação de Passivos',
+      en: 'Advisory in Liabilities Restructuring'
+    },
+    year: '2025'
+  },
+    {
+    id: 'projeto-fashion',
+    category: 'selected',
+    logo: '/images/cases/confidencial.webp',
+    name: 'Projeto Fashion - Confidencial',
+    value: 'R$ 452.000.000',
+    serviceType: 'Liability Management',
+    description: {
+      pt: 'Assessoria de Reestruturação de Passivos do Grupo',
+      en: 'Advisory in Group Liabilities Restructuring'
+    },
+    year: '2024'
+  },
+     {
+    id: 'projeto-solar',
+    category: 'selected',
+    logo: '/images/cases/confidencial.webp',
+    name: 'Projeto Solar - Confidencial',
+    value: 'R$ 197.000.000',
+    serviceType: 'Liability Management | CRI',
+    description: {
+      pt: 'Assessoria na Reestruturação de Certificados de Recebíveis Imobiliários - 22H123358',
+      en: 'Advisory in Real Estate Receivables Certificates Restructuring - 22H123358'
+    },
+    year: '2024'
+  },
   {
     id: 'credz',
     category: 'selected',
@@ -105,6 +157,19 @@ export const casesData: CaseItem[] = [
     },
     year: '2023'
   },
+   {
+    id: 'jgr',
+    category: 'selected',
+    logo: '/images/cases/jgr.webp',
+    name: 'JGR',
+    value: 'R$ 40.900.000',
+    serviceType: 'Real Estate',
+    description: {
+      pt: 'Assessoria na Estruturação de contratos de Sale & Leaseback de 5 Galpões Comerciais',
+      en: 'Advisory in Structuring Sale & Leaseback agreements for 5 Commercial Warehouses'
+    },
+    year: '2023'
+  },
   {
     id: 'greenhouse',
     category: 'selected',
@@ -118,19 +183,20 @@ export const casesData: CaseItem[] = [
     },
     year: '2022'
   },
-  {
-    id: 'jgr',
+    {
+    id: 'fiasullbbw',
     category: 'selected',
-    logo: '/images/cases/jgr.webp',
-    name: 'JGR',
-    value: 'R$ 40.900.000',
-    serviceType: 'Real Estate',
+    logo: '/images/cases/fiasul-lbbw.svg',
+    name: 'Fiasul LBBW',
+    value: 'R$ 36.000.000',
+    serviceType: 'Liability Management',
     description: {
-      pt: 'Assessoria na Estruturação de contratos de Sale & Leaseback de 5 Galpões Comerciais',
-      en: 'Advisory in Structuring Sale & Leaseback agreements for 5 Commercial Warehouses'
+      pt: 'Assessoria no Reperfilamento de Dívida junto ao Banco LBBW Landesbank Baden-Württemberg',
+      en: ''
     },
     year: '2022'
   },
+ 
    {
     id: 'sapaulista',
     category: 'selected',
@@ -142,7 +208,7 @@ export const casesData: CaseItem[] = [
       pt: 'Assessoria na venda de ativos, captação de recursos e Reestruturação de Passivos do Grupo',
       en: 'Advisory in asset sales, fundraising, and Group Liabilities Restructuring'
     },
-    year: '2021'
+    year: '2022'
   },
   {
     id: 'ecoparque',
@@ -155,7 +221,7 @@ export const casesData: CaseItem[] = [
       pt: 'Assessoria para desmobilização de 100% do Complexo Multiuso EcoParque.',
       en: 'Advisory for the divestment of 100% of the EcoParque Mixed-Use Complex.'
     },
-    year: '2021'
+    year: '2022'
   },
   {
     id: 'grupohapvida',
@@ -209,19 +275,7 @@ export const casesData: CaseItem[] = [
     },
     year: '2021'
   },    
-  {
-    id: 'fiasullbbw',
-    category: 'selected',
-    logo: '/images/cases/fiasul-lbbw.svg',
-    name: 'Fiasul LBBW',
-    value: 'R$ 36.000.000',
-    serviceType: 'Liability Management',
-    description: {
-      pt: 'Assessoria no Reperfilamento de Dívida junto ao Banco LBBW Landesbank Baden-Württemberg',
-      en: ''
-    },
-    year: '2021'
-  },  
+  
   {
     id: 'memorialguarulhos',
     category: 'selected',

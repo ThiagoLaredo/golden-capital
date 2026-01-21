@@ -5,6 +5,7 @@ export const pt = {
     team: "Equipe",
     differentials: "Diferenciais",
     cases: "Cases",
+    news: "Notícias",
     contact: "Contato"
   },
   Home: {
@@ -223,8 +224,8 @@ export const pt = {
     },
     conhecimento: {
       title: "Conhecimento técnico",
-      subtitle: "Relacionamento e experiência",
-      description: "Acesso e conhecimento do mercado financeiro. Ampla rede de contatos e relacionamento com os principais investidores e executivos do mercado financeiro."
+      subtitle: "Expertise em diferentes mercados e setores",
+      description: "Profundo conhecimento econômico e financeiro, adquiridos em diferentes operações e empresas."
     },
     expertise: {
       title: "Relacionamento e experiência",
@@ -252,7 +253,7 @@ export const pt = {
   categories: {
     selectedOperations: {
       title: "Operações selecionadas",
-      description: "Mais de **70 transações estratégicas** realizadas. Experiências que geram resultados."
+      description: "Mais de **70 transações estratégicas** realizadas pela Golden Capital. Experiências que geram resultados."
     },
     portfolio: {
       title: "Portfólio",
@@ -265,6 +266,13 @@ export const pt = {
     year: "Ano",
     description: "Descrição do serviço"
   }
+ },
+
+   NewsPage: {
+     hero: {
+    title: "Notícias"
+  },
+
  },
 // Em pt.ts - ContactPage
 ContactPage: {

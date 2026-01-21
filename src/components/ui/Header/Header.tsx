@@ -9,6 +9,7 @@ import styles from './Header.module.css';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const { language, setLanguage } = useLanguage();
@@ -28,7 +29,7 @@ const Header = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
+        closeMenu();
       }
     };
 
@@ -38,20 +39,28 @@ const Header = () => {
 
   // Fechar menu ao mudar de rota
   useEffect(() => {
-    setIsMenuOpen(false);
+    closeMenu();
   }, [pathname]);
 
-  // Bloquear scroll quando menu está aberto
-  useEffect(() => {
+  const closeMenu = () => {
     if (isMenuOpen) {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsMenuOpen(false);
+        setIsAnimating(false);
+        document.body.style.overflow = 'unset';
+      }, 300);
+    }
+  };
+
+  const toggleMenu = () => {
+    if (!isMenuOpen) {
+      setIsMenuOpen(true);
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      closeMenu();
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMenuOpen]);
+  };
 
   // Função para verificar se o path atual corresponde ao link
   const isActive = (href: string) => {
@@ -67,8 +76,21 @@ const Header = () => {
     { href: '/equipe', label: translations.Navigation.team },
     { href: '/diferenciais', label: translations.Navigation.differentials },
     { href: '/cases', label: translations.Navigation.cases },
+    { href: '/noticias', label: translations.Navigation.news },
     { href: '/contato', label: translations.Navigation.contact },
   ];
+
+  const handleLanguageChange = (lang: 'pt' | 'en') => {
+    setLanguage(lang);
+    // Feedback visual ao mudar idioma
+    const buttons = document.querySelectorAll(`.${styles.mobileLangBtn}`);
+    buttons.forEach(btn => {
+      btn.classList.remove(styles.active);
+      if (btn.textContent === lang.toUpperCase()) {
+        btn.classList.add(styles.active);
+      }
+    });
+  };
 
   return (
     <>
@@ -113,8 +135,8 @@ const Header = () => {
 
           {/* Botão Hamburguer (apenas mobile) */}
           <button 
-            className={styles.hamburger}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`${styles.hamburger} ${isMenuOpen ? styles.active : ''}`}
+            onClick={toggleMenu}
             aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
           >
             <span></span>
@@ -126,20 +148,20 @@ const Header = () => {
 
       {/* Overlay do Menu Mobile */}
       <div 
-        className={`${styles.mobileOverlay} ${isMenuOpen ? styles.active : ''}`}
-        onClick={() => setIsMenuOpen(false)}
+        className={`${styles.mobileOverlay} ${isMenuOpen ? styles.active : ''} ${isAnimating ? styles.animating : ''}`}
+        onClick={closeMenu}
       />
 
       {/* Menu Mobile */}
       <div 
         ref={menuRef}
-        className={`${styles.mobileMenu} ${isMenuOpen ? styles.active : ''}`}
+        className={`${styles.mobileMenu} ${isMenuOpen ? styles.active : ''} ${isAnimating ? styles.closing : ''}`}
       >
         <div className={styles.mobileMenuHeader}>
           <Link 
             href="/" 
             className={styles.mobileLogo}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
           >
             <img 
               src="/logo-golden-capital-partners-dark.svg" 
@@ -149,7 +171,7 @@ const Header = () => {
           
           <button 
             className={styles.closeButton}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
             aria-label="Fechar menu"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -165,7 +187,7 @@ const Header = () => {
               key={item.href}
               href={item.href} 
               className={`${styles.mobileNavLink} ${isActive(item.href) ? styles.active : ''}`}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={closeMenu}
             >
               <span className={styles.navText}>{item.label}</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -179,13 +201,15 @@ const Header = () => {
           <div className={styles.mobileLanguageSelector}>
             <button 
               className={`${styles.mobileLangBtn} ${language === 'pt' ? styles.active : ''}`}
-              onClick={() => setLanguage('pt')}
+              onClick={() => handleLanguageChange('pt')}
+              aria-label="Português"
             >
               PT
             </button>
             <button 
               className={`${styles.mobileLangBtn} ${language === 'en' ? styles.active : ''}`}
-              onClick={() => setLanguage('en')}
+              onClick={() => handleLanguageChange('en')}
+              aria-label="English"
             >
               EN
             </button>
