@@ -1,7 +1,7 @@
 // src/components/sections/PageHeaderSection/PageHeaderSection.tsx
 'use client';
 
-import { useFadeIn } from '@/hooks/useFadeIn';
+import { useSimpleFadeIn } from '@/hooks/useSimpleFadeIn'; // Hook modificado
 import Breadcrumb from '@/components/ui/Breadcrumb/Breadcrumb';
 import styles from './PageHeaderSection.module.css';
 
@@ -18,7 +18,8 @@ export default function PageHeaderSection({
   showBreadcrumb = true,
   titleRef: externalRef
 }: PageHeaderSectionProps) {
-  const internalRef = useFadeIn({ delay: 0.1, y: 20 });
+  // Usar o novo hook sem ScrollTrigger
+  const internalRef = useSimpleFadeIn({ delay: 0.1, y: 20 });
   const titleRef = externalRef || internalRef;
 
   return (

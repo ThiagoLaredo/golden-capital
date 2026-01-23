@@ -281,7 +281,7 @@ ContactPage: {
   },
   intro: {
     title: "Entre em contato",
-    address: "**Av. Brigadeiro Faria Lima, 4300**",
+    address: "Av. Brigadeiro Faria Lima, 4300",
     addressDetails: "Edifício Offices | 3º andar - 316\nSão Paulo/SP - CEP 04538-132",
     phone: "+55 (11) 3842-8522"
   },

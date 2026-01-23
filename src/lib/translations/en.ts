@@ -280,7 +280,7 @@ ContactPage: {
   },
   intro: {
     title: "Get in touch",
-    address: "**Av. Brigadeiro Faria Lima, 4300**",
+    address: "Av. Brigadeiro Faria Lima, 4300",
     addressDetails: "Office Building | 3rd floor - 316\nSão Paulo/SP - CEP 04538-132",
     phone: "+55 (11) 3842-8522"
   },

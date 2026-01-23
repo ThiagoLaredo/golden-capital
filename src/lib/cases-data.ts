@@ -43,8 +43,8 @@ export const casesData: CaseItem[] = [
          {
     id: 'projeto-solar-2',
     category: 'selected',
-    logo: '/images/cases/confidencial.webp',
-    name: 'Projeto Solar - Confidencial',
+    logo: '/images/cases/projeto-solar.svg',
+    name: 'Projeto Solar',
     value: 'R$ 108.000.000',
     serviceType: 'Liability Management & Fund Raising',
     description: {
@@ -69,8 +69,8 @@ export const casesData: CaseItem[] = [
     {
     id: 'projeto-fashion',
     category: 'selected',
-    logo: '/images/cases/confidencial.webp',
-    name: 'Projeto Fashion - Confidencial',
+    logo: '/images/cases/projeto-fashion.svg',
+    name: 'Projeto Fashion',
     value: 'R$ 452.000.000',
     serviceType: 'Liability Management',
     description: {
@@ -82,8 +82,8 @@ export const casesData: CaseItem[] = [
      {
     id: 'projeto-solar',
     category: 'selected',
-    logo: '/images/cases/confidencial.webp',
-    name: 'Projeto Solar - Confidencial',
+    logo: '/images/cases/projeto-solar.svg',
+    name: 'Projeto Solar',
     value: 'R$ 197.000.000',
     serviceType: 'Liability Management | CRI',
     description: {

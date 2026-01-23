@@ -3,9 +3,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { pt, en } from '@/lib/translations';
-import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection'; // Importar o componente
-import { useFadeIn } from '@/hooks/useFadeIn';
-import { formatText } from '@/utils/FormattedText/formatText';
+import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection';
 import { FaPhone } from 'react-icons/fa';
 import styles from './ContatoPage.module.css';
 
@@ -14,13 +12,9 @@ export default function ContatoPage() {
   const translations = language === 'pt' ? pt : en;
   const dict = translations.ContactPage || {};
 
-  // Referências para animação (remover titleRef)
-  const introRef = useFadeIn({ delay: 0.3, y: 30 });
-  const contentRef = useFadeIn({ delay: 0.5, y: 30 });
-
   return (
     <div className={styles.contatoPage}>
-      {/* Page Header Section - Substituir a Hero Section */}
+      {/* Page Header Section */}
       <PageHeaderSection 
         title={dict.hero?.title || 'Contato'}
         breadcrumbItems={[
@@ -32,12 +26,12 @@ export default function ContatoPage() {
       {/* Mapa + Form Section */}
       <section className={styles.contactSection}>
         <div className={styles.container}>
-          <div ref={contentRef} className={styles.contactContent}>
+          <div className={styles.contactContent}>
             {/* Mapa */}
             <div className={styles.mapContainer}>
               <div className={styles.mapWrapper}>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.581175232894!2d-46.68355722468203!3d-23.587448861342297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5744e0ebff5b%3A0x769bf4a32f914782!2sAv.%20Brigadeiro%20Faria%20Lima%2C%204300%20-%20Itaim%20Bibi%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004538-132!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14625.102985209553!2d-46.6806807!3d-23.5944417!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xeef30c38f1bb6e71!2sGolden%20Capital%20Partners!5e0!3m2!1sen!2sbr!4v1673547845618!5m2!1sen!2sbr"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -52,16 +46,19 @@ export default function ContatoPage() {
             {/* Conteúdo Direito - Intro + Form */}
             <div className={styles.rightContent}>
               {/* Introdução */}
-              <div ref={introRef} className={styles.introContainer}>
+              <div className={styles.introContainer}>
                 <h2 className={styles.introTitle}>
                   {dict.intro?.title || 'Entre em contato'}
                 </h2>
                 <h3 className={styles.introSubtitle}>
-                  {formatText(dict.intro?.address || '**Av. Brigadeiro Faria Lima, 4300**')}
+                  {dict.intro?.address || 'Av. Brigadeiro Faria Lima, 4300'}
                 </h3>
-                <p className={styles.introAddress}>
-                  {dict.intro?.addressDetails || 'Edifício Offices | 3º andar - 316<br />São Paulo/SP - CEP 04538-132'}
-                </p>
+                <p 
+                  className={styles.introAddress}
+                  dangerouslySetInnerHTML={{
+                    __html: dict.intro?.addressDetails || 'Edifício Offices | 3º andar - 316<br />São Paulo/SP - CEP 04538-132'
+                  }}
+                />
                 
                 {/* Lista de telefone com ícone */}
                 <div className={styles.phoneContainer}>
@@ -129,8 +126,6 @@ export default function ContatoPage() {
                       />
                     </div>
                   </div>
-
-
 
                   {/* Mensagem - linha completa */}
                   <div className={styles.formGroup}>
