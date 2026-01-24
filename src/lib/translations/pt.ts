@@ -295,6 +295,9 @@ ContactPage: {
     subjectPlaceholder: "Assunto",
     messagePlaceholder: "Mensagem",
     submit: "Enviar mensagem",
+    sending: 'Enviando...',
+    successMessage: 'Mensagem enviada com sucesso! Em breve retornaremos seu contato.',
+    errorMessage: 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.',
     other: "Outro"
   },
   contact: {

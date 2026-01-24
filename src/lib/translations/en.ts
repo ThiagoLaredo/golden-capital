@@ -294,6 +294,9 @@ ContactPage: {
     subjectPlaceholder: "Subject",
     messagePlaceholder: "Message",
     submit: "Send message",
+    sending: 'Sending...',
+    successMessage: 'Message sent successfully! We will contact you soon.',
+    errorMessage: 'An error occurred while sending the message. Please try again.',
     other: "Other"
   },
   contact: {
