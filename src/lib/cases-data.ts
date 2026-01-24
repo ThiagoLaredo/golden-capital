@@ -41,10 +41,10 @@ export const casesData: CaseItem[] = [
     year: '2025'
   },
          {
-    id: 'projeto-solar-2',
+    id: 'projeto-fashion',
     category: 'selected',
-    logo: '/images/cases/projeto-solar.svg',
-    name: 'Projeto Solar',
+    logo: '/images/cases/projeto-fashion.svg',
+    name: 'Projeto Fashion',
     value: 'R$ 108.000.000',
     serviceType: 'Liability Management & Fund Raising',
     description: {
@@ -67,10 +67,10 @@ export const casesData: CaseItem[] = [
     year: '2025'
   },
     {
-    id: 'projeto-fashion',
+    id: 'projeto-bulldozer',
     category: 'selected',
-    logo: '/images/cases/projeto-fashion.svg',
-    name: 'Projeto Fashion',
+    logo: '/images/cases/projeto-bulldozer.svg',
+    name: 'Projeto Bulldozer',
     value: 'R$ 452.000.000',
     serviceType: 'Liability Management',
     description: {
