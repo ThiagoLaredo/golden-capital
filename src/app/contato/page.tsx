@@ -156,7 +156,7 @@ export default function ContatoPage() {
                   method="POST"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
-                  onSubmit={handleSubmit}
+                  // Remova o onSubmit e deixe o formulário ser submetido tradicionalmente
                 >
                   {/* Campos ocultos para Netlify */}
                   <input type="hidden" name="form-name" value="contato-golden-capital" />
@@ -176,9 +176,7 @@ export default function ContatoPage() {
                         className={styles.formInput}
                         placeholder={dict.form?.namePlaceholder || 'Nome'}
                         required
-                        value={formData.name}
-                        onChange={handleChange}
-                        disabled={status === 'loading'}
+                        // Remova value e onChange
                       />
                     </div>
                     <div className={`${styles.formGroup} ${styles.half}`}>
@@ -189,9 +187,7 @@ export default function ContatoPage() {
                         className={styles.formInput}
                         placeholder={dict.form?.emailPlaceholder || 'E-mail'}
                         required
-                        value={formData.email}
-                        onChange={handleChange}
-                        disabled={status === 'loading'}
+                        // Remova value e onChange
                       />
                     </div>
                   </div>
@@ -205,9 +201,7 @@ export default function ContatoPage() {
                         name="phone"
                         className={styles.formInput}
                         placeholder={dict.form?.phonePlaceholder || 'Telefone'}
-                        value={formData.phone}
-                        onChange={handleChange}
-                        disabled={status === 'loading'}
+                        // Remova value e onChange
                       />
                     </div>
                     <div className={`${styles.formGroup} ${styles.half}`}>
@@ -217,9 +211,7 @@ export default function ContatoPage() {
                         name="company"
                         className={styles.formInput}
                         placeholder={dict.form?.companyPlaceholder || 'Empresa'}
-                        value={formData.company}
-                        onChange={handleChange}
-                        disabled={status === 'loading'}
+                        // Remova value e onChange
                       />
                     </div>
                   </div>
@@ -233,29 +225,19 @@ export default function ContatoPage() {
                       className={styles.formTextarea}
                       placeholder={dict.form?.messagePlaceholder || 'Mensagem'}
                       required
-                      value={formData.message}
-                      onChange={handleChange}
-                      disabled={status === 'loading'}
+                      // Remova value e onChange
                     />
                   </div>
 
-                  {/* Mensagem de status */}
-                  {statusMessage && (
-                    <div className={`${styles.statusMessage} ${status === 'success' ? styles.success : styles.error}`}>
-                      {statusMessage}
-                    </div>
-                  )}
+                  {/* Remova a exibição de statusMessage, pois não teremos mais estado React para isso */}
 
                   {/* Botão de envio */}
                   <button 
                     type="submit" 
                     className={styles.submitButton}
-                    disabled={status === 'loading'}
+                    // Remova disabled, pois não temos mais estado de loading
                   >
-                    {status === 'loading' 
-                      ? (dict.form?.sending || 'Enviando...') 
-                      : (dict.form?.submit || 'Enviar mensagem')
-                    }
+                    {dict.form?.submit || 'Enviar mensagem'}
                   </button>
                 </form>
               </div>
