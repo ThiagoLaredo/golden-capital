@@ -256,60 +256,76 @@ export default function ContatoPage() {
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setStatus('loading');
-  setStatusMessage('');
-
-  // Dados para enviar
-  const formPayload = {
-    'form-name': 'contato',
-    'name': formData.name,
-    'email': formData.email,
-    'phone': formData.phone,
-    'company': formData.company,
-    'message': formData.message,
-    'bot-field': ''  // Campo vazio para honeypot
-  };
-
-  console.log('Enviando dados:', formPayload);
+  setStatusMessage('Enviando mensagem...');
 
   try {
-    // Método 1: Envio tradicional que SEMPRE funciona
-    const response = await fetch('/', {
+    // ENDPOINT FORMSPREE - JÁ PRONTO PARA USAR
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqkrnqwy';
+    
+    console.log('📤 Enviando para Formspree:', FORMSPREE_ENDPOINT);
+    console.log('📝 Dados:', formData);
+
+    const response = await fetch(FORMSPREE_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formPayload).toString(),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // Campos para o email
+        _subject: `📞 Novo contato - Golden Capital: ${formData.name}`,
+        _replyto: formData.email,
+        _cc: 'olatuthinking@gmail.com', // Você recebe cópia
+        
+        // Campos do formulário
+        nome: formData.name,
+        email: formData.email,
+        telefone: formData.phone || 'Não informado',
+        empresa: formData.company || 'Não informado',
+        mensagem: formData.message,
+        
+        // Metadados
+        origem: 'Site Golden Capital',
+        data: new Date().toLocaleString('pt-BR'),
+      }),
     });
 
-    console.log('Status da resposta:', response.status, response.ok);
+    console.log('✅ Resposta Formspree - Status:', response.status);
 
-    // Método alternativo se o primeiro falhar
-    if (!response.ok) {
-      console.log('Tentando método alternativo...');
-      // Tenta enviar como FormData
-      const formDataToSend = new FormData();
-      Object.entries(formPayload).forEach(([key, value]) => {
-        formDataToSend.append(key, value as string);
+    if (response.ok) {
+      // SUCESSO TOTAL
+      setStatus('success');
+      setStatusMessage('✅ Mensagem enviada com sucesso! Em breve entraremos em contato.');
+      
+      // Reset do formulário
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: '',
       });
 
-      await fetch('/', {
-        method: 'POST',
-        body: formDataToSend,
-      });
+      // Mensagem extra no console
+      console.log('🎉 FORMULÁRIO ENVIADO COM SUCESSO!');
+      console.log('📧 Verifique seu email: olatuthinking@gmail.com');
+      console.log('📊 Painel Formspree: https://formspree.io/forms/mqkrnqwy/submissions');
+
+    } else {
+      // Erro do Formspree
+      const errorData = await response.json();
+      console.error('❌ Erro Formspree:', errorData);
+      
+      setStatus('error');
+      setStatusMessage('❌ Erro ao enviar. Por favor, tente novamente.');
     }
 
-    // SUCESSO
-    setStatus('success');
-    setStatusMessage('✅ Mensagem enviada com sucesso! Em breve entraremos em contato.');
-    
-    // Reset
-    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
-
-    // Dica para o usuário
-    console.log('✅ Formulário enviado! Verifique: https://app.netlify.com/sites/[seu-site]/forms');
-
   } catch (error) {
-    console.error('❌ Erro completo:', error);
+    // Erro de rede
+    console.error('❌ Erro de rede:', error);
+    
     setStatus('error');
-    setStatusMessage('❌ Erro ao enviar. Por favor, tente novamente ou entre em contato pelo telefone.');
+    setStatusMessage('❌ Erro de conexão. Por favor, ligue para (11) 3842-8522');
   }
 };
 
