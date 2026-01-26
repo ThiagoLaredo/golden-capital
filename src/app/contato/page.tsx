@@ -260,7 +260,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   try {
     // ENDPOINT FORMSPREE - JÁ PRONTO PARA USAR
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqkrnqwy';
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqobawv';
     
     console.log('📤 Enviando para Formspree:', FORMSPREE_ENDPOINT);
     console.log('📝 Dados:', formData);
