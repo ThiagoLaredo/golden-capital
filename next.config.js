@@ -51,7 +51,7 @@ const nextConfig = {
   },
   
   // Otimizações gerais
-  swcMinify: true,
+  // swcMinify: true,
   compress: true,
   
   // Desabilita o experimental se não está usando
