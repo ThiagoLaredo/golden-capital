@@ -16,11 +16,9 @@ export default function ContatoPage() {
   const dict = translations.ContactPage || {};
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Estado do envio
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
 
-  // Manipulador de envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
@@ -29,52 +27,36 @@ export default function ContatoPage() {
     if (!formRef.current) return;
 
     try {
-      // Criar FormData a partir do formulário
-      const formData = new FormData(formRef.current);
+      const form = formRef.current;
       
-      // Adicionar form-name se não estiver presente
-      if (!formData.get('form-name')) {
-        formData.append('form-name', 'contato-golden-capital');
-      }
-
-      // NOVO: Envio para o endpoint do Netlify Forms Runtime
-      const response = await fetch('/.netlify/forms/submit', {
+      // Método TRADICIONAL do Netlify Forms
+      const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: new URLSearchParams(new FormData(form) as any).toString(),
       });
 
-      console.log('Response status:', response.status);
-
       if (response.ok) {
-        // Sucesso
         setStatus('success');
-        setStatusMessage(dict.form?.successMessage || 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
-
-        // Reset do formulário
-        formRef.current.reset();
-
-        // Limpar mensagem após 5 segundos
+        setStatusMessage(dict.form?.successMessage || 'Mensagem enviada com sucesso!');
+        form.reset();
+        
         setTimeout(() => {
           setStatus('idle');
           setStatusMessage('');
         }, 5000);
       } else {
-        const text = await response.text();
-        console.error('Erro na resposta:', text);
         setStatus('error');
-        setStatusMessage(dict.form?.errorMessage || 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
+        setStatusMessage(dict.form?.errorMessage || 'Erro ao enviar. Tente novamente.');
       }
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
+    } catch {
       setStatus('error');
-      setStatusMessage(dict.form?.errorMessage || 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
+      setStatusMessage(dict.form?.errorMessage || 'Erro ao enviar. Tente novamente.');
     }
   };
 
   return (
     <div className={styles.contatoPage}>
-      {/* Page Header Section */}
       <PageHeaderSection 
         title={dict.hero?.title || 'Contato'}
         breadcrumbItems={[
@@ -83,11 +65,9 @@ export default function ContatoPage() {
         ]}
       />
 
-      {/* Mapa + Form Section */}
       <section className={styles.contactSection}>
         <div className={styles.container}>
           <div className={styles.contactContent}>
-            {/* Mapa */}
             <div className={styles.mapContainer}>
               <div className={styles.mapWrapper}>
                 <iframe
@@ -103,9 +83,7 @@ export default function ContatoPage() {
               </div>
             </div>
 
-            {/* Conteúdo Direito - Intro + Form */}
             <div className={styles.rightContent}>
-              {/* Introdução */}
               <div className={styles.introContainer}>
                 <h2 className={styles.introTitle}>
                   {dict.intro?.title || 'Entre em contato'}
@@ -120,7 +98,6 @@ export default function ContatoPage() {
                   }}
                 />
                 
-                {/* Lista de telefone com ícone */}
                 <div className={styles.phoneContainer}>
                   <FaPhone className={styles.phoneIcon} />
                   <span className={styles.phoneNumber}>
@@ -129,7 +106,6 @@ export default function ContatoPage() {
                 </div>
               </div>
 
-              {/* Formulário */}
               <div className={styles.formContainer}>
                 <div className={styles.formHeader}>
                   <h3 className={styles.formTitle}>
@@ -140,28 +116,27 @@ export default function ContatoPage() {
                   </p>
                 </div>
 
-                {/* Formulário NOVO FORMATO */}
+                {/* FORMULÁRIO SIMPLIFICADO */}
                 <form 
                   ref={formRef}
                   className={styles.contactForm}
-                  name="contato-golden-capital"
+                  name="contato"
                   method="POST"
-                  // REMOVA data-netlify="true" - não é mais necessário
-                  // Mantenha apenas o honeypot
+                  data-netlify="true"
                   data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
                 >
-                  {/* Campo oculto para Netlify Forms Runtime */}
-                  <input type="hidden" name="form-name" value="contato-golden-capital" />
+                  {/* CAMPO HIDDEN OBRIGATÓRIO */}
+                  <input type="hidden" name="form-name" value="contato" />
                   
-                  {/* Honeypot field - mantenha escondido */}
+                  {/* HONEYPOT - MANTENHA ESCONDIDO */}
                   <div style={{ display: 'none' }}>
                     <label>
                       Não preencha este campo: <input name="bot-field" />
                     </label>
                   </div>
 
-                  {/* Primeira linha: Nome e Email */}
+                  {/* Campos do formulário */}
                   <div className={styles.formRow}>
                     <div className={`${styles.formGroup} ${styles.half}`}>
                       <input
@@ -185,7 +160,6 @@ export default function ContatoPage() {
                     </div>
                   </div>
 
-                  {/* Segunda linha: Telefone e Empresa */}
                   <div className={styles.formRow}>
                     <div className={`${styles.formGroup} ${styles.half}`}>
                       <input
@@ -207,7 +181,6 @@ export default function ContatoPage() {
                     </div>
                   </div>
 
-                  {/* Mensagem - linha completa */}
                   <div className={styles.formGroup}>
                     <textarea
                       id="message"
@@ -219,7 +192,6 @@ export default function ContatoPage() {
                     />
                   </div>
 
-                  {/* Mensagem de status */}
                   {statusMessage && (
                     <div className={`${styles.statusMessage} ${
                       status === 'success' ? styles.success : styles.error
@@ -228,7 +200,6 @@ export default function ContatoPage() {
                     </div>
                   )}
 
-                  {/* Botão de envio */}
                   <button 
                     type="submit" 
                     className={styles.submitButton}

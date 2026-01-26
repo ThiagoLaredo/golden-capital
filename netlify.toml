@@ -2,28 +2,13 @@
   command = "npm run build"
   publish = ".next"
 
-# Configure o plugin Next.js
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  
-  # Adicione esta configuração específica para forms
-  [plugins.inputs]
-    # Isso permite que o plugin detecte forms no runtime
-    functions_src = "netlify/functions"
-    # Desabilita a detecção automática de forms se estiver causando problemas
-    disable_automatic_forms_detection = true
 
-# Configuração do Forms Runtime
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-
-# Configurações do Forms
 [forms]
   [forms.spam_filter]
     enabled = true
 
-# Headers de segurança
 [[headers]]
   for = "/*"
   [headers.values]
