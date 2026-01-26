@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body style="display: none;">
+  <!-- Formulário estático que o Netlify consegue detectar -->
+  <form 
+    name="contato" 
+    method="POST" 
+    data-netlify="true" 
+    netlify-honeypot="bot-field"
+  >
+    <input type="hidden" name="form-name" value="contato" />
+    <label style="display: none;">
+      Don't fill this out: <input name="bot-field" />
+    </label>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <input type="tel" name="phone">
+    <input type="text" name="company">
+    <textarea name="message"></textarea>
+  </form>
+  
+  <!-- Script para conectar com o React -->
+  <script>
+    // Expõe uma função global para o React enviar o formulário
+    window.netlifySubmitForm = function(data) {
+      const form = document.forms['contato'];
+      form.name.value = data.name || '';
+      form.email.value = data.email || '';
+      form.phone.value = data.phone || '';
+      form.company.value = data.company || '';
+      form.message.value = data.message || '';
+      
+      // Envia o formulário tradicionalmente
+      form.submit();
+      return true;
+    };
+  </script>
+</body>
+</html>
