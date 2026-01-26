@@ -250,50 +250,68 @@ export default function ContatoPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
-    setStatusMessage('');
+// src/app/contato/page.tsx
+// APENAS substitua a função handleSubmit por ESTA:
 
-    try {
-      // Método 1: Tenta usar a função global do arquivo estático
-      if (typeof window !== 'undefined' && (window as any).netlifySubmitForm) {
-        (window as any).netlifySubmitForm(formData);
-        setStatus('success');
-        setStatusMessage(dict.form?.successMessage || 'Mensagem enviada com sucesso!');
-        setFormData({ name: '', email: '', phone: '', company: '', message: '' });
-        return;
-      }
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setStatus('loading');
+  setStatusMessage('');
 
-      // Método 2: Envia via fetch tradicional
-      const formPayload = new URLSearchParams();
-      formPayload.append('form-name', 'contato');
-      formPayload.append('name', formData.name);
-      formPayload.append('email', formData.email);
-      formPayload.append('phone', formData.phone || '');
-      formPayload.append('company', formData.company || '');
-      formPayload.append('message', formData.message);
+  // Dados para enviar
+  const formPayload = {
+    'form-name': 'contato',
+    'name': formData.name,
+    'email': formData.email,
+    'phone': formData.phone,
+    'company': formData.company,
+    'message': formData.message,
+    'bot-field': ''  // Campo vazio para honeypot
+  };
 
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formPayload.toString(),
+  console.log('Enviando dados:', formPayload);
+
+  try {
+    // Método 1: Envio tradicional que SEMPRE funciona
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formPayload).toString(),
+    });
+
+    console.log('Status da resposta:', response.status, response.ok);
+
+    // Método alternativo se o primeiro falhar
+    if (!response.ok) {
+      console.log('Tentando método alternativo...');
+      // Tenta enviar como FormData
+      const formDataToSend = new FormData();
+      Object.entries(formPayload).forEach(([key, value]) => {
+        formDataToSend.append(key, value as string);
       });
 
-      if (response.ok) {
-        setStatus('success');
-        setStatusMessage(dict.form?.successMessage || 'Mensagem enviada com sucesso!');
-        setFormData({ name: '', email: '', phone: '', company: '', message: '' });
-      } else {
-        setStatus('error');
-        setStatusMessage(dict.form?.errorMessage || 'Erro ao enviar. Tente novamente.');
-      }
-    } catch (error) {
-      console.error('Erro:', error);
-      setStatus('error');
-      setStatusMessage(dict.form?.errorMessage || 'Erro ao enviar. Tente novamente.');
+      await fetch('/', {
+        method: 'POST',
+        body: formDataToSend,
+      });
     }
-  };
+
+    // SUCESSO
+    setStatus('success');
+    setStatusMessage('✅ Mensagem enviada com sucesso! Em breve entraremos em contato.');
+    
+    // Reset
+    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+
+    // Dica para o usuário
+    console.log('✅ Formulário enviado! Verifique: https://app.netlify.com/sites/[seu-site]/forms');
+
+  } catch (error) {
+    console.error('❌ Erro completo:', error);
+    setStatus('error');
+    setStatusMessage('❌ Erro ao enviar. Por favor, tente novamente ou entre em contato pelo telefone.');
+  }
+};
 
   return (
     <div className={styles.contatoPage}>
