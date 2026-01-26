@@ -32,20 +32,19 @@ export default function ContatoPage() {
       // Criar FormData a partir do formulário
       const formData = new FormData(formRef.current);
       
-      // Adicionar form-name manualmente se não estiver no formData
+      // Adicionar form-name se não estiver presente
       if (!formData.get('form-name')) {
         formData.append('form-name', 'contato-golden-capital');
       }
 
-      // Envio do formulário para Netlify
-      const response = await fetch('/', {
+      // NOVO: Envio para o endpoint do Netlify Forms Runtime
+      const response = await fetch('/.netlify/forms/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData as any).toString(),
       });
 
       console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
 
       if (response.ok) {
         // Sucesso
@@ -141,19 +140,21 @@ export default function ContatoPage() {
                   </p>
                 </div>
 
-                {/* Formulário Netlify */}
+                {/* Formulário NOVO FORMATO */}
                 <form 
                   ref={formRef}
                   className={styles.contactForm}
                   name="contato-golden-capital"
                   method="POST"
-                  data-netlify="true"
+                  // REMOVA data-netlify="true" - não é mais necessário
+                  // Mantenha apenas o honeypot
                   data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
-                  netlify-honeypot="bot-field"
                 >
-                  {/* Campos ocultos para Netlify */}
+                  {/* Campo oculto para Netlify Forms Runtime */}
                   <input type="hidden" name="form-name" value="contato-golden-capital" />
+                  
+                  {/* Honeypot field - mantenha escondido */}
                   <div style={{ display: 'none' }}>
                     <label>
                       Não preencha este campo: <input name="bot-field" />
