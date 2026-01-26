@@ -8,9 +8,19 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Adicione esta seção para Forms
+[forms]
+  # Habilita o filtro de spam
+  [forms.spam_filter]
+    enabled = true
+  
+  # Configurações específicas (opcional)
+  # [[forms.honeypot_fields]]
+  #   field_name = "bot-field"
+
 [[headers]]
-for = "/*"
-[headers.values]
-  X-Frame-Options = "SAMEORIGIN"
-  X-Content-Type-Options = "nosniff"
-  Referrer-Policy = "strict-origin-when-cross-origin"
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

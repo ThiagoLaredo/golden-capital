@@ -3,7 +3,7 @@
 // src/app/contato/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { pt, en } from '@/lib/translations';
 import PageHeaderSection from '@/components/sections/PageHeaderSection/PageHeaderSection';
@@ -14,25 +14,11 @@ export default function ContatoPage() {
   const { language } = useLanguage();
   const translations = language === 'pt' ? pt : en;
   const dict = translations.ContactPage || {};
-
-  // Estado do formulário
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: '',
-  });
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Estado do envio
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
-
-  // Manipulador de mudanças nos campos
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
 
   // Manipulador de envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,40 +26,46 @@ export default function ContatoPage() {
     setStatus('loading');
     setStatusMessage('');
 
+    if (!formRef.current) return;
+
     try {
-      // Encode dos dados do formulário para envio via Netlify
-      const formDataEncoded = new URLSearchParams();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataEncoded.append(key, value);
-      });
-      formDataEncoded.append('form-name', 'contato-golden-capital');
+      // Criar FormData a partir do formulário
+      const formData = new FormData(formRef.current);
+      
+      // Adicionar form-name manualmente se não estiver no formData
+      if (!formData.get('form-name')) {
+        formData.append('form-name', 'contato-golden-capital');
+      }
 
       // Envio do formulário para Netlify
-      await fetch('/', {
+      const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formDataEncoded.toString(),
+        body: new URLSearchParams(formData as any).toString(),
       });
 
-      // Sucesso
-      setStatus('success');
-      setStatusMessage(dict.form?.successMessage || 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
 
-      // Reset do formulário
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: '',
-      });
+      if (response.ok) {
+        // Sucesso
+        setStatus('success');
+        setStatusMessage(dict.form?.successMessage || 'Mensagem enviada com sucesso! Em breve entraremos em contato.');
 
-      // Limpar mensagem após 5 segundos
-      setTimeout(() => {
-        setStatus('idle');
-        setStatusMessage('');
-      }, 5000);
+        // Reset do formulário
+        formRef.current.reset();
 
+        // Limpar mensagem após 5 segundos
+        setTimeout(() => {
+          setStatus('idle');
+          setStatusMessage('');
+        }, 5000);
+      } else {
+        const text = await response.text();
+        console.error('Erro na resposta:', text);
+        setStatus('error');
+        setStatusMessage(dict.form?.errorMessage || 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.');
+      }
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
       setStatus('error');
@@ -151,12 +143,14 @@ export default function ContatoPage() {
 
                 {/* Formulário Netlify */}
                 <form 
+                  ref={formRef}
                   className={styles.contactForm}
                   name="contato-golden-capital"
                   method="POST"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
-                  // Remova o onSubmit e deixe o formulário ser submetido tradicionalmente
+                  onSubmit={handleSubmit}
+                  netlify-honeypot="bot-field"
                 >
                   {/* Campos ocultos para Netlify */}
                   <input type="hidden" name="form-name" value="contato-golden-capital" />
@@ -176,7 +170,6 @@ export default function ContatoPage() {
                         className={styles.formInput}
                         placeholder={dict.form?.namePlaceholder || 'Nome'}
                         required
-                        // Remova value e onChange
                       />
                     </div>
                     <div className={`${styles.formGroup} ${styles.half}`}>
@@ -187,7 +180,6 @@ export default function ContatoPage() {
                         className={styles.formInput}
                         placeholder={dict.form?.emailPlaceholder || 'E-mail'}
                         required
-                        // Remova value e onChange
                       />
                     </div>
                   </div>
@@ -201,7 +193,6 @@ export default function ContatoPage() {
                         name="phone"
                         className={styles.formInput}
                         placeholder={dict.form?.phonePlaceholder || 'Telefone'}
-                        // Remova value e onChange
                       />
                     </div>
                     <div className={`${styles.formGroup} ${styles.half}`}>
@@ -211,7 +202,6 @@ export default function ContatoPage() {
                         name="company"
                         className={styles.formInput}
                         placeholder={dict.form?.companyPlaceholder || 'Empresa'}
-                        // Remova value e onChange
                       />
                     </div>
                   </div>
@@ -225,19 +215,28 @@ export default function ContatoPage() {
                       className={styles.formTextarea}
                       placeholder={dict.form?.messagePlaceholder || 'Mensagem'}
                       required
-                      // Remova value e onChange
                     />
                   </div>
 
-                  {/* Remova a exibição de statusMessage, pois não teremos mais estado React para isso */}
+                  {/* Mensagem de status */}
+                  {statusMessage && (
+                    <div className={`${styles.statusMessage} ${
+                      status === 'success' ? styles.success : styles.error
+                    }`}>
+                      {statusMessage}
+                    </div>
+                  )}
 
                   {/* Botão de envio */}
                   <button 
                     type="submit" 
                     className={styles.submitButton}
-                    // Remova disabled, pois não temos mais estado de loading
+                    disabled={status === 'loading'}
                   >
-                    {dict.form?.submit || 'Enviar mensagem'}
+                    {status === 'loading' 
+                      ? (dict.form?.sending || 'Enviando...') 
+                      : (dict.form?.submit || 'Enviar mensagem')
+                    }
                   </button>
                 </form>
               </div>
