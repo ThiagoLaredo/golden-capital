@@ -253,49 +253,125 @@ export default function ContatoPage() {
 // src/app/contato/page.tsx
 // APENAS substitua a função handleSubmit por ESTA:
 
+// const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+//   setStatus('loading');
+//   setStatusMessage('Enviando mensagem...');
+
+//   try {
+//     // ENDPOINT FORMSPREE - JÁ PRONTO PARA USAR
+//     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqobawv';
+    
+//     console.log('📤 Enviando para Formspree:', FORMSPREE_ENDPOINT);
+//     console.log('📝 Dados:', formData);
+
+//     const response = await fetch(FORMSPREE_ENDPOINT, {
+//       method: 'POST',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         // Campos para o email
+//         _subject: `📞 Novo contato - Golden Capital: ${formData.name}`,
+//         _replyto: formData.email,
+//         _cc: 'olatuthinking@gmail.com', // Você recebe cópia
+        
+//         // Campos do formulário
+//         nome: formData.name,
+//         email: formData.email,
+//         telefone: formData.phone || 'Não informado',
+//         empresa: formData.company || 'Não informado',
+//         mensagem: formData.message,
+        
+//         // Metadados
+//         origem: 'Site Golden Capital',
+//         data: new Date().toLocaleString('pt-BR'),
+//       }),
+//     });
+
+//     console.log('✅ Resposta Formspree - Status:', response.status);
+
+//     if (response.ok) {
+//       // SUCESSO TOTAL
+//       setStatus('success');
+//       setStatusMessage('✅ Mensagem enviada com sucesso! Em breve entraremos em contato.');
+      
+//       // Reset do formulário
+//       setFormData({
+//         name: '',
+//         email: '',
+//         phone: '',
+//         company: '',
+//         message: '',
+//       });
+
+//       // Mensagem extra no console
+//       console.log('🎉 FORMULÁRIO ENVIADO COM SUCESSO!');
+//       console.log('📧 Verifique seu email: olatuthinking@gmail.com');
+//       console.log('📊 Painel Formspree: https://formspree.io/forms/mqkrnqwy/submissions');
+
+//     } else {
+//       // Erro do Formspree
+//       const errorData = await response.json();
+//       console.error('❌ Erro Formspree:', errorData);
+      
+//       setStatus('error');
+//       setStatusMessage('❌ Erro ao enviar. Por favor, tente novamente.');
+//     }
+
+//   } catch (error) {
+//     // Erro de rede
+//     console.error('❌ Erro de rede:', error);
+    
+//     setStatus('error');
+//     setStatusMessage('❌ Erro de conexão. Por favor, ligue para (11) 3842-8522');
+//   }
+// };
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  
+  // Validação básica
+  if (!formData.name || !formData.email || !formData.message) {
+    setStatus('error');
+    setStatusMessage('Por favor, preencha nome, email e mensagem.');
+    return;
+  }
+  
   setStatus('loading');
-  setStatusMessage('Enviando mensagem...');
+  setStatusMessage('Enviando...');
 
   try {
-    // ENDPOINT FORMSPREE - JÁ PRONTO PARA USAR
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqobawv';
-    
-    console.log('📤 Enviando para Formspree:', FORMSPREE_ENDPOINT);
-    console.log('📝 Dados:', formData);
-
-    const response = await fetch(FORMSPREE_ENDPOINT, {
+    // FORMSUBMIT - SEM CONTA, SEM CADASTRO
+    const response = await fetch('https://formsubmit.co/ajax/olatuthinking@gmail.com', {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
+      headers: { 
         'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify({
-        // Campos para o email
-        _subject: `📞 Novo contato - Golden Capital: ${formData.name}`,
-        _replyto: formData.email,
-        _cc: 'olatuthinking@gmail.com', // Você recebe cópia
+        // Dados que aparecem no email
+        '👤 Nome': formData.name,
+        '📧 Email': formData.email,
+        '📞 Telefone': formData.phone || 'Não informado',
+        '🏢 Empresa': formData.company || 'Não informado',
+        '💬 Mensagem': formData.message,
         
-        // Campos do formulário
-        nome: formData.name,
-        email: formData.email,
-        telefone: formData.phone || 'Não informado',
-        empresa: formData.company || 'Não informado',
-        mensagem: formData.message,
-        
-        // Metadados
-        origem: 'Site Golden Capital',
-        data: new Date().toLocaleString('pt-BR'),
+        // Configurações do email
+        '_subject': `Golden Capital - ${formData.name}`,
+        '_template': 'table', // Formato bonito em tabela
+        '_captcha': 'false',  // Sem captcha chato
       }),
     });
 
-    console.log('✅ Resposta Formspree - Status:', response.status);
+    const result = await response.json();
+    console.log('Resultado FormSubmit:', result);
 
-    if (response.ok) {
-      // SUCESSO TOTAL
+    if (response.ok && result.success) {
+      // SUCESSO COMPLETO
       setStatus('success');
-      setStatusMessage('✅ Mensagem enviada com sucesso! Em breve entraremos em contato.');
+      setStatusMessage('✅ Mensagem enviada! Você receberá uma cópia por email.');
       
       // Reset do formulário
       setFormData({
@@ -306,26 +382,23 @@ const handleSubmit = async (e: React.FormEvent) => {
         message: '',
       });
 
-      // Mensagem extra no console
-      console.log('🎉 FORMULÁRIO ENVIADO COM SUCESSO!');
-      console.log('📧 Verifique seu email: olatuthinking@gmail.com');
-      console.log('📊 Painel Formspree: https://formspree.io/forms/mqkrnqwy/submissions');
+      // Feedback extra
+      setTimeout(() => {
+        setStatus('idle');
+        setStatusMessage('');
+      }, 5000);
 
     } else {
-      // Erro do Formspree
-      const errorData = await response.json();
-      console.error('❌ Erro Formspree:', errorData);
-      
+      // ERRO
       setStatus('error');
-      setStatusMessage('❌ Erro ao enviar. Por favor, tente novamente.');
+      setStatusMessage('❌ Erro ao enviar. Tente novamente.');
     }
 
   } catch (error) {
-    // Erro de rede
-    console.error('❌ Erro de rede:', error);
-    
+    // ERRO DE REDE
+    console.error('Erro de rede:', error);
     setStatus('error');
-    setStatusMessage('❌ Erro de conexão. Por favor, ligue para (11) 3842-8522');
+    setStatusMessage('❌ Erro de conexão. Tente novamente.');
   }
 };
 
