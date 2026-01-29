@@ -53,7 +53,7 @@ Has over 25 years' work experience in Corporate Banking, with direct involvement
 Throughout his professional career, he worked directly on the origination and execution of important DCM and Corporate Finance transactions and in various sectors of the economy, such as Retail, Industry, Infrastructure and Consumer Goods. Among the main transactions he led, include: Energisa's Re-IPO (R $ 1.5 Bi), sale of Windsor Atlântica to Blackstone (R$ 500 MM), several ICVM 476 transactions, including Estapar (R$ 150MM), Restoque (R$ 100MM), Nascentes do Xingu (R$ 100MM), Valid offshore loan (R$ 210MM), Hidrovias do Brasil Project Finance (US$ 238 million), in addition to many other financial advisory transactions, restructuring and capital markets. He is currently a Board Member in several privately held companies.`
     },
     linkedin: 'linkedin.com/in/murilo-ungar-glausiusz-085b8918/',
-    email: 'murilo.ungar@goldencapital.com'
+    email: 'murilo.ungar@goldencapital.com.br'
   },
   {
     id: 'newton',
@@ -66,7 +66,7 @@ Throughout his professional career, he worked directly on the origination and ex
       en: 'Managing Partner & Co-Founder'
     },
     photo: '/images/equipe/newton-borbolla-filho.webp',
-    companies: ['/images/logos/santander.svg', '/images/logos/real.svg', '/images/logos/werte.svg'],
+    companies: ['/images/logos/real.svg', '/images/logos/santander.svg', '/images/logos/werte.svg'],
     shortBio: {
       pt: 'Com mais de 20 anos de experiência em operações de Corporate Banking e mercado de capitais. Foi superintendente no segmento de Corporate & Investment Banking do Banco Santander Brasil onde trabalhou por 15 anos.\n\nAo longo de sua carreira profissional, trabalhou diretamente na originação e execução de importantes operações de M&A e mercado de capitais em diversos setores da economia, tais como Varejo, Infraestrutura, Consumo e Indústria.',
       
@@ -85,7 +85,7 @@ With over 20 years work experience in Corporate Banking and Capital Market trans
 Throughout his professional career, he participated directly on the origination and execution of important M&A and capital market operations in various sectors of the economy, such as Retail, Infrastructure, Consumer Goods and Industry. Among important transactions he carried out, main ones include Project Finance of Hidrovias do Brasil (US$ 238 million) and the sale of PCH Santa Luiza to CPFL Energias Renováveis (R$ 288 million). In DCM, he structured key transactions such as Águas do Mirante (R$ 65 million), Santher (R$ 74 million), Gran Energia (R$ 100 million) and Destilaria Melhoramentos (R$ 160 million). He was also responsible for several debt restructuring and renegotiation deals, such as Grupo Estrutural (R$ 420 million) and S.A. Paulista (R$ 120 million). He holds a degree in Business Administration from the Pontifícia Universidade Católica of São Paulo.`
     },
     linkedin: 'https://www.linkedin.com/in/newton-borbolla-filho-87163b/',
-    email: 'newton.borbolla@goldencapital.com'
+    email: 'newton.borbolla@goldencapital.com.br'
   },
   {
     id: 'pedro',
@@ -115,7 +115,7 @@ Has over 28 years work experience in the financial market. Before co-founding Go
 Throughout his professional career at Santander Asset Management, he worked directly on the execution of important strategic projects for the Company. Among them, he structured and redesigned the Company's operations in the investment fund market, in addition to carrying out the company's corporate restructuring to operate independently. He also worked in several proprietary M&A transactions, such as the acquisition and incorporation of Dresdner Asset Management funds; the merger of Santander Asset Management and ABN AMRO Asset Management; the sale of a 50% stake of Santander Asset Management's to Private Equity firms General Atlantic and Warburg Pincus funds, among other transactions.`
     },
     linkedin: 'https://www.linkedin.com/in/pedro-paulo-pereira-36802022/',
-    email: 'pedro.paulo.pereira@goldencapital.com'
+    email: 'pedro.paulo.pereira@goldencapital.com.br'
   },
   {
     id: 'diego',
@@ -151,7 +151,7 @@ Among the projects he was directly involved in, stand out: receivables securitiz
 Graduated in Business Administration from Fundação Armando Álvares Penteado (FAAP), in Marketing from ESPM and has an extension in Finance from Harvard Extension School.`
     },
     linkedin: 'https://www.linkedin.com/in/diego-gon%C3%A7alves-alvarez-865b9112/',
-    email: 'diego.alvarez@goldencapital.com'
+    email: 'diego.alvarez@goldencapital.com.br'
   },
   {
     id: 'daniel',
@@ -160,8 +160,8 @@ Graduated in Business Administration from Fundação Armando Álvares Penteado (
       en: 'Daniel Juniti Takeushi'
     },
     role: {
-      pt: 'Partner - Header of Credit',
-      en: 'Partner - Header of Credit'
+      pt: 'Partner - Head of Credit',
+      en: 'Partner - Head of Credit'
     },
     photo: '/images/equipe/daniel-juniti-takeushi.webp',
     companies: ['/images/logos/santander.svg', '/images/logos/mizuho.svg', '/images/logos/fitch.svg'],
@@ -187,7 +187,7 @@ He holds a Bachelor's degree in Business Administration from the Faculty of Econ
 During his career in banks, he worked in the credit risk area, focusing on the segment of large companies from various sectors in the São Paulo metropolitan region. Also in banks, he worked in the areas of syndicated loans and acquisition financing and in the credit analysis area specialized in structured financing, which analyzed project and acquisition financing. At Fitch Ratings, he worked on the assignment and monitoring of ratings for various infrastructure projects, such as port, highway and airport concessions, as well as energy projects, such as wind farms, thermoelectric and solar power plants and transmission lines.`
     },
     linkedin: 'https://www.linkedin.com/in/daniel-takeushi-b8742155/',
-    email: 'daniel.takeushi@goldencapital.com'
+    email: 'daniel.takeushi@goldencapital.com.br'
   },
   {
     id: 'gabriel',
@@ -215,6 +215,6 @@ Atuou na execução e originação de transações em múltiplos setores, inclui
 He worked on the execution and origination of transactions in multiple sectors, including energy, technology, consumer goods, agribusiness, among others. The total volume of resources transacted in operations he directly participated in exceeds R$ 300 million.`
     },
     linkedin: 'https://www.linkedin.com/in/gabriel-sales-de-oliveira/',
-    email: 'gabriel.oliveira@goldencapital.com'
+    email: 'gabriel.oliveira@goldencapital.com.br'
   }
 ];
