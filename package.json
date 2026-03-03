@@ -1,6 +1,11 @@
 {
   "name": "golden-capital",
   "version": "0.1.0",
+  "description": "Site oficial da Golden Capital",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/ThiagoLaredo/golden-capital.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

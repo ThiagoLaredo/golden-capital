@@ -101,6 +101,8 @@ const Header = () => {
             <img 
               src="/logo-golden-capital-partners-dark.svg" 
               alt="Golden Capital" 
+              width={230}
+              height={48}
             />
           </Link>
           
@@ -166,6 +168,8 @@ const Header = () => {
             <img 
               src="/logo-golden-capital-partners-dark.svg" 
               alt="Golden Capital" 
+              width={230}
+              height={48}
             />
           </Link>
           

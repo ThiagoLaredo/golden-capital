@@ -17,6 +17,8 @@ const Footer = () => {
             src="/logo-golden-capital-partners-dark.svg" 
             alt="Golden Capital Partners" 
             className={styles.logo}
+            width={230}
+            height={48}
           />
         </div>
 
@@ -47,7 +49,7 @@ const Footer = () => {
         <div className={`${styles.footerItem} ${styles.bottomInfo}`}>
           {/* LinkedIn */}
           <a 
-            href="https://linkedin.com/company/golden-capital" 
+            href="https://www.linkedin.com/company/golden-capital-partners/posts/?feedView=all" 
             target="_blank" 
             rel="noopener noreferrer"
             className={styles.linkedin}
