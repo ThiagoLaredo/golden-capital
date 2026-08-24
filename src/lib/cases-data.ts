@@ -19,7 +19,7 @@ export const casesData: CaseItem[] = [
     category: 'selected',
     logo: '/images/cases/grupo-silvio-santos.webp',
     name: 'Silvio Santos Participações Ltda',
-    value: 'R$ 440.500.000,00',
+    value: 'R$ 440.500.000',
     serviceType: 'Captação de Recursos | Liability Management',
     description: {
       pt: 'Assessoria na Captação de Recursos estruturados para as empresas do Grupo.',
@@ -32,7 +32,7 @@ export const casesData: CaseItem[] = [
     category: 'selected',
     logo: '/images/cases/projeto-phoenix.svg',
     name: 'Projeto Phoenix',
-    value: 'R$ 410.000.000,00',
+    value: 'R$ 410.000.000',
     serviceType: 'Liability Management',
     description: {
       pt: 'Assessoria na Reestruturação de Passivos do Grupo',
