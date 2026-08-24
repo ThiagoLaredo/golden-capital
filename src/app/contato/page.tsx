@@ -141,7 +141,7 @@ export default function ContatoPage() {
                 <p 
                   className={styles.introAddress}
                   dangerouslySetInnerHTML={{
-                    __html: dict.intro?.addressDetails || 'Edifício Offices | 3º andar - 316<br />São Paulo/SP - CEP 04538-132'
+                    __html: dict.intro?.addressDetails || 'Edifício Offices | 2º andar – 209 e 210<br />São Paulo/SP - CEP 04538-132'
                   }}
                 />
                 

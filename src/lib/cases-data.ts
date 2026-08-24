@@ -14,6 +14,32 @@ export interface CaseItem {
 
 export const casesData: CaseItem[] = [
   // Operações Selecionadas
+  {
+    id: 'silvio-santos-participacoes',
+    category: 'selected',
+    logo: '/images/cases/grupo-silvio-santos.webp',
+    name: 'Silvio Santos Participações Ltda',
+    value: 'R$ 440.500.000,00',
+    serviceType: 'Captação de Recursos | Liability Management',
+    description: {
+      pt: 'Assessoria na Captação de Recursos estruturados para as empresas do Grupo.',
+      en: 'Advisory in the raising of structured financing for the Group\'s companies.'
+    },
+    year: '2026'
+  },
+  {
+    id: 'projeto-phoenix',
+    category: 'selected',
+    logo: '/images/cases/projeto-phoenix.svg',
+    name: 'Projeto Phoenix',
+    value: 'R$ 410.000.000,00',
+    serviceType: 'Liability Management',
+    description: {
+      pt: 'Assessoria na Reestruturação de Passivos do Grupo',
+      en: 'Advisory in Group Liabilities Restructuring'
+    },
+    year: '2026'
+  },
     {
     id: 'fazendacajueira',
     category: 'selected',

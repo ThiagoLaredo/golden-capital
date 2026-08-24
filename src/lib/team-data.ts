@@ -216,5 +216,34 @@ He worked on the execution and origination of transactions in multiple sectors, 
     },
     linkedin: 'https://www.linkedin.com/in/gabriel-sales-de-oliveira/',
     email: 'gabriel.oliveira@goldencapital.com.br'
+  },
+  {
+    id: 'oscar',
+    name: {
+      pt: 'Oscar Papke',
+      en: 'Oscar Papke'
+    },
+    role: {
+      pt: 'Associate',
+      en: 'Associate'
+    },
+    photo: '/images/equipe/oscar-papke.webp',
+    companies: ['/images/logos/CréditAgricoleCIB_logo.svg'],
+    shortBio: {
+      pt: `Possui experiência no mercado financeiro, com atuação em análise e risco de crédito na área de Corporate & Investment Banking do Crédit Agricole CIB. Na instituição, concentrou-se na avaliação econômico-financeira de grandes contrapartes corporativas, subsidiárias de grupos multinacionais e empresas locais de grande porte.
+
+    Participou ativamente da estruturação de limites de crédito e da emissão de pareceres para operações de empréstimos sindicalizados (syndicated loans), operações bilaterais, fianças e estruturas de Project Finance e Acquisition Finance.`,
+      en: `Has experience in the financial market, with a focus on credit analysis and risk in Crédit Agricole CIB's Corporate & Investment Banking division. At the institution, focused on the financial analysis of large corporate counterparties, subsidiaries of multinational groups and large local companies.
+
+    Actively participated in the structuring of credit limits and the preparation of opinions for syndicated loans, bilateral transactions, guarantees, and Project Finance and Acquisition Finance structures.`
+    },
+    fullBio: {
+      pt: `Ao longo de sua trajetória, acompanhou clientes em setores estratégicos e intensivos em capital, incluindo Energia & Utilities, Metais & Mineração, Óleo & Gás, Agronegócio e Infraestrutura. Sua atuação combina a análise fundamentalista de demonstrações financeiras e capacidade de pagamento com proficiência em modelagem quantitativa e análise de cenários macroeconômicos e setoriais para comitês locais e internacionais de crédito.
+
+    É graduando em Administração de Empresas pela Faculdade de Economia, Administração, Contabilidade e Atuária da Universidade de São Paulo (FEA-USP) e integra o programa de duplo diploma de Mestrado em Gestão da Inovação pela Université Paris 1 Panthéon-Sorbonne.`,
+      en: `Throughout his career, he covered clients in strategic and capital-intensive sectors, including Energy & Utilities, Metals & Mining, Oil & Gas, Agribusiness and Infrastructure. His work combines fundamental analysis of financial statements and repayment capacity with proficiency in quantitative modeling and the analysis of macroeconomic and sector scenarios for local and international credit committees.
+
+    He is pursuing a Bachelor's degree in Business Administration at the Faculty of Economics, Administration, Accounting and Actuarial Sciences of the University of São Paulo (FEA-USP) and is enrolled in the double-degree Master's program in Innovation Management at Université Paris 1 Panthéon-Sorbonne.`
+    }
   }
 ];

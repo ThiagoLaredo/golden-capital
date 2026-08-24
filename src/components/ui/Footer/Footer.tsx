@@ -33,7 +33,7 @@ const Footer = () => {
         <div className={`${styles.footerItem} ${styles.address}`}>
           <p className={styles.addressText}>
             Av. Brigadeiro Faria Lima, 4300<br />
-            Edifício Offices | 3º andar – 316<br />
+            Edifício Offices | 2º andar – 209 e 210<br />
             São Paulo/SP – CEP 04538-132
           </p>
         </div>
