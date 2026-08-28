@@ -193,8 +193,8 @@ export const en = {
       title: "Meet the team",
     },
     intro: {
-      title: "A team with over 27 years of expertise",
-      subtitle: "A team with over 27 years of expertise in **Capital Structuring, Financial Restructuring, Real Estate and Mergers & Acquisitions** across various sectors and markets."
+      title: "A team with over 30 years of expertise",
+      subtitle: "A team with over 30 years of expertise in **Capital Structuring, Financial Restructuring, Real Estate and Mergers & Acquisitions** across various sectors and markets."
     },
     teamCard: {
       knowMore: "Know more",

@@ -37,7 +37,7 @@ export const pt = {
       title: "Transações com participação dos nossos sócios",
       items: [
         {
-          value: "+ R$ 40BI",
+          value: "+ R$ 43BI",
           label: "em transações realizadas"
         },
         {
@@ -49,7 +49,7 @@ export const pt = {
           label: "estruturados"
         },
         {
-          value: "R$ 19BI",
+          value: "R$ 22BI",
           label: "reestruturados"
         }
       ]
@@ -195,7 +195,7 @@ export const pt = {
     },
     intro: {
       title: "Conheça a equipe",
-      subtitle: "Uma equipe com mais de 27 anos de expertise em **Estruturação de Capitais, Reestruturação Financeira, Real Estate e Fusões & Aquisições** em diversos setores e mercados."
+      subtitle: "Uma equipe com mais de 30 anos de expertise em **Estruturação de Capitais, Reestruturação Financeira, Real Estate e Fusões & Aquisições** em diversos setores e mercados."
     },
     teamCard: {
       knowMore: "Saiba mais",
@@ -253,7 +253,7 @@ export const pt = {
   categories: {
     selectedOperations: {
       title: "Operações selecionadas",
-      description: "Mais de **70 transações estratégicas** realizadas pela Golden Capital. Experiências que geram resultados."
+      description: "Mais de **80 transações estratégicas** realizadas pela Golden Capital. Experiências que geram resultados."
     },
     portfolio: {
       title: "Portfólio",
