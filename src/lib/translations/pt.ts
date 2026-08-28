@@ -41,7 +41,7 @@ export const pt = {
           label: "em transações realizadas"
         },
         {
-          value: "Mais de 360",
+          value: "Mais de 380",
           label: "transações de sucesso"
         },
         {
